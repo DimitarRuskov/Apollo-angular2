@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './forum/components/about.component', './forum/components/forum.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './forum/components/about.component', './forum/components/forum.component', './shared/components/navbar.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './forum/components/about.c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, about_component_1, forum_component_1;
+    var core_1, router_1, about_component_1, forum_component_1, navbar_component_1;
     var RootComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', 'angular2/router', './forum/components/about.c
             },
             function (forum_component_1_1) {
                 forum_component_1 = forum_component_1_1;
+            },
+            function (navbar_component_1_1) {
+                navbar_component_1 = navbar_component_1_1;
             }],
         execute: function() {
             RootComponent = (function () {
@@ -34,8 +37,8 @@ System.register(['angular2/core', 'angular2/router', './forum/components/about.c
                 RootComponent = __decorate([
                     core_1.Component({
                         selector: 'im-root',
-                        template: "\n        <h1>Component Router</h1>\n        <nav>\n            <a [routerLink]=\"['About']\">About</a>\n            <a [routerLink]=\"['Forum']\">Forum</a>\n        </nav>\n        <router-outlet></router-outlet>\n    ",
-                        directives: [router_1.ROUTER_DIRECTIVES]
+                        template: "\n        <im-navbar></im-navbar>\n    ",
+                        directives: [navbar_component_1.NavbarComponent, router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([
                         { path: '/about', name: 'About', component: about_component_1.AboutComponent },
@@ -49,4 +52,15 @@ System.register(['angular2/core', 'angular2/router', './forum/components/about.c
         }
     }
 });
+// @Component({
+//     selector: 'im-root',
+//     template: `
+//         <nav>
+//             <a [routerLink]="['About']">About</a>
+//             <a [routerLink]="['Forum']">Forum</a>
+//         </nav>
+//         <router-outlet></router-outlet>
+//     `,
+//     directives: [NavbarComponent, ROUTER_DIRECTIVES]
+// }) 
 //# sourceMappingURL=root.component.js.map
