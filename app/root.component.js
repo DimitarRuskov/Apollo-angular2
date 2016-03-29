@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './forum/components/about.component', './forum/components/forum.component', './shared/components/navbar.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './components/home/home.component', './components/registration/registration.component', './components/login/login.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './forum/components/about.c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, about_component_1, forum_component_1, navbar_component_1;
+    var core_1, router_1, home_component_1, registration_component_1, login_component_1;
     var RootComponent;
     return {
         setters:[
@@ -20,14 +20,14 @@ System.register(['angular2/core', 'angular2/router', './forum/components/about.c
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (about_component_1_1) {
-                about_component_1 = about_component_1_1;
+            function (home_component_1_1) {
+                home_component_1 = home_component_1_1;
             },
-            function (forum_component_1_1) {
-                forum_component_1 = forum_component_1_1;
+            function (registration_component_1_1) {
+                registration_component_1 = registration_component_1_1;
             },
-            function (navbar_component_1_1) {
-                navbar_component_1 = navbar_component_1_1;
+            function (login_component_1_1) {
+                login_component_1 = login_component_1_1;
             }],
         execute: function() {
             RootComponent = (function () {
@@ -37,12 +37,14 @@ System.register(['angular2/core', 'angular2/router', './forum/components/about.c
                 RootComponent = __decorate([
                     core_1.Component({
                         selector: 'im-root',
-                        template: "\n        <im-navbar></im-navbar>\n    ",
-                        directives: [navbar_component_1.NavbarComponent, router_1.ROUTER_DIRECTIVES]
+                        template: "\n        <nav>\n            <a [routerLink]=\"['Home']\">Home</a>\n            <a [routerLink]=\"['Registration']\">Register</a>\n            <a [routerLink]=\"['Login']\">Login</a>\n        </nav>\n        <router-outlet></router-outlet>\n    ",
+                        directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([
-                        { path: '/about', name: 'About', component: about_component_1.AboutComponent },
-                        { path: '/forum', name: 'Forum', component: forum_component_1.ForumComponent }
+                        { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
+                        { path: '/register', name: 'Registration', component: registration_component_1.RegistrationComponent },
+                        { path: '/login', name: 'Login', component: login_component_1.LoginComponent },
+                        { path: '/**', redirectTo: ['Home'] }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], RootComponent);
@@ -52,15 +54,4 @@ System.register(['angular2/core', 'angular2/router', './forum/components/about.c
         }
     }
 });
-// @Component({
-//     selector: 'im-root',
-//     template: `
-//         <nav>
-//             <a [routerLink]="['About']">About</a>
-//             <a [routerLink]="['Forum']">Forum</a>
-//         </nav>
-//         <router-outlet></router-outlet>
-//     `,
-//     directives: [NavbarComponent, ROUTER_DIRECTIVES]
-// }) 
 //# sourceMappingURL=root.component.js.map

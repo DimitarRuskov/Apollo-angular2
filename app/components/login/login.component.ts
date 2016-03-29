@@ -2,7 +2,6 @@ import {Component} from 'angular2/core';
 
 @Component({
   template: `
-    <h2>Forum</h2>
-    <p>blahblabl</p>`
+    <h2>Login...</h2>`
 })
-export class ForumComponent { }
+export class LoginComponent { }

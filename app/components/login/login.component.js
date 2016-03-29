@@ -11,26 +11,26 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var ForumComponent;
+    var LoginComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            ForumComponent = (function () {
-                function ForumComponent() {
+            LoginComponent = (function () {
+                function LoginComponent() {
                 }
-                ForumComponent = __decorate([
+                LoginComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h2>Forum</h2>\n    <p>blahblabl</p>"
+                        template: "\n    <h2>Login...</h2>"
                     }), 
                     __metadata('design:paramtypes', [])
-                ], ForumComponent);
-                return ForumComponent;
+                ], LoginComponent);
+                return LoginComponent;
             }());
-            exports_1("ForumComponent", ForumComponent);
+            exports_1("LoginComponent", LoginComponent);
         }
     }
 });
-//# sourceMappingURL=forum.component.js.map
+//# sourceMappingURL=login.component.js.map
