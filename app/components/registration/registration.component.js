@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', '../../services/registration.service', '../../services/validation.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,22 +10,34 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, registration_service_1, validation_service_1;
     var RegistrationComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (registration_service_1_1) {
+                registration_service_1 = registration_service_1_1;
+            },
+            function (validation_service_1_1) {
+                validation_service_1 = validation_service_1_1;
             }],
         execute: function() {
             RegistrationComponent = (function () {
-                function RegistrationComponent() {
+                function RegistrationComponent(_registrationService) {
+                    this._registrationService = _registrationService;
                 }
+                RegistrationComponent.prototype.onSubmit = function (values) {
+                    this._registrationService.register(values);
+                };
                 RegistrationComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h2>Registration</h2>"
+                        templateUrl: 'app/components/registration/registration.component.html',
+                        styleUrls: ['app/components/registration/registration.component.css'],
+                        providers: [registration_service_1.RegistrationService, validation_service_1.ValidationService,]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [registration_service_1.RegistrationService])
                 ], RegistrationComponent);
                 return RegistrationComponent;
             }());

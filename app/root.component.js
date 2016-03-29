@@ -37,7 +37,7 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
                 RootComponent = __decorate([
                     core_1.Component({
                         selector: 'im-root',
-                        template: "\n        <nav>\n            <a [routerLink]=\"['Home']\">Home</a>\n            <a [routerLink]=\"['Registration']\">Register</a>\n            <a [routerLink]=\"['Login']\">Login</a>\n        </nav>\n        <router-outlet></router-outlet>\n    ",
+                        templateUrl: 'app/root.component.html',
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([

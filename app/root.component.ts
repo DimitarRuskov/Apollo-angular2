@@ -7,14 +7,7 @@ import {LoginComponent} from './components/login/login.component';
 
 @Component({
     selector: 'im-root',
-    template: `
-        <nav>
-            <a [routerLink]="['Home']">Home</a>
-            <a [routerLink]="['Registration']">Register</a>
-            <a [routerLink]="['Login']">Login</a>
-        </nav>
-        <router-outlet></router-outlet>
-    `,
+    templateUrl: 'app/root.component.html',
     directives: [ROUTER_DIRECTIVES]
 })
 
