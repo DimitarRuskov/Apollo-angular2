@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/http', 'angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,23 +10,36 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var http_1, core_1;
     var RegistrationService;
     return {
         setters:[
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
             RegistrationService = (function () {
-                function RegistrationService() {
+                function RegistrationService(_http) {
+                    this._http = _http;
+                    this._headers = new http_1.Headers();
                 }
-                RegistrationService.prototype.register = function (string) {
-                    return 'successfully';
+                RegistrationService.prototype.register = function (params) {
+                    var _this = this;
+                    this._http.post('http://localhost:8003/register', JSON.stringify(params), { headers: this._headers })
+                        .subscribe(function (data) { return _this.formatResponse(data); }, function (err) { return _this.logError(err); }, function () { return console.log('Authentication Complete'); });
+                };
+                RegistrationService.prototype.formatResponse = function (response) {
+                    return response;
+                };
+                RegistrationService.prototype.logError = function (err) {
+                    console.error('There was an error: ' + err);
                 };
                 RegistrationService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], RegistrationService);
                 return RegistrationService;
             }());

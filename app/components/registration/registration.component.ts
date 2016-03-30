@@ -12,8 +12,8 @@ import {ValidationService}      from '../../services/validation.service';
 export class RegistrationComponent {
     constructor(private _registrationService: RegistrationService) { }
     
-    onSubmit(values) {
-         this._registrationService.register(values);
+    onSubmit(values: Object): void {
+        this._registrationService.register(values);
     }
     
     
