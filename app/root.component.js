@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './components/home/home.component', './components/registration/registration.component', './components/login/login.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './components/home/home.component', './components/registration/registration.component', './components/login/login.component', './services/user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, home_component_1, registration_component_1, login_component_1;
+    var core_1, router_1, home_component_1, registration_component_1, login_component_1, user_service_1;
     var RootComponent;
     return {
         setters:[
@@ -28,25 +28,33 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
             },
             function (login_component_1_1) {
                 login_component_1 = login_component_1_1;
+            },
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
             }],
         execute: function() {
             RootComponent = (function () {
-                function RootComponent() {
-                    this.title = 'Apollo';
+                function RootComponent(user) {
+                    this.user = user;
                 }
+                RootComponent.prototype.logout = function (event) {
+                    this.user.closeSession();
+                };
                 RootComponent = __decorate([
                     core_1.Component({
                         selector: 'im-root',
                         templateUrl: 'app/root.component.html',
-                        directives: [router_1.ROUTER_DIRECTIVES]
+                        directives: [router_1.ROUTER_DIRECTIVES],
+                        providers: [user_service_1.UserService]
                     }),
                     router_1.RouteConfig([
                         { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
                         { path: '/register', name: 'Registration', component: registration_component_1.RegistrationComponent },
                         { path: '/login', name: 'Login', component: login_component_1.LoginComponent },
+                        { path: '/profile', name: 'Profile', component: login_component_1.LoginComponent },
                         { path: '/**', redirectTo: ['Home'] }
                     ]), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [user_service_1.UserService])
                 ], RootComponent);
                 return RootComponent;
             }());

@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', '../../services/user.service', '../../services/auth.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,22 +10,36 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, user_service_1, auth_service_1;
     var LoginComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
+            },
+            function (auth_service_1_1) {
+                auth_service_1 = auth_service_1_1;
             }],
         execute: function() {
             LoginComponent = (function () {
-                function LoginComponent() {
+                function LoginComponent(_user, _authService) {
+                    this._user = _user;
+                    this._authService = _authService;
                 }
+                LoginComponent.prototype.onSubmit = function (values) {
+                    var _this = this;
+                    this._authService.login(values)
+                        .subscribe(function (res) { return _this._user.setSessionKey(res.sessionKey); });
+                };
                 LoginComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h2>Login...</h2>"
+                        templateUrl: 'app/components/login/login.component.html',
+                        providers: [auth_service_1.AuthService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [user_service_1.UserService, auth_service_1.AuthService])
                 ], LoginComponent);
                 return LoginComponent;
             }());

@@ -16,8 +16,10 @@
         <li><a [routerLink]="['Home']">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a [routerLink]="['Registration']">Register</a></li>
-        <li><a [routerLink]="['Login']">Login</a></li>
+        <li *ngIf="!user.isAuth()"><a [routerLink]="['Registration']">Register</a></li>
+        <li *ngIf="!user.isAuth()"><a [routerLink]="['Login']">Login</a></li>
+        <li *ngIf="user.isAuth()"><a [routerLink]="['Profile']">Profile</a></li>
+        <li *ngIf="user.isAuth()" (click)="logout()"><a>Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

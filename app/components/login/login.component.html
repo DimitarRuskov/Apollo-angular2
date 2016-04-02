@@ -2,7 +2,7 @@
     <form class="form-horizontal" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
     <fieldset>
         <div id="legend">
-            <legend class="">Register...</legend>
+            <legend class="">Login...</legend>
         </div>
         <div class="control-group">
         <!-- Username -->
@@ -11,15 +11,6 @@
                 <input ngControl="username" #username="ngForm" type="text" id="username" name="username" placeholder="" class="input-xlarge" required>
                 <div [hidden]="username.valid || username.pristine" class="alert alert-danger"> Username is required </div>
             </div>
-        </div>
-    
-        <div class="control-group">
-        <!-- E-mail -->
-            <label class="control-label" for="email">E-mail</label>
-            <div class="controls">
-                <input ngControl="email" #email="ngForm" type="text" id="email" name="email" placeholder="" class="input-xlarge" required>
-            </div>
-            <div [hidden]="email.valid || email.pristine" class="alert alert-danger"> E-mail is required </div>
         </div>
     
         <div class="control-group">
@@ -32,18 +23,9 @@
         </div>
     
         <div class="control-group">
-        <!-- Password Confirm -->
-            <label class="control-label"  for="password_confirm">Password (Confirm)</label>
-            <div class="controls">
-                <input ngControl="passwordConfirm" #passwordConfirm="ngForm" type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge" required>
-                <div [hidden]="passwordConfirm.valid || passwordConfirm.pristine" class="alert alert-danger"> Confirmation of password is required </div>
-            </div>
-        </div>
-    
-        <div class="control-group">
         <!-- Button -->
         <div class="controls">
-            <button type="submit" class="btn btn-success" [disabled]="!form.form.valid">Register</button>
+            <button type="submit" class="btn btn-success" [disabled]="!form.form.valid">Login</button>
         </div>
         </div>
     </fieldset>

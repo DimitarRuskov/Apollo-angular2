@@ -1,19 +1,18 @@
 import {Component}              from 'angular2/core';
 import {NgForm}                 from 'angular2/common';
-import {RegistrationService}    from '../../services/registration.service';
-import {ValidationService}      from '../../services/validation.service';
+import {AuthService}            from '../../services/auth.service';
 
 @Component({
   templateUrl:                  'app/components/registration/registration.component.html',
   styleUrls:                    ['app/components/registration/registration.component.css'],
-  providers:                    [RegistrationService, ValidationService, ]
+  providers:                    [AuthService]
 })
 
 export class RegistrationComponent {
-    constructor(private _registrationService: RegistrationService) { }
+    constructor(private _authService: AuthService) { }
     
     onSubmit(values: Object): void {
-        this._registrationService.register(values);
+        this._authService.register(values);
     }
     
     

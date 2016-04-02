@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../../services/registration.service', '../../services/validation.service'], function(exports_1, context_1) {
+System.register(['angular2/core', '../../services/auth.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,34 +10,31 @@ System.register(['angular2/core', '../../services/registration.service', '../../
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, registration_service_1, validation_service_1;
+    var core_1, auth_service_1;
     var RegistrationComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (registration_service_1_1) {
-                registration_service_1 = registration_service_1_1;
-            },
-            function (validation_service_1_1) {
-                validation_service_1 = validation_service_1_1;
+            function (auth_service_1_1) {
+                auth_service_1 = auth_service_1_1;
             }],
         execute: function() {
             RegistrationComponent = (function () {
-                function RegistrationComponent(_registrationService) {
-                    this._registrationService = _registrationService;
+                function RegistrationComponent(_authService) {
+                    this._authService = _authService;
                 }
                 RegistrationComponent.prototype.onSubmit = function (values) {
-                    this._registrationService.register(values);
+                    this._authService.register(values);
                 };
                 RegistrationComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/components/registration/registration.component.html',
                         styleUrls: ['app/components/registration/registration.component.css'],
-                        providers: [registration_service_1.RegistrationService, validation_service_1.ValidationService,]
+                        providers: [auth_service_1.AuthService]
                     }), 
-                    __metadata('design:paramtypes', [registration_service_1.RegistrationService])
+                    __metadata('design:paramtypes', [auth_service_1.AuthService])
                 ], RegistrationComponent);
                 return RegistrationComponent;
             }());
