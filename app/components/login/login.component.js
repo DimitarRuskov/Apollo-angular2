@@ -37,6 +37,7 @@ System.register(['angular2/core', '../../services/user.service', '../../services
                 LoginComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/components/login/login.component.html',
+                        styleUrls: ['app/components/login/login.component.css'],
                         providers: [auth_service_1.AuthService]
                     }), 
                     __metadata('design:paramtypes', [user_service_1.UserService, auth_service_1.AuthService])

@@ -9,6 +9,7 @@ import {UserService}                    from './services/user.service';
 @Component({
     selector: 'im-root',
     templateUrl: 'app/root.component.html',
+    styleUrls: ['app/root.component.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [UserService]
 })

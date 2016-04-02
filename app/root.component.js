@@ -44,6 +44,7 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
                     core_1.Component({
                         selector: 'im-root',
                         templateUrl: 'app/root.component.html',
+                        styleUrls: ['app/root.component.css'],
                         directives: [router_1.ROUTER_DIRECTIVES],
                         providers: [user_service_1.UserService]
                     }),

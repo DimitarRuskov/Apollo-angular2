@@ -1,33 +1,33 @@
-<div class="col-md-8 col-lg-8">
+<div class="component-wrapper match-parent">
     <form class="form-horizontal" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
-    <fieldset>
-        <div id="legend">
-            <legend class="">Login...</legend>
-        </div>
-        <div class="control-group">
-        <!-- Username -->
-            <label class="control-label" for="username">Username</label>
-            <div class="controls">
-                <input ngControl="username" #username="ngForm" type="text" id="username" name="username" placeholder="" class="input-xlarge" required>
-                <div [hidden]="username.valid || username.pristine" class="alert alert-danger"> Username is required </div>
+        <fieldset>
+            <div id="legend">
+                <legend class="">Login...</legend>
             </div>
-        </div>
-    
-        <div class="control-group">
-        <!-- Password-->
-            <label class="control-label" for="password">Password</label>
-            <div class="controls">
-                <input ngControl="password" #password="ngForm" type="password" id="password" name="password" placeholder="" class="input-xlarge" required>
-                <div [hidden]="password.valid || password.pristine" class="alert alert-danger"> Password is required </div>
+            <div class="control-group">
+            <!-- Username -->
+                <label class="control-label" for="username">Username</label>
+                <div class="controls">
+                    <input ngControl="username" #username="ngForm" type="text" id="username" name="username" placeholder="" class="input-xlarge" required>
+                    <div [hidden]="username.valid || username.pristine" class="alert alert-danger"> Username is required </div>
+                </div>
             </div>
-        </div>
-    
-        <div class="control-group">
-        <!-- Button -->
-        <div class="controls">
-            <button type="submit" class="btn btn-success" [disabled]="!form.form.valid">Login</button>
-        </div>
-        </div>
-    </fieldset>
+
+            <div class="control-group">
+            <!-- Password-->
+                <label class="control-label" for="password">Password</label>
+                <div class="controls">
+                    <input ngControl="password" #password="ngForm" type="password" id="password" name="password" placeholder="" class="input-xlarge" required>
+                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger"> Password is required </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <!-- Button -->
+                <div class="controls">
+                    <button type="submit" class="btn btn-success" [disabled]="!form.form.valid">Login</button>
+                </div>
+            </div>
+        </fieldset>
     </form>
 </div>

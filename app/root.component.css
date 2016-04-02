@@ -1,0 +1,12 @@
+.content-wrapper {
+    height: 100%;
+    padding-top: 51px;
+}
+
+.match-parent {
+    height: 100%;
+}
+
+.ad-area {
+    background-color: #d3d3d3;
+}

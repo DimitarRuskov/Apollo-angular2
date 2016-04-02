@@ -11,9 +11,7 @@ import {AuthService}            from '../../services/auth.service';
 export class RegistrationComponent {
     constructor(private _authService: AuthService) { }
     
-    onSubmit(values: Object): void {
+    onSubmit(values: Object): void {  
         this._authService.register(values);
     }
-    
-    
 }

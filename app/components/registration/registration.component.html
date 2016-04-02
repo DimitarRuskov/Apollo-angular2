@@ -1,51 +1,9 @@
-<div class="col-md-8 col-lg-8">
-    <form class="form-horizontal" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
-    <fieldset>
-        <div id="legend">
-            <legend class="">Register...</legend>
-        </div>
-        <div class="control-group">
-        <!-- Username -->
-            <label class="control-label" for="username">Username</label>
-            <div class="controls">
-                <input ngControl="username" #username="ngForm" type="text" id="username" name="username" placeholder="" class="input-xlarge" required>
-                <div [hidden]="username.valid || username.pristine" class="alert alert-danger"> Username is required </div>
-            </div>
-        </div>
-    
-        <div class="control-group">
-        <!-- E-mail -->
-            <label class="control-label" for="email">E-mail</label>
-            <div class="controls">
-                <input ngControl="email" #email="ngForm" type="text" id="email" name="email" placeholder="" class="input-xlarge" required>
-            </div>
-            <div [hidden]="email.valid || email.pristine" class="alert alert-danger"> E-mail is required </div>
-        </div>
-    
-        <div class="control-group">
-        <!-- Password-->
-            <label class="control-label" for="password">Password</label>
-            <div class="controls">
-                <input ngControl="password" #password="ngForm" type="password" id="password" name="password" placeholder="" class="input-xlarge" required>
-                <div [hidden]="password.valid || password.pristine" class="alert alert-danger"> Password is required </div>
-            </div>
-        </div>
-    
-        <div class="control-group">
-        <!-- Password Confirm -->
-            <label class="control-label"  for="password_confirm">Password (Confirm)</label>
-            <div class="controls">
-                <input ngControl="passwordConfirm" #passwordConfirm="ngForm" type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge" required>
-                <div [hidden]="passwordConfirm.valid || passwordConfirm.pristine" class="alert alert-danger"> Confirmation of password is required </div>
-            </div>
-        </div>
-    
-        <div class="control-group">
-        <!-- Button -->
-        <div class="controls">
-            <button type="submit" class="btn btn-success" [disabled]="!form.form.valid">Register</button>
-        </div>
-        </div>
-    </fieldset>
-    </form>
+<div class="component-wrapper match-parent">
+    <div class="col-lg-offset-3 col-lg-6 well bs-component form-wrapper">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+            <fieldset>
+                <legend>Register...</legend>
+            </fieldset>
+        </form>
+    </div>
 </div>
