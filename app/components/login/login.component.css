@@ -7,3 +7,16 @@
 .match-parent {
     height: 100%;
 }
+
+.form-wrapper {
+    position: relative;
+    top: 30%;
+    transform: translateY(-30%);
+    opacity: 0.7;
+    transition: opacity 1s ease-in-out;
+}
+
+.form-wrapper:hover {
+  filter: alpha(opacity=50);
+  opacity: 1;
+}

@@ -3,6 +3,23 @@
         <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
             <fieldset>
                 <legend>Register...</legend>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input class="form-control" ngControl="username" #username="ngForm" type="text" id="username" name="username" placeholder="Username...">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input class="form-control" ngControl="email" #email="ngForm" type="text" id="email" name="email" placeholder="E-mail...">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" ngControl="password" #password="ngForm" type="password" id="password" name="password" placeholder="Password...">
+                </div>
+                <div class="form-group">
+                    <label for="password_confirm">Password (Confirm)</label>
+                    <input class="form-control" ngControl="passwordConfirm" #passwordConfirm="ngForm" type="password" id="password_confirm" name="password_confirm" placeholder="Password again...">
+                </div>
+                <button type="submit" class="btn btn-default" [disabled]="!form.form.valid">Register</button>
             </fieldset>
         </form>
     </div>

@@ -1,33 +1,18 @@
 <div class="component-wrapper match-parent">
-    <form class="form-horizontal" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
-        <fieldset>
-            <div id="legend">
-                <legend class="">Login...</legend>
-            </div>
-            <div class="control-group">
-            <!-- Username -->
-                <label class="control-label" for="username">Username</label>
-                <div class="controls">
-                    <input ngControl="username" #username="ngForm" type="text" id="username" name="username" placeholder="" class="input-xlarge" required>
-                    <div [hidden]="username.valid || username.pristine" class="alert alert-danger"> Username is required </div>
+    <div class="col-lg-offset-3 col-lg-6 well bs-component form-wrapper">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+            <fieldset>
+                <legend>Login...</legend>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input class="form-control" ngControl="username" #username="ngForm" type="text" id="username" name="username" placeholder="Username...">
                 </div>
-            </div>
-
-            <div class="control-group">
-            <!-- Password-->
-                <label class="control-label" for="password">Password</label>
-                <div class="controls">
-                    <input ngControl="password" #password="ngForm" type="password" id="password" name="password" placeholder="" class="input-xlarge" required>
-                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger"> Password is required </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" ngControl="password" #password="ngForm" type="password" id="password" name="password" placeholder="Password...">
                 </div>
-            </div>
-
-            <div class="control-group">
-                <!-- Button -->
-                <div class="controls">
-                    <button type="submit" class="btn btn-success" [disabled]="!form.form.valid">Login</button>
-                </div>
-            </div>
-        </fieldset>
-    </form>
+                <button type="submit" class="btn btn-default" [disabled]="!form.form.valid">Login</button>
+            </fieldset>
+        </form>
+    </div>
 </div>
