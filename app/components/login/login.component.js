@@ -32,7 +32,7 @@ System.register(['angular2/core', '../../services/user.service', '../../services
                 LoginComponent.prototype.onSubmit = function (values) {
                     var _this = this;
                     this._authService.login(values)
-                        .subscribe(function (res) { return _this._user.setSessionKey(res.sessionKey); });
+                        .subscribe(function (res) { return _this._user.storeUserDetails(res); });
                 };
                 LoginComponent = __decorate([
                     core_1.Component({

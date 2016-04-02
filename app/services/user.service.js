@@ -23,7 +23,10 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this._isAuth = false;
                     this._isAdmin = false;
                 }
-                UserService.prototype.setSessionKey = function (sessionKey) {
+                UserService.prototype.storeUserDetails = function (userData) {
+                    this._setSessionKey(userData.sessionKey);
+                };
+                UserService.prototype._setSessionKey = function (sessionKey) {
                     // localStorage.setItem('sessionKey', sessionKey);
                     this._isAuth = true;
                 };

@@ -7,7 +7,11 @@ export class UserService {
     private _isAuth: boolean = false;
     private _isAdmin: boolean = false;
     
-    public setSessionKey(sessionKey) {
+    public storeUserDetails(userData) {
+        this._setSessionKey(userData.sessionKey);
+    }
+    
+    private _setSessionKey(sessionKey) {
         // localStorage.setItem('sessionKey', sessionKey);
         this._isAuth = true;
     }

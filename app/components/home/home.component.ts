@@ -2,6 +2,8 @@ import {Component} from 'angular2/core';
 
 @Component({
   template: `
-    <h2>Home...</h2>`
+    <div class="col-md-8 col-lg-8">
+        <h2>Home...</h2>
+    </div>`
 })
 export class HomeComponent { }
