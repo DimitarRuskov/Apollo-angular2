@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './components/home/home.component', './components/registration/registration.component', './components/login/login.component', './services/user.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './components/home/home.component', './components/recipes/list-recipes.component', './components/registration/registration.component', './components/login/login.component', './services/user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, home_component_1, registration_component_1, login_component_1, user_service_1;
+    var core_1, router_1, home_component_1, list_recipes_component_1, registration_component_1, login_component_1, user_service_1;
     var RootComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
             },
             function (home_component_1_1) {
                 home_component_1 = home_component_1_1;
+            },
+            function (list_recipes_component_1_1) {
+                list_recipes_component_1 = list_recipes_component_1_1;
             },
             function (registration_component_1_1) {
                 registration_component_1 = registration_component_1_1;
@@ -50,6 +53,7 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
                     }),
                     router_1.RouteConfig([
                         { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
+                        { path: '/recipes', name: 'Recipes', component: list_recipes_component_1.ListRecipesComponent },
                         { path: '/register', name: 'Registration', component: registration_component_1.RegistrationComponent },
                         { path: '/login', name: 'Login', component: login_component_1.LoginComponent },
                         { path: '/profile', name: 'Profile', component: login_component_1.LoginComponent },

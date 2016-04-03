@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', '../models/user.model'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,12 +10,15 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, user_model_1;
     var UserService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (user_model_1_1) {
+                user_model_1 = user_model_1_1;
             }],
         execute: function() {
             UserService = (function () {
@@ -24,14 +27,18 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this._isAdmin = false;
                 }
                 UserService.prototype.storeUserDetails = function (userData) {
+                    this._user = new user_model_1.UserModel();
+                    this._user.username = userData.username;
+                    this._user.email = userData.email;
+                    this._user.role = userData.role;
                     this._setSessionKey(userData.sessionKey);
                 };
                 UserService.prototype._setSessionKey = function (sessionKey) {
-                    // localStorage.setItem('sessionKey', sessionKey);
+                    localStorage.setItem('sessionKey', sessionKey);
                     this._isAuth = true;
                 };
                 UserService.prototype.getSessionKey = function () {
-                    // localStorage.getItem('sessionKey');
+                    return localStorage.getItem('sessionKey');
                 };
                 UserService.prototype.closeSession = function () {
                     this._isAuth = false;
@@ -43,7 +50,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     return this.isAdmin;
                 };
                 UserService.prototype.getUserDetails = function () {
-                    return { name: 'edi koi si', email: 'someone@abv.bg' };
+                    return this._user;
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 

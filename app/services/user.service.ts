@@ -1,23 +1,29 @@
 import {Injectable} from 'angular2/core';
+import {UserModel} from '../models/user.model';
 
 @Injectable()
 export class UserService {
     constructor() { }
     
-    private _isAuth: boolean = false;
-    private _isAdmin: boolean = false;
+    private _isAuth:boolean = false;
+    private _isAdmin:boolean = false;
+    private _user:UserModel;
     
     public storeUserDetails(userData) {
+        this._user = new UserModel();
+        this._user.username = userData.username;
+        this._user.email = userData.email;
+        this._user.role = userData.role;
         this._setSessionKey(userData.sessionKey);
     }
     
     private _setSessionKey(sessionKey) {
-        // localStorage.setItem('sessionKey', sessionKey);
+        localStorage.setItem('sessionKey', sessionKey);
         this._isAuth = true;
     }
     
     public getSessionKey() {
-        // localStorage.getItem('sessionKey');
+        return localStorage.getItem('sessionKey');
     }
     
     public closeSession() {
@@ -33,6 +39,6 @@ export class UserService {
     }
     
     public getUserDetails() {
-        return {name: 'edi koi si', email: 'someone@abv.bg'};
+        return this._user;
     }
 }
