@@ -1,1 +1,8 @@
-<div>hello, recipes</div>
+<div class="component-wrapper match-parent">
+    <h2 class="component-header">Recipes</h2>
+    <ul class="recipe-list">
+        <li class="recipe-item" *ngFor="#recipe of recipes">
+            <apollo-recipe [recipe]="recipe"></apollo-recipe>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,32 @@
+<div class="well">
+    <div class="media">
+        <a class="media-photo thumbnail col-lg-4" href="#">
+            <img src="app/components/recipes/img.jpg" alt="Image not found">
+        </a>
+        <div class="col-lg-8">
+            <div class="media-body">
+                <h4 class="media-heading">{{recipe.title}}</h4>
+                <p>By: {{recipe.author}}</p>
+                <p>{{recipe.content}}</p>
+            </div>
+            <ul class="list-inline list-unstyled">
+                <li>
+                    <span><i class="glyphicon glyphicon-calendar"></i> {{recipe.createdAt}}</span>
+                </li>
+                <li>|</li>
+                <li>
+                    <span><i class="glyphicon glyphicon-comment"></i> {{recipe.comments}} comments</span>
+                </li>
+                <li>|</li>
+                <li>
+                    <span><i class="glyphicon glyphicon-thumbs-up"></i> {{recipe.thumbsUp}}</span>
+                </li>
+                <li>|</li>
+                <li>
+                    <span><i class="glyphicon glyphicon-thumbs-down"></i> {{recipe.thumbsDown}}</span>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+</div>

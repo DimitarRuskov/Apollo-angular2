@@ -1,0 +1,26 @@
+.component-wrapper {
+    background: #1D976C; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #1D976C , #93F9B9); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #1D976C , #93F9B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.match-parent {
+    min-height: 100%;
+    padding-top: 2em;
+}
+
+.component-header {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.recipe-list {
+    -webkit-padding-start: 0;
+    padding: 0 8em;
+}
+
+.recipe-item {
+    list-style: none;
+}
