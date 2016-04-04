@@ -1,0 +1,22 @@
+.component-wrapper {
+    background: #EC6F66; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #EC6F66 , #F3A183); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #EC6F66 , #F3A183); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.match-parent {
+    height: 100%;
+}
+
+.form-wrapper {
+    position: relative;
+    top: 30%;
+    transform: translateY(-30%);
+    opacity: 0.7;
+    transition: opacity 1s ease-in-out;
+}
+
+.form-wrapper:hover {
+  filter: alpha(opacity=50);
+  opacity: 1;
+}

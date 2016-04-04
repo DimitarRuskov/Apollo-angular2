@@ -33,5 +33,7 @@ export class ListRecipesComponent {
         model2.thumbsUp = 18;
         model2.thumbsDown = 2;
         this.recipes.push(model2);
+        this.recipes.push(model2);
+        this.recipes.push(model2);
     }
 }

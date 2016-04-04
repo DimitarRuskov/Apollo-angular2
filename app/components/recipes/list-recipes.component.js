@@ -47,6 +47,8 @@ System.register(['angular2/core', './recipe.component', '../../models/recipe.mod
                     model2.thumbsUp = 18;
                     model2.thumbsDown = 2;
                     this.recipes.push(model2);
+                    this.recipes.push(model2);
+                    this.recipes.push(model2);
                 }
                 ListRecipesComponent = __decorate([
                     core_1.Component({
