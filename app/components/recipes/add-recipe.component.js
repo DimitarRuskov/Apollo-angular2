@@ -21,9 +21,21 @@ System.register(['angular2/core'], function(exports_1, context_1) {
             AddRecipeComponent = (function () {
                 function AddRecipeComponent() {
                     this._ingredients = [];
+                    this._prepSteps = [];
                 }
                 AddRecipeComponent.prototype.addIngredient = function (newIngredient) {
                     this._ingredients.push(newIngredient);
+                    this.newIngredient = '';
+                };
+                AddRecipeComponent.prototype.deleteIngredient = function (index) {
+                    this._ingredients.splice(index, 1);
+                };
+                AddRecipeComponent.prototype.addPrepStep = function (newPrepStep) {
+                    this._prepSteps.push(newPrepStep);
+                    this.newPrepStep = '';
+                };
+                AddRecipeComponent.prototype.deletePrepStep = function (index) {
+                    this._prepSteps.splice(index, 1);
                 };
                 AddRecipeComponent = __decorate([
                     core_1.Component({
