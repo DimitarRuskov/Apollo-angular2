@@ -1,0 +1,8 @@
+<div class="component-wrapper match-parent">
+    <h2 class="component-header">Categories</h2>
+    <ul class="category-list">
+        <li class="category-item" *ngFor="#category of categories">
+            <apollo-category [category]="category"></apollo-category>
+        </li>
+    </ul>
+</div>
