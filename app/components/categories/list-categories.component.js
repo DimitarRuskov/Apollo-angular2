@@ -25,9 +25,12 @@ System.register(['angular2/core', './category.component', '../../services/catego
             }],
         execute: function() {
             ListCategoriesComponent = (function () {
-                function ListCategoriesComponent(_category) {
-                    this._category = _category;
-                    this.categories = this._category.categories;
+                function ListCategoriesComponent(_categoryService) {
+                    var _this = this;
+                    this._categoryService = _categoryService;
+                    this.categories = [];
+                    this._categoryService.listCategories({})
+                        .subscribe(function (data) { return _this.categories = data.categories; }, function (err) { return console.log(err); }, function () { return console.log('done'); });
                 }
                 ListCategoriesComponent = __decorate([
                     core_1.Component({

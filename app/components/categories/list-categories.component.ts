@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {CategoryComponent} from './category.component';
 import {CategoryModel} from '../../models/category.model';
-import {CategoryService} from '../../services/category.service'
+import {CategoryService} from '../../services/category.service';
 
 @Component({
     templateUrl:        'app/components/categories/list-categories.component.html',
@@ -11,8 +11,13 @@ import {CategoryService} from '../../services/category.service'
 })
 
 export class ListCategoriesComponent {
-    public categories:Array<any>;
-    constructor(private _category: CategoryService) {
-        this.categories = this._category.categories;
+    public categories:Array<CategoryModel> = [];
+    constructor(private _categoryService: CategoryService) {
+        this._categoryService.listCategories({})
+        .subscribe(
+            data => this.categories = data.categories,
+            err => console.log(err),
+            () => console.log('done')
+        );
     }
 }

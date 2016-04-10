@@ -23,12 +23,25 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1, context_
         execute: function() {
             CategoryService = (function () {
                 function CategoryService(_http) {
-                    var _this = this;
                     this._http = _http;
-                    this.categories = this._http.post('http://localhost:4000/category/list', JSON.stringify({}))
-                        .map(function (res) { return res.json(); })
-                        .subscribe(function (categories) { return _this.categories = categories; });
                 }
+                CategoryService.prototype.listCategories = function (params) {
+                    var prms = {
+                        params: {
+                            orderBy: {
+                                updatedAt: -1
+                            }
+                        }
+                    };
+                    var headers = new http_1.Headers();
+                    headers.append('Content-Type', 'application/json');
+                    var opts = { headers: headers };
+                    return this._http.post('http://localhost:8003/category/list', JSON.stringify(prms), opts)
+                        .map(function (res) { return res.json(); });
+                };
+                CategoryService.prototype.handleError = function (err) {
+                    console.error(err);
+                };
                 CategoryService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
