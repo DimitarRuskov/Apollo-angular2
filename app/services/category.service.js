@@ -11,7 +11,7 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1, context_
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var http_1, core_1;
-    var RecipeService;
+    var CategoryService;
     return {
         setters:[
             function (http_1_1) {
@@ -21,20 +21,21 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1, context_
                 core_1 = core_1_1;
             }],
         execute: function() {
-            RecipeService = (function () {
-                function RecipeService(_http) {
+            CategoryService = (function () {
+                function CategoryService(_http) {
+                    var _this = this;
                     this._http = _http;
+                    this.categories = this._http.post('http://localhost:4000/category/list', JSON.stringify({}))
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (categories) { return _this.categories = categories; });
                 }
-                RecipeService.prototype.fetchRecipes = function (params) {
-                    return this._http.post('http://localhost:4000/category/list', JSON.stringify(params));
-                };
-                RecipeService = __decorate([
+                CategoryService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
-                ], RecipeService);
-                return RecipeService;
+                ], CategoryService);
+                return CategoryService;
             }());
-            exports_1("RecipeService", RecipeService);
+            exports_1("CategoryService", CategoryService);
         }
     }
 });

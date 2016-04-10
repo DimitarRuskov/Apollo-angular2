@@ -1,4 +1,4 @@
-System.register(['angular2/core', './category.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './category.component', '../../services/category.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './category.component'], function(exports_1, c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, category_component_1;
+    var core_1, category_component_1, category_service_1;
     var ListCategoriesComponent;
     return {
         setters:[
@@ -19,19 +19,24 @@ System.register(['angular2/core', './category.component'], function(exports_1, c
             },
             function (category_component_1_1) {
                 category_component_1 = category_component_1_1;
+            },
+            function (category_service_1_1) {
+                category_service_1 = category_service_1_1;
             }],
         execute: function() {
             ListCategoriesComponent = (function () {
-                function ListCategoriesComponent() {
-                    this.categories = [];
+                function ListCategoriesComponent(_category) {
+                    this._category = _category;
+                    this.categories = this._category.categories;
                 }
                 ListCategoriesComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/components/categories/list-categories.component.html',
                         styleUrls: ['app/components/categories/list-categories.component.css'],
-                        directives: [category_component_1.CategoryComponent]
+                        directives: [category_component_1.CategoryComponent],
+                        providers: [category_service_1.CategoryService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [category_service_1.CategoryService])
                 ], ListCategoriesComponent);
                 return ListCategoriesComponent;
             }());

@@ -1,5 +1,6 @@
  import {Component, Input}  from 'angular2/core';
  import {CategoryModel}     from '../../models/category.model';
+ import {}
 
 @Component({
     selector:           'apollo-category',
@@ -9,4 +10,6 @@
 
 export class CategoryComponent {
     @Input () category:CategoryModel;
+    
+    
 }
