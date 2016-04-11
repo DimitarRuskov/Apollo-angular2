@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', '../../services/category.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,33 +10,44 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, category_service_1;
     var AddCategoryComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (category_service_1_1) {
+                category_service_1 = category_service_1_1;
             }],
         execute: function() {
             AddCategoryComponent = (function () {
-                function AddCategoryComponent(element) {
+                function AddCategoryComponent(element, _categoryService) {
                     this.element = element;
+                    this._categoryService = _categoryService;
+                    this._selectedImage = null;
                 }
                 AddCategoryComponent.prototype.changeListner = function (event) {
                     var reader = new FileReader();
                     var image = this.element.nativeElement.querySelector('.image');
                     reader.onload = function (e) {
                         var src = e.target.result;
+                        this._selectedImage = src;
                         image.src = src;
-                    };
+                    }.bind(this);
                     reader.readAsDataURL(event.target.files[0]);
+                };
+                AddCategoryComponent.prototype.onSubmit = function (values) {
+                    values.image = this._selectedImage;
+                    this._categoryService.addCategory(values);
                 };
                 AddCategoryComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/components/categories/add-category.component.html',
-                        styleUrls: ['app/components/categories/add-category.component.css']
+                        styleUrls: ['app/components/categories/add-category.component.css'],
+                        providers: [category_service_1.CategoryService]
                     }), 
-                    __metadata('design:paramtypes', [core_1.ElementRef])
+                    __metadata('design:paramtypes', [core_1.ElementRef, category_service_1.CategoryService])
                 ], AddCategoryComponent);
                 return AddCategoryComponent;
             }());

@@ -24,6 +24,8 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1, context_
             CategoryService = (function () {
                 function CategoryService(_http) {
                     this._http = _http;
+                    this._headers = new http_1.Headers();
+                    this._headers.append('Content-Type', 'application/json');
                 }
                 CategoryService.prototype.listCategories = function (params) {
                     var prms = {
@@ -33,10 +35,13 @@ System.register(['angular2/http', 'angular2/core'], function(exports_1, context_
                             }
                         }
                     };
-                    var headers = new http_1.Headers();
-                    headers.append('Content-Type', 'application/json');
-                    var opts = { headers: headers };
-                    return this._http.post('http://localhost:8003/category/list', JSON.stringify(prms), opts)
+                    return this._http.post('http://localhost:8003/category/list', JSON.stringify(prms), { headers: this._headers })
+                        .map(function (res) { return res.json(); });
+                };
+                CategoryService.prototype.addCategory = function (params) {
+                    var prms = {};
+                    prms.params = params;
+                    return this._http.post('http://localhost:8003/category/add', JSON.stringify(prms), { headers: this._headers })
                         .map(function (res) { return res.json(); });
                 };
                 CategoryService.prototype.handleError = function (err) {

@@ -40,3 +40,12 @@
     cursor: inherit;
     display: block;
 }
+
+.image-container {
+    max-height: 30%;
+    overflow: hidden;
+}
+
+.file-input-wrapper {
+    vertical-align: middle;
+}
