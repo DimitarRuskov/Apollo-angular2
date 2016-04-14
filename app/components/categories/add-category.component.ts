@@ -24,8 +24,13 @@ export class AddCategoryComponent {
         reader.readAsDataURL(event.target.files[0]);
     }
     
-    onSubmit(values: Object): void {
+    onSubmit(values): void {
         values.image = this._selectedImage;
-        this._categoryService.addCategory(values);
+        this._categoryService.addCategory(values)
+        .subscribe(
+            data => console.log('success'),
+            err => console.log(err),
+            () => console.log('done')
+        );
     }
 }
