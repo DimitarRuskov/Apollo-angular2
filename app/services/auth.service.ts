@@ -1,34 +1,38 @@
-import {Http, Headers, Response} from 'angular2/http';
+import {Http, Response, Headers} from 'angular2/http';
 import {Injectable} from 'angular2/core';
 import 'rxjs/add/operator/map';
 
+import {UserService} from './user.service';
+
 @Injectable()
 export class AuthService {
-    _headers: any
-    constructor(private _http:Http) {
-        
+    private _headers:Headers
+    constructor(private _http:Http, private _userService: UserService) {
+        this._headers = new Headers();
+        this._headers.append('Content-Type', 'application/json');
     }
     
     public register(params) {
-        this._http.post('http://localhost:8003/register', JSON.stringify(params))
+        delete params.passwordConfirm;
+        var prms:any = {
+            params: params
+        }
+        this._http.post('http://localhost:8003/user/register', JSON.stringify(prms), {headers: this._headers})
+        .map((res: Response) => res.json())
         .subscribe(
-            data => this.formatResponse(data),
+            data => this._userService.storeUserDetails(data),
             err => this.logError(err),
-            () => console.log('Authentication Complete')
+            () => window.alert('Registration Complete')
         )
     }
     
     public login(params) {
-        return this._http.post('http://localhost:8003/login', JSON.stringify(params))
+        return this._http.post('http://localhost:8003/user/login', JSON.stringify(params), {headers: this._headers})
         .map((res: Response) => res.json())
     }
     
-    private formatResponse(response) {
-        // localStorage.setItem('sessionKey', response.msg);
-        return response;
-    }
-    
     logError(err) {
-        console.error('There was an error: ' + err);
+        window.alert('Failed: ' + JSON.parse(err._body).message + ' ' + JSON.parse(err._body).description);
+        console.error('There was an error: ' + JSON.parse(err._body).message);
     }
 }

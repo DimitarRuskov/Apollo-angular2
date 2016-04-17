@@ -3,35 +3,33 @@ import {UserModel} from '../models/user.model';
 
 @Injectable()
 export class UserService {
-    constructor() { }
+    private _user:UserModel
     
-    private _isAuth:boolean = false;
-    private _isAdmin:boolean = false;
-    private _user:UserModel;
-    
-    public storeUserDetails(userData) {
+    constructor() {
         this._user = new UserModel();
-        this._user.username = userData.username;
-        this._user.email = userData.email;
-        this._user.role = userData.role;
-        this._setSessionKey(userData.sessionKey);
+        this._user.sessionKey = localStorage.getItem('sessionKey');
+    }
+    
+    public storeUserDetails(userDetails) {
+        this._setSessionKey(userDetails.token);
+        this._user.sessionKey = localStorage.getItem('sessionKey');
     }
     
     private _setSessionKey(sessionKey) {
         localStorage.setItem('sessionKey', sessionKey);
-        this._isAuth = true;
     }
     
     public getSessionKey() {
-        return localStorage.getItem('sessionKey');
+        return  this._user.sessionKey;
     }
     
     public closeSession() {
-        this._isAuth = false;
+        localStorage.removeItem('sessionKey');
+        this._user = new UserModel();
     }
     
     private isAuth() {
-        return this._isAuth;
+        return this._user.sessionKey ? true : false;
     }
     
     public isAdmin() {

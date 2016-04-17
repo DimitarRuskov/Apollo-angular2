@@ -23,28 +23,25 @@ System.register(['angular2/core', '../models/user.model'], function(exports_1, c
         execute: function() {
             UserService = (function () {
                 function UserService() {
-                    this._isAuth = false;
-                    this._isAdmin = false;
-                }
-                UserService.prototype.storeUserDetails = function (userData) {
                     this._user = new user_model_1.UserModel();
-                    this._user.username = userData.username;
-                    this._user.email = userData.email;
-                    this._user.role = userData.role;
-                    this._setSessionKey(userData.sessionKey);
+                    this._user.sessionKey = localStorage.getItem('sessionKey');
+                }
+                UserService.prototype.storeUserDetails = function (userDetails) {
+                    this._setSessionKey(userDetails.token);
+                    this._user.sessionKey = localStorage.getItem('sessionKey');
                 };
                 UserService.prototype._setSessionKey = function (sessionKey) {
                     localStorage.setItem('sessionKey', sessionKey);
-                    this._isAuth = true;
                 };
                 UserService.prototype.getSessionKey = function () {
-                    return localStorage.getItem('sessionKey');
+                    return this._user.sessionKey;
                 };
                 UserService.prototype.closeSession = function () {
-                    this._isAuth = false;
+                    localStorage.removeItem('sessionKey');
+                    this._user = new user_model_1.UserModel();
                 };
                 UserService.prototype.isAuth = function () {
-                    return this._isAuth;
+                    return this._user.sessionKey ? true : false;
                 };
                 UserService.prototype.isAdmin = function () {
                     return this.isAdmin;
