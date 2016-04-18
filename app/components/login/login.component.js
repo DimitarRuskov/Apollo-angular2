@@ -30,9 +30,7 @@ System.register(['angular2/core', '../../services/user.service', '../../services
                     this._authService = _authService;
                 }
                 LoginComponent.prototype.onSubmit = function (values) {
-                    var _this = this;
-                    this._authService.login(values)
-                        .subscribe(function (res) { return _this._user.storeUserDetails(res); });
+                    this._authService.login(values);
                 };
                 LoginComponent = __decorate([
                     core_1.Component({

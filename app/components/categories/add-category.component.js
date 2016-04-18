@@ -39,8 +39,7 @@ System.register(['angular2/core', '../../services/category.service'], function(e
                 };
                 AddCategoryComponent.prototype.onSubmit = function (values) {
                     values.image = this._selectedImage;
-                    this._categoryService.addCategory(values)
-                        .subscribe(function (data) { return console.log('success'); }, function (err) { return console.log(err); }, function () { return console.log('done'); });
+                    this._categoryService.addCategory(values);
                 };
                 AddCategoryComponent = __decorate([
                     core_1.Component({

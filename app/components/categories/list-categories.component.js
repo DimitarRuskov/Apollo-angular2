@@ -30,7 +30,7 @@ System.register(['angular2/core', './category.component', '../../services/catego
                     this._categoryService = _categoryService;
                     this.categories = [];
                     this._categoryService.listCategories({})
-                        .subscribe(function (data) { return _this.categories = data.categories; }, function (err) { return console.log(err); }, function () { return console.log('done'); });
+                        .subscribe(function (data) { return _this.categories = data.categories; }, function (err) { return console.log(err); }, function () { return console.log(_this.categories); });
                 }
                 ListCategoriesComponent = __decorate([
                     core_1.Component({

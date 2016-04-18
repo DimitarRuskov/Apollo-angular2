@@ -17,7 +17,7 @@ export class ListCategoriesComponent {
         .subscribe(
             data => this.categories = data.categories,
             err => console.log(err),
-            () => console.log('done')
+            () => console.log(this.categories)
         );
     }
 }

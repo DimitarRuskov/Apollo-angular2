@@ -12,6 +12,6 @@ export class LoginComponent {
     
     onSubmit(values: Object): void {
         this._authService.login(values)
-        .subscribe(res => this._user.storeUserDetails(res));
+        
     }
 }

@@ -26,11 +26,6 @@ export class AddCategoryComponent {
     
     onSubmit(values): void {
         values.image = this._selectedImage;
-        this._categoryService.addCategory(values)
-        .subscribe(
-            data => console.log('success'),
-            err => console.log(err),
-            () => console.log('done')
-        );
+        this._categoryService.addCategory(values);
     }
 }

@@ -1,22 +1,23 @@
 import {Http, Response, Headers} from 'angular2/http';
+import {Router} from "angular2/router";
 import {Injectable} from 'angular2/core';
+
 import {CategoryModel} from '../models/category.model';
+import {UserService} from './user.service';
 
 @Injectable()
 export class CategoryService {
     public categories:Array<CategoryModel>;
     private _headers:Headers;
-    constructor(private _http:Http) {
+    constructor(private _http:Http, private _user:UserService, private _router:Router) {
         this._headers = new Headers();
         this._headers.append('Content-Type', 'application/json');
     }
     
     public listCategories(params) {
         var prms:any = {
-            params: {
-                orderBy: {
-                    updatedAt: -1
-                }
+            orderBy: {
+                updatedAt: -1
             }
         }
         return this._http.post('http://localhost:8003/category/list', JSON.stringify(prms), {headers: this._headers})
@@ -24,13 +25,22 @@ export class CategoryService {
     }
     
     public addCategory(params) {
-        var prms:any = { }
-        prms.params = params;
-        return this._http.post('http://localhost:8003/category/add', JSON.stringify(prms), {headers: this._headers})
-        .map((res:Response) => res.json())
+        this._headers.set('Authorization', 'Bearer ' + this._user.getSessionKey());
+        return this._http.post('http://localhost:8003/category/add', JSON.stringify(params), {headers: this._headers})
+        .map((res: Response) => res.json())
+        .subscribe(
+            data => this.onSuccess(data),
+            err => this.onError(err),
+            () => window.alert('Successfully created Category!')
+        )
     }
     
-    private handleError(err) {
+    onSuccess(data) {
+        this._router.navigate(['Categories']);
+    }
+    
+    onError(err) {
+        window.alert('Failed: ' + JSON.parse(err._body).message + ' ' + JSON.parse(err._body).description);
         console.error(err);
     }
 }

@@ -23,7 +23,8 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 }
                 HomeComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <div class=\"col-md-8 col-lg-8\">\n        <h2>Home...</h2>\n    </div>"
+                        templateUrl: 'app/components/home/home.component.html',
+                        styleUrls: ['app/components/home/home.component.css']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HomeComponent);

@@ -1,4 +1,4 @@
-System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', './user.service'], function(exports_1, context_1) {
+System.register(['angular2/http', "angular2/router", 'angular2/core', 'rxjs/add/operator/map', './user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,12 +10,15 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', './u
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var http_1, core_1, user_service_1;
+    var http_1, router_1, core_1, user_service_1;
     var AuthService;
     return {
         setters:[
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (core_1_1) {
                 core_1 = core_1_1;
@@ -26,9 +29,10 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', './u
             }],
         execute: function() {
             AuthService = (function () {
-                function AuthService(_http, _userService) {
+                function AuthService(_http, _userService, _router) {
                     this._http = _http;
                     this._userService = _userService;
+                    this._router = _router;
                     this._headers = new http_1.Headers();
                     this._headers.append('Content-Type', 'application/json');
                 }
@@ -40,19 +44,25 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', './u
                     };
                     this._http.post('http://localhost:8003/user/register', JSON.stringify(prms), { headers: this._headers })
                         .map(function (res) { return res.json(); })
-                        .subscribe(function (data) { return _this._userService.storeUserDetails(data); }, function (err) { return _this.logError(err); }, function () { return window.alert('Registration Complete'); });
+                        .subscribe(function (data) { return _this.onSuccess(data); }, function (err) { return _this.onError(err); }, function () { return window.alert('Registration Complete'); });
                 };
                 AuthService.prototype.login = function (params) {
+                    var _this = this;
                     return this._http.post('http://localhost:8003/user/login', JSON.stringify(params), { headers: this._headers })
-                        .map(function (res) { return res.json(); });
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (data) { return _this.onSuccess(data); }, function (err) { return _this.onError(err); }, function () { return window.alert('Successfully Logged in!'); });
                 };
-                AuthService.prototype.logError = function (err) {
+                AuthService.prototype.onError = function (err) {
                     window.alert('Failed: ' + JSON.parse(err._body).message + ' ' + JSON.parse(err._body).description);
                     console.error('There was an error: ' + JSON.parse(err._body).message);
                 };
+                AuthService.prototype.onSuccess = function (data) {
+                    this._userService.storeUserDetails(data);
+                    this._router.navigate(['Home']);
+                };
                 AuthService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http, user_service_1.UserService])
+                    __metadata('design:paramtypes', [http_1.Http, user_service_1.UserService, router_1.Router])
                 ], AuthService);
                 return AuthService;
             }());
