@@ -1,7 +1,6 @@
 import {Component}          from 'angular2/core';
 import {FormBuilder, Validators, Control, ControlGroup}  from 'angular2/common';
 import {AuthService}        from '../../services/auth.service';
-import {RegistrationModel}  from '../../models/registration.model';
 import {ControlMessage}     from '../common/control-message.component';
 import {ValidationService}  from '../../services/validation.service';
 
