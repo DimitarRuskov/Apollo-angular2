@@ -31,19 +31,18 @@ System.register(['angular2/core', 'angular2/common', '../../services/auth.servic
             }],
         execute: function() {
             RegistrationComponent = (function () {
-                // constructor(private _authService:AuthService) { }
-                function RegistrationComponent(_formBuilder) {
+                function RegistrationComponent(_authService, _formBuilder) {
+                    this._authService = _authService;
                     this._formBuilder = _formBuilder;
                     this.form = this._formBuilder.group({
-                        'username': ['', common_1.Validators.compose([common_1.Validators.required])],
-                        'email': ['', common_1.Validators.compose([common_1.Validators.required, validation_service_1.ValidationService.emailValidator])]
+                        'username': ['', common_1.Validators.compose([common_1.Validators.required, common_1.Validators.minLength(6)])],
+                        'email': ['', common_1.Validators.compose([common_1.Validators.required, validation_service_1.ValidationService.emailValidator])],
+                        'password': ['', common_1.Validators.compose([common_1.Validators.required, common_1.Validators.minLength(6)])],
+                        'passwordConfirm': ['', common_1.Validators.compose([common_1.Validators.required])]
                     });
                 }
-                RegistrationComponent.prototype.onSubmit = function () {
-                    alert('success');
-                    // if (this.userForm.dirty && this.userForm.valid) {
-                    //   alert(`Name: ${this.userForm.value.name} Email: ${this.userForm.value.email}`);
-                    // }
+                RegistrationComponent.prototype.onSubmit = function (values) {
+                    this._authService.register(values);
                 };
                 RegistrationComponent = __decorate([
                     core_1.Component({
@@ -52,7 +51,7 @@ System.register(['angular2/core', 'angular2/common', '../../services/auth.servic
                         providers: [auth_service_1.AuthService],
                         directives: [control_message_component_1.ControlMessage]
                     }), 
-                    __metadata('design:paramtypes', [common_1.FormBuilder])
+                    __metadata('design:paramtypes', [auth_service_1.AuthService, common_1.FormBuilder])
                 ], RegistrationComponent);
                 return RegistrationComponent;
             }());

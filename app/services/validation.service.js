@@ -11,10 +11,12 @@ System.register([], function(exports_1, context_1) {
                 ValidationService.getValidatorErrorMessage = function (code) {
                     var config = {
                         'required': 'Required',
+                        'minlength': 'Invalid length(below the minimum characters)',
+                        'maxlength': 'Invalid length(above the maximum characters)',
                         'invalidEmailAddress': 'Invalid email address',
                         'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.'
                     };
-                    return config[code];
+                    return config[code] || 'Validation error';
                 };
                 ValidationService.emailValidator = function (control) {
                     // RFC 2822 compliant regex

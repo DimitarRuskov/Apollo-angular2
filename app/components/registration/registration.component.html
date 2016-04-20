@@ -25,7 +25,7 @@
     </div>
 </div>-->
                 
-<form [ngFormModel]="form" (submit)="onSubmit()">
+<form [ngFormModel]="form" (submit)="onSubmit(form.value)">
     <fieldset>
         <legend>Register...</legend>
         <div class="form-group">
@@ -39,6 +39,18 @@
             <input class="form-control" ngControl="email" #email="ngForm" type="text" id="email" name="email" placeholder="E-mail...">
         </div>
         <control-message control="email"></control-message>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" ngControl="password" #password="ngForm" type="password" id="password" name="password" placeholder="Password...">
+        </div>
+        <control-message control="password"></control-message>
+        
+        <div class="form-group">
+            <label for="password_confirm">Password (Confirm)</label>
+            <input class="form-control" ngControl="passwordConfirm" #passwordConfirm="ngForm" type="password" id="password_confirm" name="password_confirm" placeholder="Password again...">
+        </div>
+        <control-message control="passwordConfirm"></control-message>
     
         <button type="submit" class="btn btn-default" [disabled]="!form.valid">Register</button>
     </fieldset>

@@ -51,7 +51,7 @@ System.register(['angular2/core', 'angular2/common', '../../services/validation.
                     core_1.Component({
                         selector: 'control-message',
                         inputs: ['controlName: control'],
-                        template: "<div *ngIf=\"errorMessage !== null\">{{errorMessage}}</div>"
+                        template: "<p class=\"alert alert-danger\" *ngIf=\"errorMessage !== null\">{{errorMessage}}</p>"
                     }),
                     __param(0, core_1.Host()), 
                     __metadata('design:paramtypes', [common_1.NgFormModel])
