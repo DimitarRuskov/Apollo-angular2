@@ -21,6 +21,7 @@
             <li><a [routerLink]="['AddCategory']">New Category</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="user.isAuth()"><a [routerLink]="['Profile']">{{getUsername}}</a></li>
             <li *ngIf="!user.isAuth()"><a [routerLink]="['Registration']">Register</a></li>
             <li *ngIf="!user.isAuth()"><a [routerLink]="['Login']">Login</a></li>
             <li *ngIf="user.isAuth()" (click)="logout()"><a [routerLink]="['Home']">Logout</a></li>

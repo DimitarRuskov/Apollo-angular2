@@ -5,6 +5,7 @@ import {ListRecipesComponent}           from './components/recipes/list-recipes.
 import {ListCategoriesComponent}        from './components/categories/list-categories.component';
 import {AddCategoryComponent}           from './components/categories/add-category.component';
 import {AddRecipeComponent}             from './components/recipes/add-recipe.component';
+import {EditProfileComponent}           from './components/profile/edit-profile.component';
 import {RegistrationComponent}          from './components/registration/registration.component';
 import {LoginComponent}                 from './components/login/login.component';
 import {UserService}                    from './services/user.service';
@@ -25,12 +26,16 @@ import {UserService}                    from './services/user.service';
     {path:'/add-recipe',    name: 'AddRecipe',      component: AddRecipeComponent},
     {path:'/register',      name: 'Registration',   component: RegistrationComponent},
     {path:'/login',         name: 'Login',          component: LoginComponent},
-    {path:'/profile',       name: 'Profile',        component: LoginComponent},
+    {path:'/profile',       name: 'Profile',        component: EditProfileComponent},
     {path: '/**',           redirectTo: ['Home']}
 ])
 
 export class RootComponent {
     constructor(private user: UserService) { }
+    
+    public getUsername() {
+        return this.user.getUserDetails().username;
+    }
     
     logout(event) {
         this.user.closeSession();
