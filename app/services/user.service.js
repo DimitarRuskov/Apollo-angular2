@@ -25,10 +25,14 @@ System.register(['angular2/core', '../models/user.model'], function(exports_1, c
                 function UserService() {
                     this._user = new user_model_1.UserModel();
                     this._user.sessionKey = localStorage.getItem('sessionKey');
+                    this.isAuth = this._checkIfAuth();
                 }
-                UserService.prototype.storeUserDetails = function (userDetails) {
-                    this._setSessionKey(userDetails.token);
+                UserService.prototype.storeUserDetails = function (data) {
+                    this._setSessionKey(data.token);
+                    this._user.username = data.userDetails.username;
+                    this._user.id = data.userDetails.id;
                     this._user.sessionKey = localStorage.getItem('sessionKey');
+                    this.isAuth = this._checkIfAuth();
                 };
                 UserService.prototype._setSessionKey = function (sessionKey) {
                     localStorage.setItem('sessionKey', sessionKey);
@@ -39,12 +43,10 @@ System.register(['angular2/core', '../models/user.model'], function(exports_1, c
                 UserService.prototype.closeSession = function () {
                     localStorage.removeItem('sessionKey');
                     this._user = new user_model_1.UserModel();
+                    this.isAuth = this._checkIfAuth();
                 };
-                UserService.prototype.isAuth = function () {
+                UserService.prototype._checkIfAuth = function () {
                     return this._user.sessionKey ? true : false;
-                };
-                UserService.prototype.isAdmin = function () {
-                    return this.isAdmin;
                 };
                 UserService.prototype.getUserDetails = function () {
                     return this._user;

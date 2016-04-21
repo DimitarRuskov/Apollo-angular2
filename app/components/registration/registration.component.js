@@ -31,9 +31,9 @@ System.register(['angular2/core', 'angular2/common', '../../services/auth.servic
             }],
         execute: function() {
             RegistrationComponent = (function () {
-                function RegistrationComponent(_authService, _formBuilder) {
-                    this._authService = _authService;
+                function RegistrationComponent(_formBuilder, _authService) {
                     this._formBuilder = _formBuilder;
+                    this._authService = _authService;
                     this.form = this._formBuilder.group({
                         'username': ['', common_1.Validators.compose([common_1.Validators.required, common_1.Validators.minLength(6)])],
                         'email': ['', common_1.Validators.compose([common_1.Validators.required, validation_service_1.ValidationService.emailValidator])],
@@ -51,7 +51,7 @@ System.register(['angular2/core', 'angular2/common', '../../services/auth.servic
                         providers: [auth_service_1.AuthService],
                         directives: [control_message_component_1.ControlMessage]
                     }), 
-                    __metadata('design:paramtypes', [auth_service_1.AuthService, common_1.FormBuilder])
+                    __metadata('design:paramtypes', [common_1.FormBuilder, auth_service_1.AuthService])
                 ], RegistrationComponent);
                 return RegistrationComponent;
             }());

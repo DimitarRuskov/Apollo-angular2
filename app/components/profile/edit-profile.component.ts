@@ -1,4 +1,9 @@
 import {Component, ElementRef} from 'angular2/core';
+import {FormBuilder, Validators, Control, ControlGroup}  from 'angular2/common';
+
+import {ControlMessage}     from '../common/control-message.component';
+import {ValidationService}  from '../../services/validation.service';
+
 import {ProfileService} from '../../services/profile.service';
 
 @Component({
@@ -8,9 +13,15 @@ import {ProfileService} from '../../services/profile.service';
 })
 
 export class EditProfileComponent {
+    form:any;
     private _selectedImage = null;
-    constructor(private element: ElementRef, private _profileService: ProfileService) { }
-     changeListner(event) {
+    constructor(private _formBuilder: FormBuilder, private element: ElementRef, private _profileService: ProfileService) {
+        this.form = this._formBuilder.group({
+            'name':             ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+            'email':            ['', Validators.compose([Validators.required, ValidationService.emailValidator])]
+        });
+    }
+    changeListner(event) {
         var reader = new FileReader();
         var image = this.element.nativeElement.querySelector('.image');
 

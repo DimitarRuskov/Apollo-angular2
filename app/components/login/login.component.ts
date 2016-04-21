@@ -11,7 +11,6 @@ export class LoginComponent {
     constructor(private _user: UserService, private _authService: AuthService) { }
     
     onSubmit(values: Object): void {
-        this._authService.login(values)
-        
+        this._authService.login(values);
     }
 }

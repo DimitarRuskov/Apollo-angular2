@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../../services/profile.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', '../../services/validation.service', '../../services/profile.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,22 +10,33 @@ System.register(['angular2/core', '../../services/profile.service'], function(ex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, profile_service_1;
+    var core_1, common_1, validation_service_1, profile_service_1;
     var EditProfileComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (common_1_1) {
+                common_1 = common_1_1;
+            },
+            function (validation_service_1_1) {
+                validation_service_1 = validation_service_1_1;
+            },
             function (profile_service_1_1) {
                 profile_service_1 = profile_service_1_1;
             }],
         execute: function() {
             EditProfileComponent = (function () {
-                function EditProfileComponent(element, _profileService) {
+                function EditProfileComponent(_formBuilder, element, _profileService) {
+                    this._formBuilder = _formBuilder;
                     this.element = element;
                     this._profileService = _profileService;
                     this._selectedImage = null;
+                    this.form = this._formBuilder.group({
+                        'name': ['', common_1.Validators.compose([common_1.Validators.required, common_1.Validators.minLength(6)])],
+                        'email': ['', common_1.Validators.compose([common_1.Validators.required, validation_service_1.ValidationService.emailValidator])]
+                    });
                 }
                 EditProfileComponent.prototype.changeListner = function (event) {
                     var reader = new FileReader();
@@ -47,7 +58,7 @@ System.register(['angular2/core', '../../services/profile.service'], function(ex
                         styleUrls: ['app/components/profile/edit-profile.component.css'],
                         providers: [profile_service_1.ProfileService]
                     }), 
-                    __metadata('design:paramtypes', [core_1.ElementRef, profile_service_1.ProfileService])
+                    __metadata('design:paramtypes', [common_1.FormBuilder, core_1.ElementRef, profile_service_1.ProfileService])
                 ], EditProfileComponent);
                 return EditProfileComponent;
             }());

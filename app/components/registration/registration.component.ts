@@ -14,7 +14,7 @@ import {ValidationService}  from '../../services/validation.service';
 export class RegistrationComponent {
     form:any;
     
-    constructor(private _authService:AuthService, private _formBuilder: FormBuilder) {
+    constructor(private _formBuilder: FormBuilder, private _authService:AuthService) {
 		
         this.form = this._formBuilder.group({
             'username':         ['', Validators.compose([Validators.required, Validators.minLength(6)])],

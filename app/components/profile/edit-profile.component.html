@@ -1,6 +1,6 @@
 <form [ngFormModel]="form" (submit)="onSubmit(form.value)">
     <fieldset>
-        <legend>New Category...</legend>
+        <legend>Manage Profile...</legend>
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-12 col-md-8 col-lg-8">
@@ -23,12 +23,8 @@
             <input class="form-control" ngControl="name" #name="ngForm" type="text" id="name" name="name" placeholder="Name...">
         </div>
         <div class="form-group">
-            <label for="username">Username</label>
-            <textarea class="form-control" ngControl="username" #description="ngForm" id="username" name="username" placeholder="Username..." rows="5"></textarea>
-        </div>
-        <div class="form-group">
             <label for="email">E-mail</label>
-            <textarea class="form-control" ngControl="email" #description="ngForm" id="email" name="email" placeholder="E-mail..." rows="5"></textarea>
+            <input class="form-control" ngControl="email" #email="ngForm" type="text" id="email" name="email" placeholder="E-mail...">
         </div>
         
         <button type="submit" class="btn btn-default" [disabled]="!form.form.valid">Save</button>

@@ -34,7 +34,8 @@ export class RootComponent {
     constructor(private user: UserService) { }
     
     public getUsername() {
-        return this.user.getUserDetails().username;
+        let details = this.user.getUserDetails();
+        return details.username;
     }
     
     logout(event) {

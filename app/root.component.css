@@ -10,3 +10,11 @@
 .ad-area {
     background-color: #d3d3d3;
 }
+
+.profile-image {
+    padding-top: 3px;
+    vertical-align: middle;
+    width: 44px;
+    height: 47px;
+    border-radius: 100%;
+}

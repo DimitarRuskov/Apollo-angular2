@@ -53,7 +53,8 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
                     this.user = user;
                 }
                 RootComponent.prototype.getUsername = function () {
-                    return this.user.getUserDetails().username;
+                    var details = this.user.getUserDetails();
+                    return details.username;
                 };
                 RootComponent.prototype.logout = function (event) {
                     this.user.closeSession();
