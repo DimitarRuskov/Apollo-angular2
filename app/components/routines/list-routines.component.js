@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../../services/routine.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './routine.component', '../../services/routine.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../../services/routine.ser
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, routine_service_1;
+    var core_1, router_1, routine_component_1, routine_service_1;
     var ListRoutinesComponent;
     return {
         setters:[
@@ -20,13 +20,17 @@ System.register(['angular2/core', 'angular2/router', '../../services/routine.ser
             function (router_1_1) {
                 router_1 = router_1_1;
             },
+            function (routine_component_1_1) {
+                routine_component_1 = routine_component_1_1;
+            },
             function (routine_service_1_1) {
                 routine_service_1 = routine_service_1_1;
             }],
         execute: function() {
             ListRoutinesComponent = (function () {
-                function ListRoutinesComponent(_routineService, _routeParams) {
+                function ListRoutinesComponent(_routineService, _router, _routeParams) {
                     this._routineService = _routineService;
+                    this._router = _router;
                     this._routeParams = _routeParams;
                     this.routines = [];
                 }
@@ -36,14 +40,17 @@ System.register(['angular2/core', 'angular2/router', '../../services/routine.ser
                     this._routineService.listRoutines({ categoryId: this._categoryId })
                         .subscribe(function (data) { return _this.routines = data.routines; }, function (err) { return console.log(err); }, function () { return console.log(_this.routines); });
                 };
+                ListRoutinesComponent.prototype.addRoutine = function () {
+                    this._router.navigate(['AddRoutine', { categoryId: this._categoryId }]);
+                };
                 ListRoutinesComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/components/routines/list-routines.component.html',
                         styleUrls: ['app/components/routines/list-routines.component.css'],
-                        directives: [],
+                        directives: [routine_component_1.RoutineComponent],
                         providers: [routine_service_1.RoutineService]
                     }), 
-                    __metadata('design:paramtypes', [routine_service_1.RoutineService, router_1.RouteParams])
+                    __metadata('design:paramtypes', [routine_service_1.RoutineService, router_1.Router, router_1.RouteParams])
                 ], ListRoutinesComponent);
                 return ListRoutinesComponent;
             }());

@@ -47,7 +47,7 @@ System.register(['angular2/http', "angular2/router", 'angular2/core', './user.se
                         .subscribe(function (data) { return _this.onSuccess(data); }, function (err) { return _this.onError(err); }, function () { return window.alert('Successfully created Routine!'); });
                 };
                 RoutineService.prototype.onSuccess = function (data) {
-                    this._router.navigate(['Routines']);
+                    this._router.navigate(['Categories']);
                 };
                 RoutineService.prototype.onError = function (err) {
                     window.alert('Failed: ' + JSON.parse(err._body).message + ' ' + JSON.parse(err._body).description);

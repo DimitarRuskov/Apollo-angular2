@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+
 import {CategoryComponent} from './category.component';
 import {CategoryModel} from '../../models/category.model';
 import {CategoryService} from '../../services/category.service';

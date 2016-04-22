@@ -31,7 +31,7 @@ export class RoutineService {
     }
     
     onSuccess(data) {
-        this._router.navigate(['Routines']);
+        this._router.navigate(['Categories']);
     }
     
     onError(err) {

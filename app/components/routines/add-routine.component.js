@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../../services/routine.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../../services/routine.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,21 +10,25 @@ System.register(['angular2/core', '../../services/routine.service'], function(ex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, routine_service_1;
+    var core_1, router_1, routine_service_1;
     var AddRoutineComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
             function (routine_service_1_1) {
                 routine_service_1 = routine_service_1_1;
             }],
         execute: function() {
             AddRoutineComponent = (function () {
-                function AddRoutineComponent(element, _routineService) {
+                function AddRoutineComponent(element, _routineService, _routeParams) {
                     this.element = element;
                     this._routineService = _routineService;
+                    this._routeParams = _routeParams;
                     this._selectedImage = null;
                 }
                 AddRoutineComponent.prototype.changeListner = function (event) {
@@ -37,9 +41,13 @@ System.register(['angular2/core', '../../services/routine.service'], function(ex
                     }.bind(this);
                     reader.readAsDataURL(event.target.files[0]);
                 };
+                AddRoutineComponent.prototype.ngOnInit = function () {
+                    this._categoryId = this._routeParams.get('categoryId');
+                };
                 AddRoutineComponent.prototype.onSubmit = function (values) {
+                    values.categoryId = this._categoryId;
                     values.image = this._selectedImage;
-                    this._routineService.addCategory(values);
+                    this._routineService.addRoutine(values);
                 };
                 AddRoutineComponent = __decorate([
                     core_1.Component({
@@ -47,7 +55,7 @@ System.register(['angular2/core', '../../services/routine.service'], function(ex
                         styleUrls: ['app/components/routines/add-routine.component.css'],
                         providers: [routine_service_1.RoutineService]
                     }), 
-                    __metadata('design:paramtypes', [core_1.ElementRef, routine_service_1.RoutineService])
+                    __metadata('design:paramtypes', [core_1.ElementRef, routine_service_1.RoutineService, router_1.RouteParams])
                 ], AddRoutineComponent);
                 return AddRoutineComponent;
             }());

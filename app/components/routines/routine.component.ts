@@ -1,19 +1,19 @@
  import {Component, Input}  from 'angular2/core';
- import {CategoryModel}     from '../../models/category.model';
+ import {RoutineModel}     from '../../models/routine.model';
  import {Router} from "angular2/router";
 
 @Component({
     selector:           'apollo-routine',
-    templateUrl:        'app/components/categories/category.component.html',
-    styleUrls:          ['app/components/categories/category.component.css']
+    templateUrl:        'app/components/routines/routine.component.html',
+    styleUrls:          ['app/components/routines/routine.component.css']
 })
 
-export class CategoryComponent {
-    @Input () category:CategoryModel;
+export class RoutineComponent {
+    @Input () routine:RoutineModel;
     
     constructor(private _router:Router) { }
     
-    listRoutines(categoryId) {
-        this._router.navigate(['Routines', {categoryId: categoryId}])
+    listRoutines(routineId) {
+        this._router.navigate(['Exercises', {routineId: routineId}])
     }
 }

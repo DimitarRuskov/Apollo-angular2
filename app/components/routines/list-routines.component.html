@@ -1,1 +1,15 @@
-<p>Routines list</p>
+<div class="component-wrapper match-parent">
+    <h2 class="component-header">Routines</h2>
+    <div class="row">
+        <button type="button" class="btn btn-primary pull-right" (click)="addRoutine()">New Routine</button>
+    </div>
+    <hr>
+    <ul class="routine-list">
+        <li class="routine-item" *ngFor="#routine of routines">
+            <apollo-routine [routine]="routine"></apollo-routine>
+        </li>
+        <li *ngIf="!routines.length">
+            No Routines
+        </li>
+    </ul>
+</div>

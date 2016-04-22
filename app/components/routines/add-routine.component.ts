@@ -1,4 +1,6 @@
-import {Component, ElementRef} from 'angular2/core';
+import {Component, OnInit, ElementRef} from 'angular2/core';
+import {Router, RouteParams} from 'angular2/router';
+
 import {RoutineModel} from '../../models/routine.model';
 import {RoutineService} from '../../services/routine.service';
 
@@ -8,9 +10,10 @@ import {RoutineService} from '../../services/routine.service';
     providers:          [RoutineService]
 })
 
-export class AddRoutineComponent {
+export class AddRoutineComponent implements OnInit {
     private _selectedImage = null;
-    constructor(private element: ElementRef, private _routineService: RoutineService) { }
+    private _categoryId:String;
+    constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams:RouteParams) { }
      changeListner(event) {
         var reader = new FileReader();
         var image = this.element.nativeElement.querySelector('.image');
@@ -24,8 +27,13 @@ export class AddRoutineComponent {
         reader.readAsDataURL(event.target.files[0]);
     }
     
+    ngOnInit() {
+        this._categoryId = this._routeParams.get('categoryId');
+    }
+    
     onSubmit(values): void {
+        values.categoryId = this._categoryId;
         values.image = this._selectedImage;
-        this._routineService.addCategory(values);
+        this._routineService.addRoutine(values);
     }
 }

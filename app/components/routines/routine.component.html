@@ -1,0 +1,12 @@
+<div class="well">
+    <div class="media">
+        <a class="media-photo thumbnail col-lg-4" (click)="listExercises(routine._id)">
+            <img src="http://localhost:8003{{routine.imageUrl}}" alt="Image not found">
+        </a>
+        <div class="col-lg-8">
+            <div class="media-body">
+                <h4 class="media-heading"><a (click)="listRoutines(routine._id)">{{routine.name}}</a></h4>
+                <p>{{routine.description}}</p>
+            </div>
+    </div>
+</div>
