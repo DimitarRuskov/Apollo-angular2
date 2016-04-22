@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+import {Router, RouteParams} from 'angular2/router';
 
 import {CategoryComponent} from './category.component';
 import {CategoryModel} from '../../models/category.model';
@@ -14,12 +15,16 @@ import {UserService} from '../../services/user.service';
 
 export class ListCategoriesComponent {
     public categories:Array<CategoryModel> = [];
-    constructor(private _categoryService: CategoryService, private user:UserService) {
+    constructor(private _categoryService: CategoryService, private _router:Router, private _routeParams:RouteParams, private user:UserService) {
         this._categoryService.listCategories({})
         .subscribe(
             data => this.categories = data.categories,
             err => console.log(err),
             () => console.log(this.categories)
         );
+    }
+    
+    addCategory() {
+        this._router.navigate(['AddCategory']);
     }
 }
