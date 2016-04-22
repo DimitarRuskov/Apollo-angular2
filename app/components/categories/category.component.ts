@@ -1,6 +1,6 @@
  import {Component, Input}  from 'angular2/core';
  import {CategoryModel}     from '../../models/category.model';
- import {}
+ import {Router} from "angular2/router";
 
 @Component({
     selector:           'apollo-category',
@@ -11,5 +11,9 @@
 export class CategoryComponent {
     @Input () category:CategoryModel;
     
+    constructor(private _router:Router) { }
     
+    listRoutines(categoryId) {
+        this._router.navigate(['Routines', {categoryId: categoryId}])
+    }
 }

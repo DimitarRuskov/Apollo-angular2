@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../../models/category.model'], function(exports_1, context_1) {
+System.register(['angular2/core', '../../models/category.model', "angular2/router"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../../models/category.model'], function(expor
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, category_model_1;
+    var core_1, category_model_1, router_1;
     var CategoryComponent;
     return {
         setters:[
@@ -19,11 +19,18 @@ System.register(['angular2/core', '../../models/category.model'], function(expor
             },
             function (category_model_1_1) {
                 category_model_1 = category_model_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             CategoryComponent = (function () {
-                function CategoryComponent() {
+                function CategoryComponent(_router) {
+                    this._router = _router;
                 }
+                CategoryComponent.prototype.listRoutines = function (categoryId) {
+                    this._router.navigate(['Routines', { categoryId: categoryId }]);
+                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', category_model_1.CategoryModel)
@@ -34,7 +41,7 @@ System.register(['angular2/core', '../../models/category.model'], function(expor
                         templateUrl: 'app/components/categories/category.component.html',
                         styleUrls: ['app/components/categories/category.component.css']
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.Router])
                 ], CategoryComponent);
                 return CategoryComponent;
             }());
