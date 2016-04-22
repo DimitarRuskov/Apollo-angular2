@@ -36,12 +36,7 @@ System.register(['angular2/http', "angular2/router", 'angular2/core', './user.se
                     this._headers.append('Content-Type', 'application/json');
                 }
                 RoutineService.prototype.listRoutines = function (params) {
-                    var prms = {
-                        orderBy: {
-                            updatedAt: -1
-                        }
-                    };
-                    return this._http.post('http://localhost:8003/routine/list', JSON.stringify(prms), { headers: this._headers })
+                    return this._http.post('http://localhost:8003/routine/list', JSON.stringify({ categoryId: params.categoryId }), { headers: this._headers })
                         .map(function (res) { return res.json(); });
                 };
                 RoutineService.prototype.addRoutine = function (params) {

@@ -61,7 +61,7 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
                 };
                 RootComponent = __decorate([
                     core_1.Component({
-                        selector: 'im-root',
+                        selector: 'apollo-root',
                         templateUrl: 'app/root.component.html',
                         styleUrls: ['app/root.component.css'],
                         directives: [router_1.ROUTER_DIRECTIVES],

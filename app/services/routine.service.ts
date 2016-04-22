@@ -15,12 +15,7 @@ export class RoutineService {
     }
     
     public listRoutines(params) {
-        var prms:any = {
-            orderBy: {
-                updatedAt: -1
-            }
-        }
-        return this._http.post('http://localhost:8003/routine/list', JSON.stringify(prms), {headers: this._headers})
+        return this._http.post('http://localhost:8003/routine/list', JSON.stringify({categoryId: params.categoryId}), {headers: this._headers})
         .map((res:Response) => res.json())
     }
     

@@ -12,7 +12,7 @@ import {LoginComponent}                 from './components/login/login.component
 import {UserService}                    from './services/user.service';
 
 @Component({
-    selector: 'im-root',
+    selector: 'apollo-root',
     templateUrl: 'app/root.component.html',
     styleUrls: ['app/root.component.css'],
     directives: [ROUTER_DIRECTIVES],
