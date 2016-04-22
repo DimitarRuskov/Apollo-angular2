@@ -9,11 +9,13 @@ export class UserService {
     constructor() {
         this._user = new UserModel();
         this._user.sessionKey = localStorage.getItem('sessionKey');
+        this._user.username = localStorage.getItem('username');
         this.isAuth = this._checkIfAuth();
     }
     
     public storeUserDetails(data) {
         this._setSessionKey(data.token);
+        this._setUserDetails(data.userDetails);
         this._user.username = data.userDetails.username;
         this._user.id = data.userDetails.id;
         this._user.sessionKey = localStorage.getItem('sessionKey');
@@ -22,6 +24,10 @@ export class UserService {
     
     private _setSessionKey(sessionKey) {
         localStorage.setItem('sessionKey', sessionKey);
+    }
+    
+    private _setUserDetails(userDetails) {
+        localStorage.setItem('username', userDetails.username);
     }
     
     public getSessionKey() {
