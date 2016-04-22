@@ -71,7 +71,7 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
                         { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
                         { path: '/categories', name: 'Categories', component: list_categories_component_1.ListCategoriesComponent },
                         { path: 'add-category', name: 'AddCategory', component: add_category_component_1.AddCategoryComponent },
-                        { path: '/routines/:categoryId', name: 'Routines', component: list_routines_component_1.ListRoutinesComponent },
+                        { path: '/routines/', name: 'Routines', component: list_routines_component_1.ListRoutinesComponent },
                         { path: '/add-routine', name: 'AddRoutine', component: add_routine_component_1.AddRoutineComponent },
                         { path: '/register', name: 'Registration', component: registration_component_1.RegistrationComponent },
                         { path: '/login', name: 'Login', component: login_component_1.LoginComponent },

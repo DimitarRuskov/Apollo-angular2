@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './routine.component', '../../services/routine.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './routine.component', '../../services/routine.service', '../../services/user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './routine.component', '../
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, routine_component_1, routine_service_1;
+    var core_1, router_1, routine_component_1, routine_service_1, user_service_1;
     var ListRoutinesComponent;
     return {
         setters:[
@@ -25,13 +25,17 @@ System.register(['angular2/core', 'angular2/router', './routine.component', '../
             },
             function (routine_service_1_1) {
                 routine_service_1 = routine_service_1_1;
+            },
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
             }],
         execute: function() {
             ListRoutinesComponent = (function () {
-                function ListRoutinesComponent(_routineService, _router, _routeParams) {
+                function ListRoutinesComponent(_routineService, _router, _routeParams, user) {
                     this._routineService = _routineService;
                     this._router = _router;
                     this._routeParams = _routeParams;
+                    this.user = user;
                     this.routines = [];
                 }
                 ListRoutinesComponent.prototype.ngOnInit = function () {
@@ -48,9 +52,9 @@ System.register(['angular2/core', 'angular2/router', './routine.component', '../
                         templateUrl: 'app/components/routines/list-routines.component.html',
                         styleUrls: ['app/components/routines/list-routines.component.css'],
                         directives: [routine_component_1.RoutineComponent],
-                        providers: [routine_service_1.RoutineService]
+                        providers: [routine_service_1.RoutineService, user_service_1.UserService]
                     }), 
-                    __metadata('design:paramtypes', [routine_service_1.RoutineService, router_1.Router, router_1.RouteParams])
+                    __metadata('design:paramtypes', [routine_service_1.RoutineService, router_1.Router, router_1.RouteParams, user_service_1.UserService])
                 ], ListRoutinesComponent);
                 return ListRoutinesComponent;
             }());

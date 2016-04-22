@@ -23,7 +23,7 @@ import {UserService}                    from './services/user.service';
     {path:'/home',          name: 'Home',           component: HomeComponent,               useAsDefault: true},
     {path:'/categories',    name: 'Categories',     component: ListCategoriesComponent},
     {path:'add-category',   name: 'AddCategory',    component: AddCategoryComponent},
-    {path:'/routines/:categoryId',      name: 'Routines',       component: ListRoutinesComponent},
+    {path:'/routines/',     name: 'Routines',       component: ListRoutinesComponent},
     {path:'/add-routine',   name: 'AddRoutine',     component: AddRoutineComponent},
     {path:'/register',      name: 'Registration',   component: RegistrationComponent},
     {path:'/login',         name: 'Login',          component: LoginComponent},

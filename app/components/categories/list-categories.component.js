@@ -1,4 +1,4 @@
-System.register(['angular2/core', './category.component', '../../services/category.service'], function(exports_1, context_1) {
+System.register(['angular2/core', './category.component', '../../services/category.service', '../../services/user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './category.component', '../../services/catego
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, category_component_1, category_service_1;
+    var core_1, category_component_1, category_service_1, user_service_1;
     var ListCategoriesComponent;
     return {
         setters:[
@@ -22,12 +22,16 @@ System.register(['angular2/core', './category.component', '../../services/catego
             },
             function (category_service_1_1) {
                 category_service_1 = category_service_1_1;
+            },
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
             }],
         execute: function() {
             ListCategoriesComponent = (function () {
-                function ListCategoriesComponent(_categoryService) {
+                function ListCategoriesComponent(_categoryService, user) {
                     var _this = this;
                     this._categoryService = _categoryService;
+                    this.user = user;
                     this.categories = [];
                     this._categoryService.listCategories({})
                         .subscribe(function (data) { return _this.categories = data.categories; }, function (err) { return console.log(err); }, function () { return console.log(_this.categories); });
@@ -39,7 +43,7 @@ System.register(['angular2/core', './category.component', '../../services/catego
                         directives: [category_component_1.CategoryComponent],
                         providers: [category_service_1.CategoryService]
                     }), 
-                    __metadata('design:paramtypes', [category_service_1.CategoryService])
+                    __metadata('design:paramtypes', [category_service_1.CategoryService, user_service_1.UserService])
                 ], ListCategoriesComponent);
                 return ListCategoriesComponent;
             }());

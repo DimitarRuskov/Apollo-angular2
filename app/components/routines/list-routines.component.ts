@@ -4,18 +4,19 @@ import {Router, RouteParams} from 'angular2/router';
 import {RoutineComponent} from './routine.component';
 import {RoutineModel} from '../../models/routine.model';
 import {RoutineService} from '../../services/routine.service';
+import {UserService} from '../../services/user.service';
 
 @Component({
     templateUrl:        'app/components/routines/list-routines.component.html',
     styleUrls:          ['app/components/routines/list-routines.component.css'],
     directives: [RoutineComponent],
-    providers: [RoutineService]
+    providers: [RoutineService, UserService]
 })
 
 export class ListRoutinesComponent implements OnInit {
     public routines:Array<RoutineModel> = [];
     private _categoryId:String;
-    constructor(private _routineService:RoutineService, private _router:Router, private _routeParams:RouteParams) { }
+    constructor(private _routineService:RoutineService, private _router:Router, private _routeParams:RouteParams, private user:UserService) { }
     
     ngOnInit() {
         this._categoryId = this._routeParams.get('categoryId');
