@@ -39,6 +39,10 @@ export class RootComponent {
         return details.username;
     }
     
+    public getImageUrl() {
+        return this.user.getUserDetails().imageUrl;
+    }
+    
     logout(event) {
         this.user.closeSession();
     }

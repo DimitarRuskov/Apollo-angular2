@@ -10,6 +10,7 @@ export class UserService {
         this._user = new UserModel();
         this._user.sessionKey = localStorage.getItem('sessionKey');
         this._user.username = localStorage.getItem('username');
+        this._user.imageUrl = localStorage.getItem('imageUrl');
         this.isAuth = this._checkIfAuth();
     }
     
@@ -28,6 +29,7 @@ export class UserService {
     
     private _setUserDetails(userDetails) {
         localStorage.setItem('username', userDetails.username);
+        localStorage.setItem('imageUrl', userDetails.imageUrl);
     }
     
     public getSessionKey() {

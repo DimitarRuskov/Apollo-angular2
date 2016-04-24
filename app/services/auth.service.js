@@ -29,9 +29,9 @@ System.register(['angular2/http', "angular2/router", 'angular2/core', 'rxjs/add/
             }],
         execute: function() {
             AuthService = (function () {
-                function AuthService(_http, _userService, _router) {
+                function AuthService(_http, user, _router) {
                     this._http = _http;
-                    this._userService = _userService;
+                    this.user = user;
                     this._router = _router;
                     this._headers = new http_1.Headers();
                     this._headers.append('Content-Type', 'application/json');
@@ -52,12 +52,24 @@ System.register(['angular2/http', "angular2/router", 'angular2/core', 'rxjs/add/
                         .map(function (res) { return res.json(); })
                         .subscribe(function (data) { return _this.onSuccess(data); }, function (err) { return _this.onError(err); }, function () { return window.alert('Successfully Logged in!'); });
                 };
+                AuthService.prototype.getProfile = function (params) {
+                    this._headers.set('Authorization', 'Bearer ' + this.user.getSessionKey());
+                    return this._http.post('http://localhost:8003/user/getProfile', JSON.stringify({}), { headers: this._headers })
+                        .map(function (res) { return res.json(); });
+                };
+                AuthService.prototype.updateProfile = function (params) {
+                    var _this = this;
+                    this._headers.set('Authorization', 'Bearer ' + this.user.getSessionKey());
+                    return this._http.post('http://localhost:8003/user/updateProfile', JSON.stringify(params), { headers: this._headers })
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (data) { return console.log(data); }, function (err) { return _this.onError(err); }, function () { return window.alert('Successfully updated profile!'); });
+                };
                 AuthService.prototype.onError = function (err) {
                     window.alert('Failed: ' + JSON.parse(err._body).message + ' ' + JSON.parse(err._body).description);
                     console.error('There was an error: ' + JSON.parse(err._body).message);
                 };
                 AuthService.prototype.onSuccess = function (data) {
-                    this._userService.storeUserDetails(data);
+                    this.user.storeUserDetails(data);
                     this._router.navigate(['Home']);
                 };
                 AuthService = __decorate([

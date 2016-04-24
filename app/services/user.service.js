@@ -26,6 +26,7 @@ System.register(['angular2/core', '../models/user.model'], function(exports_1, c
                     this._user = new user_model_1.UserModel();
                     this._user.sessionKey = localStorage.getItem('sessionKey');
                     this._user.username = localStorage.getItem('username');
+                    this._user.imageUrl = localStorage.getItem('imageUrl');
                     this.isAuth = this._checkIfAuth();
                 }
                 UserService.prototype.storeUserDetails = function (data) {
@@ -41,6 +42,7 @@ System.register(['angular2/core', '../models/user.model'], function(exports_1, c
                 };
                 UserService.prototype._setUserDetails = function (userDetails) {
                     localStorage.setItem('username', userDetails.username);
+                    localStorage.setItem('imageUrl', userDetails.imageUrl);
                 };
                 UserService.prototype.getSessionKey = function () {
                     return this._user.sessionKey;

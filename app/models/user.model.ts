@@ -1,7 +1,8 @@
 export class UserModel {
-    sessionKey: string;
+    sessionKey:string;
     id:string;
     username:string;
     email:string;
-    role: string;
+    role:string;
+    imageUrl:string;
 }

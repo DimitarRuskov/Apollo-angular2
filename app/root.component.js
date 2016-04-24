@@ -56,6 +56,9 @@ System.register(['angular2/core', 'angular2/router', './components/home/home.com
                     var details = this.user.getUserDetails();
                     return details.username;
                 };
+                RootComponent.prototype.getImageUrl = function () {
+                    return this.user.getUserDetails().imageUrl;
+                };
                 RootComponent.prototype.logout = function (event) {
                     this.user.closeSession();
                 };

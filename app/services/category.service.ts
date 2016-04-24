@@ -28,11 +28,6 @@ export class CategoryService {
         this._headers.set('Authorization', 'Bearer ' + this._user.getSessionKey());
         return this._http.post('http://localhost:8003/category/add', JSON.stringify(params), {headers: this._headers})
         .map((res: Response) => res.json())
-        .subscribe(
-            data => this.onSuccess(data),
-            err => this.onError(err),
-            () => window.alert('Successfully created Category!')
-        )
     }
     
     onSuccess(data) {

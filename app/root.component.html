@@ -18,7 +18,7 @@
             <li><a [routerLink]="['Categories']">Categories</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li *ngIf="user.isAuth"><img src="http://localhost:8003/system/profile-icon.png" class="profile-image"></li>
+            <li *ngIf="user.isAuth"><img src="http://localhost:8003{{getImageUrl() || '/system/profile-icon.png'}}" class="profile-image"></li>
             <li *ngIf="user.isAuth"><a [routerLink]="['Profile']">{{getUsername()}}</a></li>
             <li *ngIf="!user.isAuth"><a [routerLink]="['Registration']">Register</a></li>
             <li *ngIf="!user.isAuth"><a [routerLink]="['Login']">Login</a></li>

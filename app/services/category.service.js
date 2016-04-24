@@ -45,11 +45,9 @@ System.register(['angular2/http', "angular2/router", 'angular2/core', './user.se
                         .map(function (res) { return res.json(); });
                 };
                 CategoryService.prototype.addCategory = function (params) {
-                    var _this = this;
                     this._headers.set('Authorization', 'Bearer ' + this._user.getSessionKey());
                     return this._http.post('http://localhost:8003/category/add', JSON.stringify(params), { headers: this._headers })
-                        .map(function (res) { return res.json(); })
-                        .subscribe(function (data) { return _this.onSuccess(data); }, function (err) { return _this.onError(err); }, function () { return window.alert('Successfully created Category!'); });
+                        .map(function (res) { return res.json(); });
                 };
                 CategoryService.prototype.onSuccess = function (data) {
                     this._router.navigate(['Categories']);
