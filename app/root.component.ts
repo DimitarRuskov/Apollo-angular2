@@ -1,5 +1,7 @@
-import {Component}                      from 'angular2/core';
+import {Component, OnInit}              from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+
+import {NavbarComponent}                from './components/shared/navbar.component';
 
 import {HomeComponent}                  from './components/home/home.component';
 import {ListCategoriesComponent}        from './components/categories/list-categories.component';
@@ -17,7 +19,7 @@ import {UtilsService}                   from './services/utils.service';
     selector: 'apollo-root',
     templateUrl: 'app/root.component.html',
     styleUrls: ['app/root.component.css'],
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, NavbarComponent],
     providers: [UserService, HttpService, UtilsService]
 })
 
@@ -33,8 +35,22 @@ import {UtilsService}                   from './services/utils.service';
     {path: '/**',           redirectTo: ['Home']}
 ])
 
-export class RootComponent {
+export class RootComponent implements OnInit {
+    routes:Object;
     constructor(private user: UserService) { }
+    
+    ngOnInit() {
+        this.routes = {
+            left: [
+                {name: 'Home'},
+                {name: 'Categories'}
+            ],
+            right: [
+                {name: 'Login'},
+                {name: 'Registration'}
+            ]
+        } 
+    }
     
     public getUsername() {
         let details = this.user.getUserDetails();

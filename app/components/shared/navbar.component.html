@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">Apollo</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li *ngFor="#route of routes.left"><a [routerLink]="[route.name]">{{route.name}}</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><img src="http://localhost:8003/system/profile-icon.png" class="profile-image"></li>
+            <li *ngFor="#route of routes.right"><a [routerLink]="[route.name]">{{route.name}}</a></li>
+        </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
