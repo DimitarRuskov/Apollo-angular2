@@ -33,3 +33,7 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Js and Js map files 
+*.js
+*.js.map
