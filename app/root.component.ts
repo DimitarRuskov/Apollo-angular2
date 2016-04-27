@@ -10,13 +10,15 @@ import {EditProfileComponent}           from './components/profile/edit-profile.
 import {RegistrationComponent}          from './components/registration/registration.component';
 import {LoginComponent}                 from './components/login/login.component';
 import {UserService}                    from './services/user.service';
+import {HttpService}                    from './services/http.service';
+import {UtilsService}                   from './services/utils.service';
 
 @Component({
     selector: 'apollo-root',
     templateUrl: 'app/root.component.html',
     styleUrls: ['app/root.component.css'],
     directives: [ROUTER_DIRECTIVES],
-    providers: [UserService]
+    providers: [UserService, HttpService, UtilsService]
 })
 
 @RouteConfig([

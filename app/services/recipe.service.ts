@@ -1,14 +1,16 @@
-import {Http, Headers, Response} from 'angular2/http';
 import {Injectable} from 'angular2/core';
 import 'rxjs/add/operator/map';
 
+import {HttpService} from './http.service';
+
 @Injectable()
 export class RecipeService {
-    _headers: any
-    constructor(private _http:Http) { }
+    constructor(private _http:HttpService) { }
     
     public fetchRecipes(params) {
-        return this._http.post('http://localhost:8003/recipes', JSON.stringify(params))
-        .map((res: Response) => res.json())
+        var options = {
+            search: params
+        };
+        return this._http.request('get', 'http://localhost:8003/recipes', null, options, null);
     }
 }

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common', '../common/control-message.component', '../../services/validation.service', '../../models/profile.model', '../../services/auth.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', '../common/control-message.component', '../../services/validation.service', '../../models/profile.model', '../../services/user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/common', '../common/control-message.
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, control_message_component_1, validation_service_1, profile_model_1, auth_service_1;
+    var core_1, common_1, control_message_component_1, validation_service_1, profile_model_1, user_service_1;
     var EditProfileComponent;
     return {
         setters:[
@@ -29,21 +29,21 @@ System.register(['angular2/core', 'angular2/common', '../common/control-message.
             function (profile_model_1_1) {
                 profile_model_1 = profile_model_1_1;
             },
-            function (auth_service_1_1) {
-                auth_service_1 = auth_service_1_1;
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
             }],
         execute: function() {
             EditProfileComponent = (function () {
-                function EditProfileComponent(_formBuilder, element, _authService) {
+                function EditProfileComponent(_formBuilder, element, _userService) {
                     this._formBuilder = _formBuilder;
                     this.element = element;
-                    this._authService = _authService;
+                    this._userService = _userService;
                     this._selectedImage = null;
                     this.profileDetails = new profile_model_1.ProfileModel();
                 }
                 EditProfileComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    this._authService.getProfile({})
+                    this._userService.getProfile({})
                         .subscribe(function (data) { return _this.populateForm(data.profileDetails); }, function (err) { return console.log(err); }, function () { return console.log('Successfully fetched data'); });
                     this.form = this._formBuilder.group({
                         'image': ['', common_1.Validators.compose([])],
@@ -76,16 +76,16 @@ System.register(['angular2/core', 'angular2/common', '../common/control-message.
                     if (values.image === '') {
                         values.image = undefined;
                     }
-                    this._authService.updateProfile(values);
+                    this._userService.updateProfile(values);
                 };
                 EditProfileComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/components/profile/edit-profile.component.html',
                         styleUrls: ['app/components/profile/edit-profile.component.css'],
-                        providers: [auth_service_1.AuthService],
+                        providers: [user_service_1.UserService],
                         directives: [control_message_component_1.ControlMessage]
                     }), 
-                    __metadata('design:paramtypes', [common_1.FormBuilder, core_1.ElementRef, auth_service_1.AuthService])
+                    __metadata('design:paramtypes', [common_1.FormBuilder, core_1.ElementRef, user_service_1.UserService])
                 ], EditProfileComponent);
                 return EditProfileComponent;
             }());

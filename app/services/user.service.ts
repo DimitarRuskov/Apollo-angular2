@@ -1,12 +1,15 @@
 import {Injectable} from 'angular2/core';
 import {UserModel} from '../models/user.model';
 
+import {HttpService} from './http.service';
+import {UtilsService} from './utils.service';
+
 @Injectable()
 export class UserService {
     private _user:UserModel
     isAuth:boolean;
     
-    constructor() {
+    constructor(private _http: HttpService, private _utils: UtilsService) {
         this._user = new UserModel();
         this._user.sessionKey = localStorage.getItem('sessionKey');
         this._user.username = localStorage.getItem('username');
@@ -44,6 +47,21 @@ export class UserService {
     
     private _checkIfAuth():boolean {
         return this._user.sessionKey ? true : false;
+    }
+    
+    public getProfile(params) {
+        var url = 'http://localhost:8003/user/' + params.userId; 
+        return this._http.request('get', url, null, this.getSessionKey(), null);
+    }
+    
+    public updateProfile(params) {
+        var url = 'http://localhost:8003/user/' + params.userId; 
+        return this._http.request('put', url, JSON.stringify(params), null, this.getSessionKey())
+        .subscribe(
+            data => (data) => console.log(data), 
+            error => this._utils.defaultErrorHandler(error),
+            () => window.alert('Successfully updated profile!')
+        );
     }
     
     public getUserDetails() {

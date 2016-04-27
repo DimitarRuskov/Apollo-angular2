@@ -1,4 +1,4 @@
-System.register(['angular2/http', "angular2/router", 'angular2/core', './user.service'], function(exports_1, context_1) {
+System.register(["angular2/router", 'angular2/core', './user.service', './http.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,13 +10,10 @@ System.register(['angular2/http', "angular2/router", 'angular2/core', './user.se
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var http_1, router_1, core_1, user_service_1;
+    var router_1, core_1, user_service_1, http_service_1;
     var CategoryService;
     return {
         setters:[
-            function (http_1_1) {
-                http_1 = http_1_1;
-            },
             function (router_1_1) {
                 router_1 = router_1_1;
             },
@@ -25,6 +22,9 @@ System.register(['angular2/http', "angular2/router", 'angular2/core', './user.se
             },
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
+            },
+            function (http_service_1_1) {
+                http_service_1 = http_service_1_1;
             }],
         execute: function() {
             CategoryService = (function () {
@@ -32,33 +32,26 @@ System.register(['angular2/http', "angular2/router", 'angular2/core', './user.se
                     this._http = _http;
                     this._user = _user;
                     this._router = _router;
-                    this._headers = new http_1.Headers();
-                    this._headers.append('Content-Type', 'application/json');
                 }
                 CategoryService.prototype.listCategories = function (params) {
-                    var prms = {
-                        orderBy: {
-                            updatedAt: -1
+                    var options = {
+                        search: {
+                            orderBy: {
+                                updatedAt: -1
+                            }
                         }
                     };
-                    return this._http.post('http://localhost:8003/category/list', JSON.stringify(prms), { headers: this._headers })
-                        .map(function (res) { return res.json(); });
+                    return this._http.request('get', 'http://localhost:8003/category/list', null, options, null);
                 };
                 CategoryService.prototype.addCategory = function (params) {
-                    this._headers.set('Authorization', 'Bearer ' + this._user.getSessionKey());
-                    return this._http.post('http://localhost:8003/category/add', JSON.stringify(params), { headers: this._headers })
-                        .map(function (res) { return res.json(); });
+                    return this._http.request('post', 'http://localhost:8003/category/add', JSON.stringify(params), null, this._user.getSessionKey());
                 };
                 CategoryService.prototype.onSuccess = function (data) {
                     this._router.navigate(['Categories']);
                 };
-                CategoryService.prototype.onError = function (err) {
-                    window.alert('Failed: ' + JSON.parse(err._body).message + ' ' + JSON.parse(err._body).description);
-                    console.error(err);
-                };
                 CategoryService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http, user_service_1.UserService, router_1.Router])
+                    __metadata('design:paramtypes', [http_service_1.HttpService, user_service_1.UserService, router_1.Router])
                 ], CategoryService);
                 return CategoryService;
             }());

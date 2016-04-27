@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'rxjs/add/operator/map', './http.service'], function(exports_1, context_1) {
+System.register(['angular2/router', 'angular2/core', 'rxjs/add/operator/map'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,36 +10,36 @@ System.register(['angular2/core', 'rxjs/add/operator/map', './http.service'], fu
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_service_1;
-    var RecipeService;
+    var router_1, core_1;
+    var UtilsService;
     return {
         setters:[
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (_1) {},
-            function (http_service_1_1) {
-                http_service_1 = http_service_1_1;
-            }],
+            function (_1) {}],
         execute: function() {
-            RecipeService = (function () {
-                function RecipeService(_http) {
-                    this._http = _http;
+            UtilsService = (function () {
+                function UtilsService(_router) {
+                    this._router = _router;
                 }
-                RecipeService.prototype.fetchRecipes = function (params) {
-                    var options = {
-                        search: params
-                    };
-                    return this._http.request('get', 'http://localhost:8003/recipes', null, options, null);
+                UtilsService.prototype.defaultErrorHandler = function (error) {
+                    window.alert('Failed: ' + JSON.parse(error._body).message + ' ' + JSON.parse(error._body).description);
+                    console.error('There was an error: ' + JSON.parse(error._body).message);
                 };
-                RecipeService = __decorate([
+                UtilsService.prototype.defaultSuccessHandler = function (data) {
+                };
+                UtilsService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_service_1.HttpService])
-                ], RecipeService);
-                return RecipeService;
+                    __metadata('design:paramtypes', [router_1.Router])
+                ], UtilsService);
+                return UtilsService;
             }());
-            exports_1("RecipeService", RecipeService);
+            exports_1("UtilsService", UtilsService);
         }
     }
 });
-//# sourceMappingURL=recipe.service.js.map
+//# sourceMappingURL=utils.service.js.map

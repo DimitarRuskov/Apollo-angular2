@@ -1,41 +1,33 @@
-import {Http, Response, Headers} from 'angular2/http';
 import {Router} from "angular2/router";
 import {Injectable} from 'angular2/core';
 
 import {RoutineModel} from '../models/routine.model';
 import {UserService} from './user.service';
+import {HttpService} from './http.service';
+import {UtilsService} from './utils.service';
 
 @Injectable()
 export class RoutineService {
     public routines:Array<RoutineModel>;
-    private _headers:Headers;
-    constructor(private _http:Http, private _user:UserService, private _router:Router) {
-        this._headers = new Headers();
-        this._headers.append('Content-Type', 'application/json');
-    }
+    constructor(private _http:HttpService, private _utils:UtilsService, private _user:UserService, private _router:Router) { }
     
     public listRoutines(params) {
-        return this._http.post('http://localhost:8003/routine/list', JSON.stringify({categoryId: params.categoryId}), {headers: this._headers})
-        .map((res:Response) => res.json())
+        var options = {
+            search: {categoryId: params.categoryId}
+        };
+        return this._http.request('get', 'http://localhost:8003/routine/list', null, options, null);
     }
     
     public addRoutine(params) {
-        this._headers.set('Authorization', 'Bearer ' + this._user.getSessionKey());
-        return this._http.post('http://localhost:8003/routine/add', JSON.stringify(params), {headers: this._headers})
-        .map((res: Response) => res.json())
+        return this._http.request('post', 'http://localhost:8003/routine/add', JSON.stringify(params), null, this._user.getSessionKey())
         .subscribe(
             data => this.onSuccess(data),
-            err => this.onError(err),
+            err => this._utils.defaultErrorHandler(err),
             () => window.alert('Successfully created Routine!')
         )
     }
     
     onSuccess(data) {
         this._router.navigate(['Categories']);
-    }
-    
-    onError(err) {
-        window.alert('Failed: ' + JSON.parse(err._body).message + ' ' + JSON.parse(err._body).description);
-        console.error(err);
     }
 }
