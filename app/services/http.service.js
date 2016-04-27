@@ -47,6 +47,9 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map'], fun
                             options.headers.set(defaultHeadersKeys[i], this.defaultHeaders.get(defaultHeadersKeys[i]));
                         }
                     }
+                    if (options.search) {
+                        options.search = this.buildSearchObject(options.search);
+                    }
                     if (auth) {
                         options.headers.set('Authorization', 'Bearer ' + auth);
                     }
@@ -72,6 +75,13 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map'], fun
                     }
                     return invokedFunc
                         .map(function (res) { return res.json(); });
+                };
+                HttpService.prototype.buildSearchObject = function (data) {
+                    var searchObj = new http_1.URLSearchParams();
+                    for (var prop in data) {
+                        searchObj.set(prop, data[prop]);
+                    }
+                    return searchObj;
                 };
                 HttpService.prototype.withQuery = function (method, url, options) {
                     return this._http[method](url, options);

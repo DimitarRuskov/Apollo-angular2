@@ -1,4 +1,4 @@
-import {Http, Response, Headers} from 'angular2/http';
+import {Http, Response, Headers, URLSearchParams} from 'angular2/http';
 import {Injectable} from 'angular2/core';
 import 'rxjs/add/operator/map';
 
@@ -34,6 +34,10 @@ export class HttpService {
                 options.headers.set(defaultHeadersKeys[i], this.defaultHeaders.get(defaultHeadersKeys[i]));
             }
         }        
+        
+        if (options.search) {
+            options.search = this.buildSearchObject(options.search);
+        }
 
         if (auth) {
             options.headers.set('Authorization', 'Bearer ' + auth);
@@ -65,6 +69,16 @@ export class HttpService {
                       
         return invokedFunc
             .map((res: Response) => res.json());
+    }
+    
+    buildSearchObject(data) {
+        var searchObj = new URLSearchParams();
+        
+        for (var prop in data) {
+            searchObj.set(prop, data[prop]);
+        }
+        
+        return searchObj;
     }
     
     withQuery(method, url, options) {
