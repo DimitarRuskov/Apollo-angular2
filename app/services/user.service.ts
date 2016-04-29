@@ -6,23 +6,23 @@ import {UtilsService} from './utils.service';
 
 @Injectable()
 export class UserService {
-    private _user:UserModel
+    userDetails:UserModel
     isAuth:boolean;
     
     constructor(private _http: HttpService, private _utils: UtilsService) {
-        this._user = new UserModel();
-        this._user.sessionKey = localStorage.getItem('sessionKey');
-        this._user.username = localStorage.getItem('username');
-        this._user.imageUrl = localStorage.getItem('imageUrl');
+        this.userDetails = new UserModel();
+        this.userDetails.sessionKey = localStorage.getItem('sessionKey');
+        this.userDetails.username = localStorage.getItem('username');
+        this.userDetails.imageUrl = localStorage.getItem('imageUrl');
         this.isAuth = this._checkIfAuth();
     }
     
     public storeUserDetails(data) {
         this._setSessionKey(data.token);
         this._setUserDetails(data.userDetails);
-        this._user.username = data.userDetails.username;
-        this._user.id = data.userDetails.id;
-        this._user.sessionKey = localStorage.getItem('sessionKey');
+        this.userDetails.username = data.userDetails.username;
+        this.userDetails.id = data.userDetails.id;
+        this.userDetails.sessionKey = localStorage.getItem('sessionKey');
         this.isAuth = this._checkIfAuth();
     }
     
@@ -36,17 +36,17 @@ export class UserService {
     }
     
     public getSessionKey() {
-        return  this._user.sessionKey;
+        return  this.userDetails.sessionKey;
     }
     
     public closeSession() {
         localStorage.removeItem('sessionKey');
-        this._user = new UserModel();
+        this.userDetails = new UserModel();
         this.isAuth = this._checkIfAuth();
     }
     
     private _checkIfAuth():boolean {
-        return this._user.sessionKey ? true : false;
+        return this.userDetails.sessionKey ? true : false;
     }
     
     public getProfile(params) {
@@ -65,6 +65,6 @@ export class UserService {
     }
     
     public getUserDetails() {
-        return this._user;
+        return this.userDetails;
     }
 }

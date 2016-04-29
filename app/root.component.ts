@@ -42,13 +42,16 @@ export class RootComponent implements OnInit {
     ngOnInit() {
         this.routes = {
             left: [
-                {name: 'Home'},
-                {name: 'Categories'}
+                {name: 'Home', access: 'public'},
+                {name: 'Categories', access: 'auth'}
             ],
             right: [
-                {name: 'Login'},
-                {name: 'Registration'}
-            ]
+                {name: 'Login', access: 'noAuth'},
+                {name: 'Registration', access: 'noAuth'}
+            ],
+            profile: {
+                name: 'Profile'
+            }
         } 
     }
     

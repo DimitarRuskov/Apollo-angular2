@@ -64,13 +64,16 @@ System.register(['angular2/core', 'angular2/router', './components/shared/navbar
                 RootComponent.prototype.ngOnInit = function () {
                     this.routes = {
                         left: [
-                            { name: 'Home' },
-                            { name: 'Categories' }
+                            { name: 'Home', access: 'public' },
+                            { name: 'Categories', access: 'auth' }
                         ],
                         right: [
-                            { name: 'Login' },
-                            { name: 'Registration' }
-                        ]
+                            { name: 'Login', access: 'noAuth' },
+                            { name: 'Registration', access: 'noAuth' }
+                        ],
+                        profile: {
+                            name: 'Profile'
+                        }
                     };
                 };
                 RootComponent.prototype.getUsername = function () {

@@ -31,18 +31,18 @@ System.register(['angular2/core', '../models/user.model', './http.service', './u
                 function UserService(_http, _utils) {
                     this._http = _http;
                     this._utils = _utils;
-                    this._user = new user_model_1.UserModel();
-                    this._user.sessionKey = localStorage.getItem('sessionKey');
-                    this._user.username = localStorage.getItem('username');
-                    this._user.imageUrl = localStorage.getItem('imageUrl');
+                    this.userDetails = new user_model_1.UserModel();
+                    this.userDetails.sessionKey = localStorage.getItem('sessionKey');
+                    this.userDetails.username = localStorage.getItem('username');
+                    this.userDetails.imageUrl = localStorage.getItem('imageUrl');
                     this.isAuth = this._checkIfAuth();
                 }
                 UserService.prototype.storeUserDetails = function (data) {
                     this._setSessionKey(data.token);
                     this._setUserDetails(data.userDetails);
-                    this._user.username = data.userDetails.username;
-                    this._user.id = data.userDetails.id;
-                    this._user.sessionKey = localStorage.getItem('sessionKey');
+                    this.userDetails.username = data.userDetails.username;
+                    this.userDetails.id = data.userDetails.id;
+                    this.userDetails.sessionKey = localStorage.getItem('sessionKey');
                     this.isAuth = this._checkIfAuth();
                 };
                 UserService.prototype._setSessionKey = function (sessionKey) {
@@ -53,15 +53,15 @@ System.register(['angular2/core', '../models/user.model', './http.service', './u
                     localStorage.setItem('imageUrl', userDetails.imageUrl);
                 };
                 UserService.prototype.getSessionKey = function () {
-                    return this._user.sessionKey;
+                    return this.userDetails.sessionKey;
                 };
                 UserService.prototype.closeSession = function () {
                     localStorage.removeItem('sessionKey');
-                    this._user = new user_model_1.UserModel();
+                    this.userDetails = new user_model_1.UserModel();
                     this.isAuth = this._checkIfAuth();
                 };
                 UserService.prototype._checkIfAuth = function () {
-                    return this._user.sessionKey ? true : false;
+                    return this.userDetails.sessionKey ? true : false;
                 };
                 UserService.prototype.getProfile = function (params) {
                     var url = 'http://localhost:8003/user/' + params.userId;
@@ -74,7 +74,7 @@ System.register(['angular2/core', '../models/user.model', './http.service', './u
                         .subscribe(function (data) { return function (data) { return console.log(data); }; }, function (error) { return _this._utils.defaultErrorHandler(error); }, function () { return window.alert('Successfully updated profile!'); });
                 };
                 UserService.prototype.getUserDetails = function () {
-                    return this._user;
+                    return this.userDetails;
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 

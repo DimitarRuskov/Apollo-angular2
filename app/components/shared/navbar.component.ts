@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 
@@ -9,11 +9,15 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
     directives:         [ROUTER_DIRECTIVES]
 })
 
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
     @Input() routes:Object;
+    @Input() isAuth:boolean;
+    @Input() userDetails:Object;
+    @Output() logout = new EventEmitter<boolean>(true);
     
     constructor() { }
     
-    ngOnInit() {
+    onLogout() {
+        this.logout.emit(true);
     }
 }
