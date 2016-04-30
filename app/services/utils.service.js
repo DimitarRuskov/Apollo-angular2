@@ -1,4 +1,4 @@
-System.register(['angular2/router', 'angular2/core', 'rxjs/add/operator/map'], function(exports_1, context_1) {
+System.register(['angular2/router', 'angular2/core', 'rxjs/add/operator/map', '../../node_modules/angular2-notifications/components'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/router', 'angular2/core', 'rxjs/add/operator/map'], f
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var router_1, core_1;
+    var router_1, core_1, components_1;
     var UtilsService;
     return {
         setters:[
@@ -20,21 +20,37 @@ System.register(['angular2/router', 'angular2/core', 'rxjs/add/operator/map'], f
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (_1) {}],
+            function (_1) {},
+            function (components_1_1) {
+                components_1 = components_1_1;
+            }],
         execute: function() {
             UtilsService = (function () {
-                function UtilsService(_router) {
+                function UtilsService(_router, _service) {
                     this._router = _router;
+                    this._service = _service;
                 }
+                UtilsService.prototype.success = function (message, title) {
+                    this._service.success(title || 'Success', message);
+                };
+                UtilsService.prototype.error = function (message, title) {
+                    this._service.error(title || 'Failed', message);
+                };
+                UtilsService.prototype.alert = function (message, title) {
+                    this._service.alert(title || 'Alert', message);
+                };
+                UtilsService.prototype.info = function (message, title) {
+                    this._service.info(title || 'Info', message);
+                };
                 UtilsService.prototype.defaultErrorHandler = function (error) {
-                    window.alert('Failed: ' + JSON.parse(error._body).message + ' ' + JSON.parse(error._body).description);
+                    this.error(JSON.parse(error._body).description);
                     console.error('There was an error: ' + JSON.parse(error._body).message);
                 };
                 UtilsService.prototype.defaultSuccessHandler = function (data) {
                 };
                 UtilsService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [router_1.Router])
+                    __metadata('design:paramtypes', [router_1.Router, components_1.NotificationsService])
                 ], UtilsService);
                 return UtilsService;
             }());

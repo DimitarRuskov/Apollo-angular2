@@ -2,6 +2,7 @@ import {Component, OnInit}              from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {NavbarComponent}                from './components/shared/navbar.component';
+import {NotificationsService, SimpleNotificationsComponent} from '../node_modules/angular2-notifications/components';
 
 import {HomeComponent}                  from './components/home/home.component';
 import {ListCategoriesComponent}        from './components/categories/list-categories.component';
@@ -19,8 +20,8 @@ import {UtilsService}                   from './services/utils.service';
     selector: 'apollo-root',
     templateUrl: 'app/root.component.html',
     styleUrls: ['app/root.component.css'],
-    directives: [ROUTER_DIRECTIVES, NavbarComponent],
-    providers: [UserService, HttpService, UtilsService]
+    directives: [ROUTER_DIRECTIVES, SimpleNotificationsComponent, NavbarComponent],
+    providers: [HttpService, NotificationsService, UtilsService, UserService]
 })
 
 @RouteConfig([
@@ -37,7 +38,7 @@ import {UtilsService}                   from './services/utils.service';
 
 export class RootComponent implements OnInit {
     routes:Object;
-    constructor(private user: UserService) { }
+    constructor(private user: UserService, private _notification:NotificationsService) { }
     
     ngOnInit() {
         this.routes = {
@@ -55,6 +56,18 @@ export class RootComponent implements OnInit {
         } 
     }
     
+    public options = {
+        timeOut: 5000,
+        lastOnBottom: true,
+        clickToClose: true,
+        maxLength: 0,
+        maxStack: 7,
+        showProgressBar: true,
+        pauseOnHover: true,
+        preventDuplicates: false,
+        preventLastDuplicates: "visible"
+    };
+    
     public getUsername() {
         let details = this.user.getUserDetails();
         return details.username;
@@ -66,5 +79,13 @@ export class RootComponent implements OnInit {
     
     logout(event) {
         this.user.closeSession();
+    }
+    
+    onCreate(event) {
+        console.log(event);
+    }
+
+    onDestroy(event) {
+        console.log(event);
     }
 }

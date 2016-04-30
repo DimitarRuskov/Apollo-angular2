@@ -4,6 +4,7 @@
     [isAuth]="user.isAuth" 
     (logout)="logout($event)">
 </apollo-navbar>
+
 <div class="content-wrapper">
     <div class="hidden-xs hidden-sm col-md-2 col-lg-2 "></div>
     <div class="col-md-8 col-lg-8 match-parent">
@@ -11,3 +12,9 @@
     </div>
     <div class="hidden-xs hidden-sm col-md-2 col-lg-2 "></div>
 </div>
+
+<simple-notifications 
+    [options]="options" 
+    (onCreate)="onCreate($event)" 
+    (onDestroy)="onDestroy($event)">
+</simple-notifications>

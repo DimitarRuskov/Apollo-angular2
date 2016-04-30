@@ -1,11 +1,7 @@
 import {Directive, ElementRef, OnInit, Renderer} from 'angular2/core';
 
 @Directive({
-    selector: '[apolloSample]',
-    host: {
-        '(mouseenter)': 'onMouseEnter()',
-        '(mouseleave)': 'onMouseLeave()'
-    }
+    selector: '[apolloSample]'
 })
 
 export class SampleDirective implements OnInit {

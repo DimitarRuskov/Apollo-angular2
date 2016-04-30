@@ -6,6 +6,8 @@ import {UserService} from './user.service';
 import {HttpService} from './http.service';
 import {UtilsService} from './utils.service';
 
+import {NotificationsService} from '../../node_modules/angular2-notifications/components';
+
 @Injectable()
 export class AuthService {
     
@@ -20,7 +22,7 @@ export class AuthService {
         .subscribe(
             data => this.onSuccess(data),
             error => this._utils.defaultErrorHandler(error),
-            () => window.alert('Successfully Registered!')
+            () => this._utils.success('Registered')
         );
     }
     
@@ -29,7 +31,7 @@ export class AuthService {
         .subscribe(
             data => this.onSuccess(data),
             error => this._utils.defaultErrorHandler(error),
-            () => window.alert('Successfully Logged in!')
+            () => this._utils.success('Logged in')
         );
     }
     

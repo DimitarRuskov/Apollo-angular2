@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './components/shared/navbar.component', './components/home/home.component', './components/categories/list-categories.component', './components/categories/add-category.component', './components/routines/list-routines.component', './components/routines/add-routine.component', './components/profile/edit-profile.component', './components/registration/registration.component', './components/login/login.component', './services/user.service', './services/http.service', './services/utils.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './components/shared/navbar.component', '../node_modules/angular2-notifications/components', './components/home/home.component', './components/categories/list-categories.component', './components/categories/add-category.component', './components/routines/list-routines.component', './components/routines/add-routine.component', './components/profile/edit-profile.component', './components/registration/registration.component', './components/login/login.component', './services/user.service', './services/http.service', './services/utils.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './components/shared/navbar
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, navbar_component_1, home_component_1, list_categories_component_1, add_category_component_1, list_routines_component_1, add_routine_component_1, edit_profile_component_1, registration_component_1, login_component_1, user_service_1, http_service_1, utils_service_1;
+    var core_1, router_1, navbar_component_1, components_1, home_component_1, list_categories_component_1, add_category_component_1, list_routines_component_1, add_routine_component_1, edit_profile_component_1, registration_component_1, login_component_1, user_service_1, http_service_1, utils_service_1;
     var RootComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(['angular2/core', 'angular2/router', './components/shared/navbar
             },
             function (navbar_component_1_1) {
                 navbar_component_1 = navbar_component_1_1;
+            },
+            function (components_1_1) {
+                components_1 = components_1_1;
             },
             function (home_component_1_1) {
                 home_component_1 = home_component_1_1;
@@ -58,8 +61,20 @@ System.register(['angular2/core', 'angular2/router', './components/shared/navbar
             }],
         execute: function() {
             RootComponent = (function () {
-                function RootComponent(user) {
+                function RootComponent(user, _notification) {
                     this.user = user;
+                    this._notification = _notification;
+                    this.options = {
+                        timeOut: 5000,
+                        lastOnBottom: true,
+                        clickToClose: true,
+                        maxLength: 0,
+                        maxStack: 7,
+                        showProgressBar: true,
+                        pauseOnHover: true,
+                        preventDuplicates: false,
+                        preventLastDuplicates: "visible"
+                    };
                 }
                 RootComponent.prototype.ngOnInit = function () {
                     this.routes = {
@@ -86,13 +101,19 @@ System.register(['angular2/core', 'angular2/router', './components/shared/navbar
                 RootComponent.prototype.logout = function (event) {
                     this.user.closeSession();
                 };
+                RootComponent.prototype.onCreate = function (event) {
+                    console.log(event);
+                };
+                RootComponent.prototype.onDestroy = function (event) {
+                    console.log(event);
+                };
                 RootComponent = __decorate([
                     core_1.Component({
                         selector: 'apollo-root',
                         templateUrl: 'app/root.component.html',
                         styleUrls: ['app/root.component.css'],
-                        directives: [router_1.ROUTER_DIRECTIVES, navbar_component_1.NavbarComponent],
-                        providers: [user_service_1.UserService, http_service_1.HttpService, utils_service_1.UtilsService]
+                        directives: [router_1.ROUTER_DIRECTIVES, components_1.SimpleNotificationsComponent, navbar_component_1.NavbarComponent],
+                        providers: [http_service_1.HttpService, components_1.NotificationsService, utils_service_1.UtilsService, user_service_1.UserService]
                     }),
                     router_1.RouteConfig([
                         { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
@@ -105,7 +126,7 @@ System.register(['angular2/core', 'angular2/router', './components/shared/navbar
                         { path: '/profile', name: 'Profile', component: edit_profile_component_1.EditProfileComponent },
                         { path: '/**', redirectTo: ['Home'] }
                     ]), 
-                    __metadata('design:paramtypes', [user_service_1.UserService])
+                    __metadata('design:paramtypes', [user_service_1.UserService, components_1.NotificationsService])
                 ], RootComponent);
                 return RootComponent;
             }());

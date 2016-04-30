@@ -45,12 +45,12 @@ System.register(["angular2/router", 'angular2/core', 'rxjs/add/operator/map', '.
                         params: params
                     };
                     return this._http.request('post', 'http://localhost:8003/user/register', JSON.stringify(prms), null, null)
-                        .subscribe(function (data) { return _this.onSuccess(data); }, function (error) { return _this._utils.defaultErrorHandler(error); }, function () { return window.alert('Successfully Registered!'); });
+                        .subscribe(function (data) { return _this.onSuccess(data); }, function (error) { return _this._utils.defaultErrorHandler(error); }, function () { return _this._utils.success('Registered'); });
                 };
                 AuthService.prototype.login = function (params) {
                     var _this = this;
                     return this._http.request('post', 'http://localhost:8003/user/login', JSON.stringify(params), null, null)
-                        .subscribe(function (data) { return _this.onSuccess(data); }, function (error) { return _this._utils.defaultErrorHandler(error); }, function () { return window.alert('Successfully Logged in!'); });
+                        .subscribe(function (data) { return _this.onSuccess(data); }, function (error) { return _this._utils.defaultErrorHandler(error); }, function () { return _this._utils.success('Logged in'); });
                 };
                 AuthService.prototype.onSuccess = function (data) {
                     this._user.storeUserDetails(data);
