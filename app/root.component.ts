@@ -38,6 +38,18 @@ import {UtilsService}                   from './services/utils.service';
 
 export class RootComponent implements OnInit {
     routes:Object;
+    public options = { //   these are default options, not optimal; to be exported in config file
+        timeOut: 5000,
+        lastOnBottom: true,
+        clickToClose: true,
+        maxLength: 0,
+        maxStack: 7,
+        showProgressBar: true,
+        pauseOnHover: true,
+        preventDuplicates: false,
+        preventLastDuplicates: "visible"
+    };
+    
     constructor(private user: UserService, private _notification:NotificationsService) { }
     
     ngOnInit() {
@@ -55,18 +67,6 @@ export class RootComponent implements OnInit {
             }
         } 
     }
-    
-    public options = {
-        timeOut: 5000,
-        lastOnBottom: true,
-        clickToClose: true,
-        maxLength: 0,
-        maxStack: 7,
-        showProgressBar: true,
-        pauseOnHover: true,
-        preventDuplicates: false,
-        preventLastDuplicates: "visible"
-    };
     
     public getUsername() {
         let details = this.user.getUserDetails();
