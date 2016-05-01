@@ -61,9 +61,11 @@ System.register(['angular2/core', 'angular2/router', './components/shared/navbar
             }],
         execute: function() {
             RootComponent = (function () {
-                function RootComponent(user, _notification) {
-                    this.user = user;
+                function RootComponent(_user, _notification, _utils, _router) {
+                    this._user = _user;
                     this._notification = _notification;
+                    this._utils = _utils;
+                    this._router = _router;
                     this.options = {
                         timeOut: 5000,
                         lastOnBottom: true,
@@ -92,14 +94,16 @@ System.register(['angular2/core', 'angular2/router', './components/shared/navbar
                     };
                 };
                 RootComponent.prototype.getUsername = function () {
-                    var details = this.user.getUserDetails();
+                    var details = this._user.getUserDetails();
                     return details.username;
                 };
                 RootComponent.prototype.getImageUrl = function () {
-                    return this.user.getUserDetails().imageUrl;
+                    return this._user.getUserDetails().imageUrl;
                 };
                 RootComponent.prototype.logout = function (event) {
-                    this.user.closeSession();
+                    this._user.closeSession();
+                    this._utils.success('Logged out');
+                    this._router.navigate(['Home']);
                 };
                 RootComponent.prototype.onCreate = function (event) {
                     console.log(event);
@@ -118,15 +122,15 @@ System.register(['angular2/core', 'angular2/router', './components/shared/navbar
                     router_1.RouteConfig([
                         { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
                         { path: '/categories', name: 'Categories', component: list_categories_component_1.ListCategoriesComponent },
-                        { path: 'add-category', name: 'AddCategory', component: add_category_component_1.AddCategoryComponent },
-                        { path: '/routines/', name: 'Routines', component: list_routines_component_1.ListRoutinesComponent },
-                        { path: '/add-routine', name: 'AddRoutine', component: add_routine_component_1.AddRoutineComponent },
+                        { path: '/categories/add', name: 'AddCategory', component: add_category_component_1.AddCategoryComponent },
+                        { path: '/routines', name: 'Routines', component: list_routines_component_1.ListRoutinesComponent },
+                        { path: '/routines/add', name: 'AddRoutine', component: add_routine_component_1.AddRoutineComponent },
                         { path: '/register', name: 'Registration', component: registration_component_1.RegistrationComponent },
                         { path: '/login', name: 'Login', component: login_component_1.LoginComponent },
                         { path: '/profile', name: 'Profile', component: edit_profile_component_1.EditProfileComponent },
                         { path: '/**', redirectTo: ['Home'] }
                     ]), 
-                    __metadata('design:paramtypes', [user_service_1.UserService, components_1.NotificationsService])
+                    __metadata('design:paramtypes', [user_service_1.UserService, components_1.NotificationsService, utils_service_1.UtilsService, router_1.Router])
                 ], RootComponent);
                 return RootComponent;
             }());

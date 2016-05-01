@@ -3,6 +3,6 @@ export class UserModel {
     id:string;
     username:string;
     email:string;
-    role:string;
+    roles:Array<string>;
     imageUrl:string;
 }

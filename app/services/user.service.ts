@@ -50,8 +50,10 @@ export class UserService {
     }
     
     public getProfile(params) {
-        var url = 'http://localhost:8003/user/' + params.userId; 
-        return this._http.request('get', url, null, this.getSessionKey(), null);
+        params = params || {};
+        params.username = params.username || this.userDetails.username;
+        var url = 'http://localhost:8003/user/' + params.username; 
+        return this._http.request('get', url, null, null, this.getSessionKey());
     }
     
     public updateProfile(params) {

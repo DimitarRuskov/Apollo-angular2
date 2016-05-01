@@ -6,11 +6,13 @@ import {ValidationService}  from '../../services/validation.service';
 
 import {ProfileModel}       from '../../models/profile.model';
 import {UserService}        from '../../services/user.service';
+import {AuthService}        from '../../services/auth.service';
+
 
 @Component({
     templateUrl:        'app/components/profile/edit-profile.component.html',
     styleUrls:          ['app/components/profile/edit-profile.component.css'],
-    providers:          [UserService],
+    providers:          [UserService, AuthService],
     directives:         [ControlMessage]
 })
 
@@ -19,12 +21,12 @@ export class EditProfileComponent implements OnInit{
     profileDetails:ProfileModel;
     private _selectedImage = null;
     
-    constructor(private _formBuilder: FormBuilder, private element: ElementRef, private _userService: UserService) { 
+    constructor(private _formBuilder: FormBuilder, private element: ElementRef, private _userService: UserService, private _auth: AuthService) { 
         this.profileDetails = new ProfileModel();
     }
     
     ngOnInit() {
-        this._userService.getProfile({})
+        this._userService.getProfile(null)
         .subscribe(
             data => this.populateForm(data.profileDetails),
             err => console.log(err),
@@ -68,5 +70,9 @@ export class EditProfileComponent implements OnInit{
             values.image = undefined;
         }
         this._userService.updateProfile(values);
+    }
+    
+    routerOnActivate(next, prev) {
+        this._auth.doAuth(next);
     }
 }

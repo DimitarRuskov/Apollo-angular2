@@ -52,6 +52,24 @@ System.register(["angular2/router", 'angular2/core', 'rxjs/add/operator/map', '.
                     return this._http.request('post', 'http://localhost:8003/user/login', JSON.stringify(params), null, null)
                         .subscribe(function (data) { return _this.onSuccess(data); }, function (error) { return _this._utils.defaultErrorHandler(error); }, function () { return _this._utils.success('Logged in'); });
                 };
+                AuthService.prototype.doAuth = function (next) {
+                    if (!this._user.isAuth) {
+                        this._router.navigate(['Home']);
+                    }
+                    if (next.routeData.data['roles']) {
+                        var userRoles = this._user.getUserDetails().roles;
+                        var canAccess = false;
+                        for (var i = 0; i < userRoles.length; i++) {
+                            if (next.routeData.data['roles'].indexOf(userRoles) >= 0) {
+                                canAccess = true;
+                                break;
+                            }
+                        }
+                        if (!canAccess) {
+                            this._router.navigate(['Home']);
+                        }
+                    }
+                };
                 AuthService.prototype.onSuccess = function (data) {
                     this._user.storeUserDetails(data);
                     this._router.navigate(['Home']);
