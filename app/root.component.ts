@@ -12,6 +12,7 @@ import {AddRoutineComponent}            from './components/routines/add-routine.
 import {EditProfileComponent}           from './components/profile/edit-profile.component';
 import {RegistrationComponent}          from './components/registration/registration.component';
 import {LoginComponent}                 from './components/login/login.component';
+
 import {UserService}                    from './services/user.service';
 import {HttpService}                    from './services/http.service';
 import {UtilsService}                   from './services/utils.service';

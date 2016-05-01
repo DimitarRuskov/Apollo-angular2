@@ -1,4 +1,4 @@
-System.register(['angular2/router', 'angular2/core', 'rxjs/add/operator/map', '../../node_modules/angular2-notifications/components'], function(exports_1, context_1) {
+System.register(['angular2/http', 'angular2/router', 'angular2/core', 'rxjs/add/operator/map', '../../node_modules/angular2-notifications/components'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,10 +10,13 @@ System.register(['angular2/router', 'angular2/core', 'rxjs/add/operator/map', '.
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var router_1, core_1, components_1;
+    var http_1, router_1, core_1, components_1;
     var UtilsService;
     return {
         setters:[
+            function (http_1_1) {
+                http_1 = http_1_1;
+            },
             function (router_1_1) {
                 router_1 = router_1_1;
             },
@@ -26,9 +29,16 @@ System.register(['angular2/router', 'angular2/core', 'rxjs/add/operator/map', '.
             }],
         execute: function() {
             UtilsService = (function () {
-                function UtilsService(_router, _service) {
+                function UtilsService(_router, _service, http) {
+                    var _this = this;
                     this._router = _router;
                     this._service = _service;
+                    this.http = http;
+                    this.http.get('configurations/translations.json')
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (data) {
+                        _this.translations = data;
+                    }, function (err) { return console.log(err); }, function () { return console.log('done'); });
                 }
                 UtilsService.prototype.success = function (message, title) {
                     this._service.success(title || 'Success', message);
@@ -50,7 +60,7 @@ System.register(['angular2/router', 'angular2/core', 'rxjs/add/operator/map', '.
                 };
                 UtilsService = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [router_1.Router, components_1.NotificationsService])
+                    __metadata('design:paramtypes', [router_1.Router, components_1.NotificationsService, http_1.Http])
                 ], UtilsService);
                 return UtilsService;
             }());
