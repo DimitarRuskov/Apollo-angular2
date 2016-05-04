@@ -64,8 +64,10 @@ System.register(['angular2/core', '../models/user.model', './http.service', './u
                     return this.userDetails.sessionKey ? true : false;
                 };
                 UserService.prototype.getProfile = function (params) {
-                    var url = 'http://localhost:8003/user/' + params.userId;
-                    return this._http.request('get', url, null, this.getSessionKey(), null);
+                    params = params || {};
+                    params.username = params.username || this.userDetails.username;
+                    var url = 'http://localhost:8003/user/' + params.username;
+                    return this._http.request('get', url, null, null, this.getSessionKey());
                 };
                 UserService.prototype.updateProfile = function (params) {
                     var _this = this;

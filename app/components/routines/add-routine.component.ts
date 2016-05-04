@@ -3,17 +3,18 @@ import {Router, RouteParams} from 'angular2/router';
 
 import {RoutineModel} from '../../models/routine.model';
 import {RoutineService} from '../../services/routine.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
     templateUrl:        'app/components/routines/add-routine.component.html',
     styleUrls:          ['app/components/routines/add-routine.component.css'],
-    providers:          [RoutineService]
+    providers:          [RoutineService, AuthService]
 })
 
 export class AddRoutineComponent implements OnInit {
     private _selectedImage = null;
     private _categoryId:String;
-    constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams:RouteParams) { }
+    constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams:RouteParams, private _auth: AuthService) { }
      changeListner(event) {
         var reader = new FileReader();
         var image = this.element.nativeElement.querySelector('.image');
@@ -35,5 +36,9 @@ export class AddRoutineComponent implements OnInit {
         values.categoryId = this._categoryId;
         values.image = this._selectedImage;
         this._routineService.addRoutine(values);
+    }
+    
+    routerOnActivate(next, prev) {
+        this._auth.doAuth(next);
     }
 }

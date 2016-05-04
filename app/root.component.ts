@@ -1,5 +1,5 @@
 import {Component, OnInit}              from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteConfig, ROUTER_DIRECTIVES, Router} from 'angular2/router';
 
 import {NavbarComponent}                from './components/shared/navbar.component';
 import {NotificationsService, SimpleNotificationsComponent} from '../node_modules/angular2-notifications/components';
@@ -28,9 +28,9 @@ import {UtilsService}                   from './services/utils.service';
 @RouteConfig([
     {path:'/home',          name: 'Home',           component: HomeComponent,               useAsDefault: true},
     {path:'/categories',    name: 'Categories',     component: ListCategoriesComponent},
-    {path:'add-category',   name: 'AddCategory',    component: AddCategoryComponent},
-    {path:'/routines/',     name: 'Routines',       component: ListRoutinesComponent},
-    {path:'/add-routine',   name: 'AddRoutine',     component: AddRoutineComponent},
+    {path:'/categories/add',name: 'AddCategory',    component: AddCategoryComponent},
+    {path:'/routines',      name: 'Routines',       component: ListRoutinesComponent},
+    {path:'/routines/add',  name: 'AddRoutine',     component: AddRoutineComponent},
     {path:'/register',      name: 'Registration',   component: RegistrationComponent},
     {path:'/login',         name: 'Login',          component: LoginComponent},
     {path:'/profile',       name: 'Profile',        component: EditProfileComponent},
@@ -51,7 +51,7 @@ export class RootComponent implements OnInit {
         preventLastDuplicates: "visible"
     };
     
-    constructor(private user: UserService, private _notification:NotificationsService) { }
+    constructor(private _user: UserService, private _notification:NotificationsService, private _utils: UtilsService, private _router: Router) { }
     
     ngOnInit() {
         this.routes = {
@@ -70,16 +70,18 @@ export class RootComponent implements OnInit {
     }
     
     public getUsername() {
-        let details = this.user.getUserDetails();
+        let details = this._user.getUserDetails();
         return details.username;
     }
     
     public getImageUrl() {
-        return this.user.getUserDetails().imageUrl;
+        return this._user.getUserDetails().imageUrl;
     }
     
     logout(event) {
-        this.user.closeSession();
+        this._user.closeSession();
+        this._utils.success('Logged out')
+        this._router.navigate(['Home']);
     }
     
     onCreate(event) {

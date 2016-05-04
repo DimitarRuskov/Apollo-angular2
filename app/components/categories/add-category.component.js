@@ -1,4 +1,4 @@
-System.register(['angular2/core', '../../services/category.service'], function(exports_1, context_1) {
+System.register(['angular2/core', '../../services/category.service', '../../services/auth.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', '../../services/category.service'], function(e
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, category_service_1;
+    var core_1, category_service_1, auth_service_1;
     var AddCategoryComponent;
     return {
         setters:[
@@ -19,12 +19,16 @@ System.register(['angular2/core', '../../services/category.service'], function(e
             },
             function (category_service_1_1) {
                 category_service_1 = category_service_1_1;
+            },
+            function (auth_service_1_1) {
+                auth_service_1 = auth_service_1_1;
             }],
         execute: function() {
             AddCategoryComponent = (function () {
-                function AddCategoryComponent(element, _categoryService) {
+                function AddCategoryComponent(element, _categoryService, _auth) {
                     this.element = element;
                     this._categoryService = _categoryService;
+                    this._auth = _auth;
                     this._selectedImage = null;
                 }
                 AddCategoryComponent.prototype.changeListner = function (event) {
@@ -41,13 +45,16 @@ System.register(['angular2/core', '../../services/category.service'], function(e
                     values.image = this._selectedImage;
                     this._categoryService.addCategory(values);
                 };
+                AddCategoryComponent.prototype.routerOnActivate = function (next, prev) {
+                    this._auth.doAuth(next);
+                };
                 AddCategoryComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/components/categories/add-category.component.html',
                         styleUrls: ['app/components/categories/add-category.component.css'],
-                        providers: [category_service_1.CategoryService]
+                        providers: [category_service_1.CategoryService, auth_service_1.AuthService]
                     }), 
-                    __metadata('design:paramtypes', [core_1.ElementRef, category_service_1.CategoryService])
+                    __metadata('design:paramtypes', [core_1.ElementRef, category_service_1.CategoryService, auth_service_1.AuthService])
                 ], AddCategoryComponent);
                 return AddCategoryComponent;
             }());

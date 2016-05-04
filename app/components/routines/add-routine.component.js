@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../../services/routine.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../../services/routine.service', '../../services/auth.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', '../../services/routine.ser
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, routine_service_1;
+    var core_1, router_1, routine_service_1, auth_service_1;
     var AddRoutineComponent;
     return {
         setters:[
@@ -22,13 +22,17 @@ System.register(['angular2/core', 'angular2/router', '../../services/routine.ser
             },
             function (routine_service_1_1) {
                 routine_service_1 = routine_service_1_1;
+            },
+            function (auth_service_1_1) {
+                auth_service_1 = auth_service_1_1;
             }],
         execute: function() {
             AddRoutineComponent = (function () {
-                function AddRoutineComponent(element, _routineService, _routeParams) {
+                function AddRoutineComponent(element, _routineService, _routeParams, _auth) {
                     this.element = element;
                     this._routineService = _routineService;
                     this._routeParams = _routeParams;
+                    this._auth = _auth;
                     this._selectedImage = null;
                 }
                 AddRoutineComponent.prototype.changeListner = function (event) {
@@ -49,13 +53,16 @@ System.register(['angular2/core', 'angular2/router', '../../services/routine.ser
                     values.image = this._selectedImage;
                     this._routineService.addRoutine(values);
                 };
+                AddRoutineComponent.prototype.routerOnActivate = function (next, prev) {
+                    this._auth.doAuth(next);
+                };
                 AddRoutineComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/components/routines/add-routine.component.html',
                         styleUrls: ['app/components/routines/add-routine.component.css'],
-                        providers: [routine_service_1.RoutineService]
+                        providers: [routine_service_1.RoutineService, auth_service_1.AuthService]
                     }), 
-                    __metadata('design:paramtypes', [core_1.ElementRef, routine_service_1.RoutineService, router_1.RouteParams])
+                    __metadata('design:paramtypes', [core_1.ElementRef, routine_service_1.RoutineService, router_1.RouteParams, auth_service_1.AuthService])
                 ], AddRoutineComponent);
                 return AddRoutineComponent;
             }());
