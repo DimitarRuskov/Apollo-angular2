@@ -30,6 +30,7 @@
             }
         }
       });
+      System.paths['sharedServices/*'] = 'app/shared/services/*'
       System.import('app/main')
             .then(null, console.error.bind(console));
     </script>
