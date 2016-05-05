@@ -3,13 +3,14 @@ import {UserModel} from '../models/user.model';
 
 import {HttpService} from './http.service';
 import {UtilsService} from './utils.service';
+import {StorageService} from './storage.service';
 
 @Injectable()
 export class UserService {
     userDetails:UserModel
     isAuth:boolean;
     
-    constructor(private _http: HttpService, private _utils: UtilsService) {
+    constructor(private _http: HttpService, private _utils: UtilsService, private _storage: StorageService) {
         this.userDetails = new UserModel();
         this.userDetails.sessionKey = localStorage.getItem('sessionKey');
         this.userDetails.username = localStorage.getItem('username');

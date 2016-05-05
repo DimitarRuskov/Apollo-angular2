@@ -1,11 +1,11 @@
 import {Component, ElementRef} from 'angular2/core';
-import {CategoryModel} from '../../models/category.model';
-import {CategoryService} from '../../services/category.service';
-import {AuthService} from '../../services/auth.service';
+import {CategoryModel} from './../category.model';
+import {CategoryService} from './../category.service';
+import {AuthService} from 'shared/services/auth.service';
 
 @Component({
-    templateUrl:        'app/components/categories/add-category.component.html',
-    styleUrls:          ['app/components/categories/add-category.component.css'],
+    templateUrl:        'components/categories/add-category.component.html',
+    styleUrls:          ['components/categories/add-category.component.css'],
     providers:          [CategoryService, AuthService]
 })
 

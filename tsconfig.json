@@ -8,8 +8,13 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
+    "baseUrl": ".",
     "paths": {
-      "sharedServices*": ["app/shared/services/*"]
+        "shared/services/*": ["app/shared/services/*"],
+        "shared/directives/*": ["app/shared/directives/*"],
+        "shared/components/*": ["app/shared/components/*"],
+        "shared/pipes/*": ["app/shared/pipes/*"],
+        "components/*": ["app/components/*"]
     }
   },
   "exclude": [

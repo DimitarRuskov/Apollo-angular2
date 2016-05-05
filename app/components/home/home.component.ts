@@ -1,15 +1,9 @@
 import {Component} from 'angular2/core';
-import {SampleDirective} from '../../directives/sample.directive';
-import {TestService} from  'sharedServices/test.service';
+import {SampleDirective} from 'shared/directives/sample.directive';
 
 @Component({
   templateUrl:  'app/components/home/home.component.html',
   styleUrls:    ['app/components/home/home.component.css'],
-  directives:   [SampleDirective],
-  providers:    [TestService]
+  directives:   [SampleDirective]
 })
-export class HomeComponent { 
-  constructor(private testService:TestService) {
-    this.testService.sayHello();
-  }
-}
+export class HomeComponent { }

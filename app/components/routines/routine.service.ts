@@ -1,10 +1,10 @@
 import {Router} from "angular2/router";
 import {Injectable} from 'angular2/core';
 
-import {RoutineModel} from '../models/routine.model';
-import {UserService} from './user.service';
-import {HttpService} from './http.service';
-import {UtilsService} from './utils.service';
+import {RoutineModel} from './routine.model';
+import {UserService} from 'shared/services/user.service';
+import {HttpService} from 'shared/services/http.service';
+import {UtilsService} from 'shared/services/utils.service';
 
 @Injectable()
 export class RoutineService {

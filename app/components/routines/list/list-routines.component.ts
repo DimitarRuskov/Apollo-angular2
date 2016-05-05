@@ -1,10 +1,10 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 
-import {RoutineComponent} from './routine.component';
-import {RoutineModel} from '../../models/routine.model';
-import {RoutineService} from '../../services/routine.service';
-import {UserService} from '../../services/user.service';
+import {RoutineComponent} from './../routine.component';
+import {RoutineModel} from './../routine.model';
+import {RoutineService} from './../routine.service';
+import {UserService} from 'shared/services/user.service';
 
 @Component({
     templateUrl:        'app/components/routines/list-routines.component.html',

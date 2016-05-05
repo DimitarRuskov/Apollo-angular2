@@ -1,7 +1,7 @@
  import {Component, Input}  from 'angular2/core';
  import {Router} from "angular2/router";
  
-import {CategoryModel}     from '../../models/category.model';
+import {CategoryModel}     from './category.model';
 
 @Component({
     selector:           'apollo-category',

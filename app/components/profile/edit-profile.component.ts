@@ -1,12 +1,12 @@
 import {Component, ElementRef, OnInit}                  from 'angular2/core';
 import {FormBuilder, Validators, Control, ControlGroup} from 'angular2/common';
 
-import {ControlMessage}     from '../common/control-message.component';
-import {ValidationService}  from '../../services/validation.service';
+import {ControlMessage}     from 'shared/components/control-message/control-message.component';
+import {ValidationService}  from 'shared/services/validation.service';
 
-import {ProfileModel}       from '../../models/profile.model';
-import {UserService}        from '../../services/user.service';
-import {AuthService}        from '../../services/auth.service';
+import {ProfileModel}       from './profile.model';
+import {UserService}        from 'shared/services/user.service';
+import {AuthService}        from 'shared/services/auth.service';
 
 
 @Component({

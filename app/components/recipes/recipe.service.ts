@@ -1,7 +1,7 @@
 import {Injectable} from 'angular2/core';
 import 'rxjs/add/operator/map';
 
-import {HttpService} from './http.service';
+import {HttpService} from 'shared/services/http.service';
 
 @Injectable()
 export class RecipeService {

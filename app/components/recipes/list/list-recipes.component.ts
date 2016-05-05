@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
-import {RecipeComponent} from './recipe.component';
-import {RecipeModel} from '../../models/recipe.model';
+import {RecipeComponent} from './../recipe.component';
+import {RecipeModel} from './../recipe.model';
 
 @Component({
     templateUrl:        'app/components/recipes/list-recipes.component.html',

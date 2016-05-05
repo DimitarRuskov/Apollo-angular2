@@ -1,5 +1,5 @@
  import {Component, Input}  from 'angular2/core';
- import {RecipeModel}       from '../../models/recipe.model';
+ import {RecipeModel}       from './recipe.model';
 
 @Component({
     selector:           'apollo-recipe',

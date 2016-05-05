@@ -30,7 +30,12 @@
             }
         }
       });
-      System.paths['sharedServices/*'] = 'app/shared/services/*'
+      System.paths['angular2-notifications/*'] = 'node_modules/angular2-notifications/*';
+      System.paths['shared/services/*'] = 'app/shared/services/*';
+      System.paths['shared/directives/*'] = 'app/shared/directives/*';
+      System.paths['shared/components/*'] = 'app/shared/components/*';
+      System.paths['shared/pipes/*'] = 'app/shared/pipes/*';
+      System.paths['components*'] = 'app/components/*';
       System.import('app/main')
             .then(null, console.error.bind(console));
     </script>

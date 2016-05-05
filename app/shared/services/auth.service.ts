@@ -6,7 +6,7 @@ import {UserService} from './user.service';
 import {HttpService} from './http.service';
 import {UtilsService} from './utils.service';
 
-import {NotificationsService} from '../../node_modules/angular2-notifications/components';
+import {NotificationsService} from 'angular2-notifications/components';
 
 @Injectable()
 export class AuthService {

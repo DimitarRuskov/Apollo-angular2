@@ -1,9 +1,9 @@
 import {Component, OnInit, ElementRef} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 
-import {RoutineModel} from '../../models/routine.model';
-import {RoutineService} from '../../services/routine.service';
-import {AuthService} from '../../services/auth.service';
+import {RoutineModel} from './../routine.model';
+import {RoutineService} from './../routine.service';
+import {AuthService} from 'shared/services/auth.service';
 
 @Component({
     templateUrl:        'app/components/routines/add-routine.component.html',

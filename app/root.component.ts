@@ -1,28 +1,29 @@
 import {Component, OnInit}              from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, Router} from 'angular2/router';
 
-import {NavbarComponent}                from './components/shared/navbar.component';
+import {NavbarComponent}                from './shared/components/navbar/navbar.component';
 import {NotificationsService, SimpleNotificationsComponent} from '../node_modules/angular2-notifications/components';
 
 import {HomeComponent}                  from './components/home/home.component';
-import {ListCategoriesComponent}        from './components/categories/list-categories.component';
-import {AddCategoryComponent}           from './components/categories/add-category.component';
-import {ListRoutinesComponent}          from './components/routines/list-routines.component';
-import {AddRoutineComponent}            from './components/routines/add-routine.component';
+import {ListCategoriesComponent}        from './components/categories/list/list-categories.component';
+import {AddCategoryComponent}           from './components/categories//add/add-category.component';
+import {ListRoutinesComponent}          from './components/routines//list/list-routines.component';
+import {AddRoutineComponent}            from './components/routines/add/add-routine.component';
 import {EditProfileComponent}           from './components/profile/edit-profile.component';
 import {RegistrationComponent}          from './components/registration/registration.component';
 import {LoginComponent}                 from './components/login/login.component';
 
-import {UserService}                    from './services/user.service';
-import {HttpService}                    from './services/http.service';
-import {UtilsService}                   from './services/utils.service';
+import {StorageService}                    from './shared/services/storage.service';
+import {UserService}                    from './shared/services/user.service';
+import {HttpService}                    from './shared/services/http.service';
+import {UtilsService}                   from './shared/services/utils.service';
 
 @Component({
     selector: 'apollo-root',
     templateUrl: 'app/root.component.html',
     styleUrls: ['app/root.component.css'],
     directives: [ROUTER_DIRECTIVES, SimpleNotificationsComponent, NavbarComponent],
-    providers: [HttpService, NotificationsService, UtilsService, UserService]
+    providers: [HttpService, NotificationsService, UtilsService, UserService, StorageService]
 })
 
 @RouteConfig([

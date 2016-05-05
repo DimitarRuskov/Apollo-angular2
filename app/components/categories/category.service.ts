@@ -1,10 +1,10 @@
 import {Router} from "angular2/router";
 import {Injectable} from 'angular2/core';
 
-import {CategoryModel} from '../models/category.model';
-import {UserService} from './user.service';
-import {HttpService} from './http.service';
-import {UtilsService} from './utils.service';
+import {CategoryModel} from './category.model';
+import {UserService} from 'shared/services/user.service';
+import {HttpService} from 'shared/services/http.service';
+import {UtilsService} from 'shared/services/utils.service';
 
 @Injectable()
 export class CategoryService {

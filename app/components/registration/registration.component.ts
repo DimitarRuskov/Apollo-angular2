@@ -1,8 +1,8 @@
 import {Component}          from 'angular2/core';
 import {FormBuilder, Validators, Control, ControlGroup}  from 'angular2/common';
-import {AuthService}        from '../../services/auth.service';
-import {ControlMessage}     from '../common/control-message.component';
-import {ValidationService}  from '../../services/validation.service';
+import {AuthService}        from 'shared/services/auth.service';
+import {ControlMessage}     from 'shared/components/control-message/control-message.component';
+import {ValidationService}  from 'shared/services/validation.service';
 
 @Component({
   templateUrl:                  'app/components/registration/registration.component.html',

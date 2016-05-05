@@ -1,11 +1,10 @@
 import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
-
 @Component({
     selector:           'apollo-navbar',
-    templateUrl:        'app/components/shared/navbar.component.html',
-    styleUrls:          ['app/components/shared/navbar.component.css'],
+    templateUrl:        'app/shared/components/navbar/navbar.component.html',
+    styleUrls:          ['app/shared/components/navbar/navbar.component.css'],
     directives:         [ROUTER_DIRECTIVES]
 })
 

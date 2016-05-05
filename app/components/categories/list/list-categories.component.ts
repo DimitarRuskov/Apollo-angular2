@@ -1,10 +1,10 @@
 import {Component} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 
-import {CategoryComponent} from './category.component';
-import {CategoryModel} from '../../models/category.model';
-import {CategoryService} from '../../services/category.service';
-import {UserService} from '../../services/user.service';
+import {CategoryComponent} from './../category.component';
+import {CategoryModel} from '..//category.model';
+import {CategoryService} from '../category.service';
+import {UserService} from 'shared/services/user.service';
 
 @Component({
     templateUrl:        'app/components/categories/list-categories.component.html',
