@@ -6,8 +6,8 @@ import {RoutineService} from './../routine.service';
 import {AuthService} from 'shared/services/auth.service';
 
 @Component({
-    templateUrl:        'app/components/routines/add-routine.component.html',
-    styleUrls:          ['app/components/routines/add-routine.component.css'],
+    templateUrl:        'app/components/routines/add/add-routine.component.html',
+    styleUrls:          ['app/components/routines/add/add-routine.component.css'],
     providers:          [RoutineService, AuthService]
 })
 

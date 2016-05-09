@@ -4,8 +4,8 @@ import {CategoryService} from './../category.service';
 import {AuthService} from 'shared/services/auth.service';
 
 @Component({
-    templateUrl:        'components/categories/add-category.component.html',
-    styleUrls:          ['components/categories/add-category.component.css'],
+    templateUrl:        'app/components/categories/add/add-category.component.html',
+    styleUrls:          ['app/components/categories/add/add-category.component.css'],
     providers:          [CategoryService, AuthService]
 })
 

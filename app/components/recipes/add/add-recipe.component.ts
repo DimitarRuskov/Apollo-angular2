@@ -2,8 +2,8 @@ import {Component, Input} from 'angular2/core';
 import {RecipeModel} from './../recipe.model';
 
 @Component({
-    templateUrl:        'app/components/recipes/add-recipe.component.html',
-    styleUrls:          ['app/components/recipes/add-recipe.component.css']
+    templateUrl:        'app/components/recipes/add/add-recipe.component.html',
+    styleUrls:          ['app/components/recipes/add/add-recipe.component.css']
 })
 
 export class AddRecipeComponent {

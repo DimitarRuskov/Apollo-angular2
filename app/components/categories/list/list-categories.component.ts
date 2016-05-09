@@ -7,8 +7,8 @@ import {CategoryService} from '../category.service';
 import {UserService} from 'shared/services/user.service';
 
 @Component({
-    templateUrl:        'app/components/categories/list-categories.component.html',
-    styleUrls:          ['app/components/categories/list-categories.component.css'],
+    templateUrl:        'app/components/categories/list/list-categories.component.html',
+    styleUrls:          ['app/components/categories/list/list-categories.component.css'],
     directives: [CategoryComponent],
     providers: [CategoryService]
 })

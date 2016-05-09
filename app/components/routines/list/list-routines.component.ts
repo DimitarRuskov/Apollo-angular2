@@ -7,8 +7,8 @@ import {RoutineService} from './../routine.service';
 import {UserService} from 'shared/services/user.service';
 
 @Component({
-    templateUrl:        'app/components/routines/list-routines.component.html',
-    styleUrls:          ['app/components/routines/list-routines.component.css'],
+    templateUrl:        'app/components/routines/list/list-routines.component.html',
+    styleUrls:          ['app/components/routines/list/list-routines.component.css'],
     directives: [RoutineComponent],
     providers: [RoutineService, UserService]
 })

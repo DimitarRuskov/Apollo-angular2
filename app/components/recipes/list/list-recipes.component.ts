@@ -3,8 +3,8 @@ import {RecipeComponent} from './../recipe.component';
 import {RecipeModel} from './../recipe.model';
 
 @Component({
-    templateUrl:        'app/components/recipes/list-recipes.component.html',
-    styleUrls:          ['app/components/recipes/list-recipes.component.css'],
+    templateUrl:        'app/components/recipes/list/list-recipes.component.html',
+    styleUrls:          ['app/components/recipes/list/list-recipes.component.css'],
     directives: [RecipeComponent]
 })
 
