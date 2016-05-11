@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnInit, Renderer} from 'angular2/core';
+import {Directive, ElementRef, OnInit, Renderer} from '@angular/core';
 
 @Directive({
     selector: '[apolloSample]'

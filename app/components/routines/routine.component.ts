@@ -1,6 +1,6 @@
- import {Component, Input}  from 'angular2/core';
+ import {Component, Input}  from '@angular/core';
  import {RoutineModel}     from './routine.model';
- import {Router} from "angular2/router";
+ import {Router} from "@angular/router-deprecated";
 
 @Component({
     selector:           'apollo-routine',

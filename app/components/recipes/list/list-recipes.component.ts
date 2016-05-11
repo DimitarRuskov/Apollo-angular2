@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {RecipeComponent} from './../recipe.component';
 import {RecipeModel} from './../recipe.model';
 

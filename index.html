@@ -6,17 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>   
-
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     
-    <script src="node_modules/angular2/bundles/router.dev.js"></script>
-    <script src="node_modules/angular2/bundles/http.dev.js"></script>
+    
+    
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    
+    <!--<script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>-->
+    <!--<script src="node_modules/@angular/es6/dev/src/testing/shims_for_IE.js"></script> -->
+<!--
+    
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/@angular/bundles/@angular.dev.js"></script>
+    
+    
+    <script src="node_modules/@angular/bundles/http.dev.js"></script>-->
+    
+    <script src="systemjs.config.js"></script>
     <script>
       System.config({
         packages: {
@@ -24,13 +35,13 @@
                 format: 'register',
                 defaultExtension: 'js'
             },
-            "node_modules/angular2-notifications": {
+            "node_modules/@angular-notifications": {
                 main: "components",
                 defaultExtension: 'js'
             }
         }
       });
-      System.paths['angular2-notifications/*'] = 'node_modules/angular2-notifications/*';
+      System.paths['@angular-notifications/*'] = 'node_modules/@angular-notifications/*';
       System.paths['shared/services/*'] = 'app/shared/services/*';
       System.paths['shared/directives/*'] = 'app/shared/directives/*';
       System.paths['shared/components/*'] = 'app/shared/components/*';

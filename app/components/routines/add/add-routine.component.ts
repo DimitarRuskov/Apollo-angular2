@@ -1,5 +1,5 @@
-import {Component, OnInit, ElementRef} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
+import {Component, OnInit, ElementRef} from '@angular/core';
+import {Router, RouteParams} from '@angular/router-deprecated';
 
 import {RoutineModel} from './../routine.model';
 import {RoutineService} from './../routine.service';

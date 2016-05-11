@@ -1,5 +1,5 @@
-import {Component}          from 'angular2/core';
-import {FormBuilder, Validators, Control, ControlGroup}  from 'angular2/common';
+import {Component}          from '@angular/core';
+import {FormBuilder, Validators, Control, ControlGroup}  from '@angular/common';
 import {AuthService}        from 'shared/services/auth.service';
 import {ControlMessage}     from 'shared/components/control-message/control-message.component';
 import {ValidationService}  from 'shared/services/validation.service';

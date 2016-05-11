@@ -1,4 +1,4 @@
-import {Component, ElementRef} from 'angular2/core';
+import {Component, ElementRef} from '@angular/core';
 import {CategoryModel} from './../category.model';
 import {CategoryService} from './../category.service';
 import {AuthService} from 'shared/services/auth.service';

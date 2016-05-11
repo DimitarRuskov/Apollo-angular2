@@ -1,4 +1,4 @@
-import {Injectable} from 'angular2/core';
+import {Injectable} from '@angular/core';
 import {UserModel} from '../models/user.model';
 
 import {HttpService} from './http.service';

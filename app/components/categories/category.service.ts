@@ -1,5 +1,5 @@
-import {Router} from "angular2/router";
-import {Injectable} from 'angular2/core';
+ import {Router} from "@angular/router-deprecated";
+import {Injectable} from '@angular/core';
 
 import {CategoryModel} from './category.model';
 import {UserService} from 'shared/services/user.service';
