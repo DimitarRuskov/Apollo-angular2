@@ -1,8 +1,8 @@
-import {Router} from '@angular/router-deprecated';
-import {Injectable} from '@angular/core';
+import {Router} from 'angular2/router';
+import {Injectable} from 'angular2/core';
 import 'rxjs/add/operator/map';
 
-import {NotificationsService} from '@angular-notifications/components';
+import {NotificationsService} from 'angular2-notifications/components';
 
 @Injectable()
 export class UtilsService {

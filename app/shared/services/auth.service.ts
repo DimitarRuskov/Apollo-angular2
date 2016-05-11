@@ -1,5 +1,5 @@
-import {Router, Redirect, ComponentInstruction} from "@angular/router-deprecated";
-import {Injectable} from '@angular/core';
+import {Router, Redirect, ComponentInstruction} from "angular2/router";
+import {Injectable} from 'angular2/core';
 import 'rxjs/add/operator/map';
 
 import {UserService} from './user.service';

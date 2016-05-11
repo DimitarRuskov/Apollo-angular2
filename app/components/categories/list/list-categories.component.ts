@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router, RouteParams} from '@angular/router-deprecated';
+import {Router, RouteParams} from 'angular2/router';
 
 import {CategoryComponent} from './../category.component';
 import {CategoryModel} from '..//category.model';

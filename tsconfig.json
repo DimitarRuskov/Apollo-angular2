@@ -1,21 +1,14 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "system",
+    "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "noImplicitAny": false,
-    "baseUrl": ".",
-    "paths": {
-        "shared/services/*": ["app/shared/services/*"],
-        "shared/directives/*": ["app/shared/directives/*"],
-        "shared/components/*": ["app/shared/components/*"],
-        "shared/pipes/*": ["app/shared/pipes/*"],
-        "components/*": ["app/components/*"]
-    }
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true
   },
   "exclude": [
     "node_modules",

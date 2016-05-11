@@ -1,5 +1,5 @@
-import {Component, ElementRef, OnInit}                  from '@angular/core';
-import {FormBuilder, Validators, Control, ControlGroup} from '@angular/common';
+import {Component, ElementRef, OnInit}                  from 'angular2/core';
+import {FormBuilder, Validators, Control, ControlGroup} from 'angular2/common';
 
 import {ControlMessage}     from 'shared/components/control-message/control-message.component';
 import {ValidationService}  from 'shared/services/validation.service';

@@ -1,4 +1,4 @@
- import {Router} from "@angular/router-deprecated";
+import {Router} from "@angular/router";
 import {Injectable} from '@angular/core';
 
 import {CategoryModel} from './category.model';

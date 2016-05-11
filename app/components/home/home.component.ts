@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component} from 'angular2/core';
 import {SampleDirective} from 'shared/directives/sample.directive';
 
 @Component({

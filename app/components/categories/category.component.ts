@@ -1,5 +1,5 @@
  import {Component, Input}  from '@angular/core';
- import {Router} from "@angular/router-deprecated";
+ import {Router} from "@angular/router";
  
 import {CategoryModel}     from './category.model';
 

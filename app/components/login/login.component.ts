@@ -1,4 +1,4 @@
-import {Component}      from '@angular/core';
+import {Component}      from 'angular2/core';
 import {AuthService}    from 'shared/services/auth.service';
 
 @Component({
