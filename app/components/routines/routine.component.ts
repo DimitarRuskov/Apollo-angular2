@@ -1,6 +1,6 @@
- import {Component, Input}  from 'angular2/core';
+ import {Component, Input}  from '@angular/core';
  import {RoutineModel}     from './routine.model';
- import {Router} from "@angular/router";
+ import {Router} from '@angular/router-deprecated';
 
 @Component({
     selector:           'apollo-routine',
@@ -9,11 +9,11 @@
 })
 
 export class RoutineComponent {
-    @Input () routine:RoutineModel;
+    @Input () routine: RoutineModel;
     
-    constructor(private _router:Router) { }
+    constructor(private _router: Router) { }
     
-    listRoutines(routineId) {
+    listRoutines(routineId: any) {
         this._router.navigate(['Exercises', {routineId: routineId}])
     }
 }

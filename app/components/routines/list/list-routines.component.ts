@@ -1,5 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
+import {Component, OnInit} from '@angular/core';
+import {Router, RouteParams} from '@angular/router-deprecated';
 
 import {RoutineComponent} from './../routine.component';
 import {RoutineModel} from './../routine.model';
@@ -14,9 +14,9 @@ import {UserService} from 'shared/services/user.service';
 })
 
 export class ListRoutinesComponent implements OnInit {
-    public routines:Array<RoutineModel> = [];
-    private _categoryId:String;
-    constructor(private _routineService:RoutineService, private _router:Router, private _routeParams:RouteParams, private user:UserService) { }
+    public routines: Array<RoutineModel> = [];
+    private _categoryId: String;
+    constructor(private _routineService: RoutineService, private _router: Router, private _routeParams: RouteParams, private user: UserService) { }
     
     ngOnInit() {
         this._categoryId = this._routeParams.get('categoryId');

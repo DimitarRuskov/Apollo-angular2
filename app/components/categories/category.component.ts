@@ -1,6 +1,6 @@
- import {Component, Input}  from '@angular/core';
- import {Router} from "@angular/router";
- 
+import {Component, Input}  from '@angular/core';
+import {Router} from '@angular/router-deprecated';
+
 import {CategoryModel}     from './category.model';
 
 @Component({
@@ -10,11 +10,11 @@ import {CategoryModel}     from './category.model';
 })
 
 export class CategoryComponent {
-    @Input () category:CategoryModel;
+    @Input () category :CategoryModel;
     
-    constructor(private _router:Router) { }
+    constructor(private _router: Router) { }
     
-    listRoutines(categoryId) {
-        this._router.navigate(['Routines', {categoryId: categoryId}])
+    listRoutines(categoryId: any) {
+        this._router.navigate(['Routines', {categoryId: categoryId}]);
     }
 }

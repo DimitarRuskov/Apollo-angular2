@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {RecipeComponent} from './../recipe.component';
 import {RecipeModel} from './../recipe.model';
 
@@ -9,10 +9,9 @@ import {RecipeModel} from './../recipe.model';
 })
 
 export class ListRecipesComponent {
-    
-    public recipes:RecipeModel[] = [];
+    public recipes: RecipeModel[] = [];
     constructor() {
-        let model1:RecipeModel = new RecipeModel();
+        let model1: RecipeModel = new RecipeModel();
         model1.id = 1;
         model1.author = 'Dimitar Ruskov';
         model1.comments = 4;
@@ -23,7 +22,7 @@ export class ListRecipesComponent {
         model1.thumbsDown = 0;
         this.recipes.push(model1);
         
-        let model2:RecipeModel = new RecipeModel();
+        let model2: RecipeModel = new RecipeModel();
         model2.id = 1;
         model2.author = 'Martin Ruskov';
         model2.comments = 24;

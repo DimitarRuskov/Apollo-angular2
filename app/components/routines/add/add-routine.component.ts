@@ -1,5 +1,5 @@
-import {Component, OnInit, ElementRef} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
+import {Component, OnInit, ElementRef} from '@angular/core';
+import {Router, RouteParams} from '@angular/router-deprecated';
 
 import {RoutineModel} from './../routine.model';
 import {RoutineService} from './../routine.service';
@@ -12,16 +12,16 @@ import {AuthService} from 'shared/services/auth.service';
 })
 
 export class AddRoutineComponent implements OnInit {
-    private _selectedImage = null;
-    private _categoryId:String;
-    constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams:RouteParams, private _auth: AuthService) { }
-     changeListner(event) {
-        var reader = new FileReader();
-        var image = this.element.nativeElement.querySelector('.image');
+    private _selectedImage: any = null;
+    private _categoryId: String;
+    constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams: RouteParams, private _auth: AuthService) { }
+     changeListner(event: any) {
+        let reader = new FileReader();
+        let image = this.element.nativeElement.querySelector('.image');
 
-        reader.onload = function(e) {
-            var src = e.target.result;
-            this._selectedImage = src
+        reader.onload = function(e: any) {
+            let src = e.target.result;
+            this._selectedImage = src;
             image.src = src;
         }.bind(this);
 
@@ -32,13 +32,13 @@ export class AddRoutineComponent implements OnInit {
         this._categoryId = this._routeParams.get('categoryId');
     }
     
-    onSubmit(values): void {
+    onSubmit(values: any): void {
         values.categoryId = this._categoryId;
         values.image = this._selectedImage;
         this._routineService.addRoutine(values);
     }
     
-    routerOnActivate(next, prev) {
+    routerOnActivate(next: any, prev: any) {
         this._auth.doAuth(next);
     }
 }

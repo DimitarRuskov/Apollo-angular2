@@ -1,5 +1,5 @@
-import {Router, Redirect, ComponentInstruction} from "angular2/router";
-import {Injectable} from 'angular2/core';
+import {Router, Redirect, ComponentInstruction} from '@angular/router-deprecated';
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import {UserService} from './user.service';
@@ -10,14 +10,13 @@ import {NotificationsService} from 'angular2-notifications/components';
 
 @Injectable()
 export class AuthService {
+    constructor(private _http: HttpService, private _utils: UtilsService, private _user: UserService, private _router: Router) { }
     
-    constructor(private _http:HttpService, private _utils: UtilsService, private _user: UserService, private _router:Router) { }
-    
-    public register(params) {
+    public register(params: any) {
         delete params.passwordConfirm;
-        var prms:any = {
+        let prms: any = {
             params: params
-        }
+        };
         return this._http.request('post', 'http://localhost:8003/user/register', JSON.stringify(prms), null, null)
         .subscribe(
             data => this.onSuccess(data),
@@ -26,7 +25,7 @@ export class AuthService {
         );
     }
     
-    public login(params) {
+    public login(params: any) {
         return this._http.request('post', 'http://localhost:8003/user/login', JSON.stringify(params), null, null)
         .subscribe(
             data => this.onSuccess(data),
@@ -41,14 +40,14 @@ export class AuthService {
         }
         
         if (next.routeData.data['roles']) {
-            var userRoles = this._user.getUserDetails().roles;
-            var canAccess = false;
+            let userRoles = this._user.getUserDetails().roles;
+            let canAccess = false;
                     
-            for (var i = 0; i < userRoles.length; i++) {
+            for (let i = 0; i < userRoles.length; i++) {
                 if (next.routeData.data['roles'].indexOf(userRoles) >= 0) {
                     canAccess = true;
                     break;
-                }                
+                }
             }
             
             if (!canAccess) {
@@ -57,7 +56,7 @@ export class AuthService {
         }
     }
     
-    onSuccess(data) {
+    onSuccess(data: any) {
         this._user.storeUserDetails(data);
         this._router.navigate(['Home']);
     }

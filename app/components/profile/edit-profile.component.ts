@@ -1,5 +1,5 @@
-import {Component, ElementRef, OnInit}                  from 'angular2/core';
-import {FormBuilder, Validators, Control, ControlGroup} from 'angular2/common';
+import {Component, ElementRef, OnInit}                  from '@angular/core';
+import {FormBuilder, Validators, Control, ControlGroup} from '@angular/common';
 
 import {ControlMessage}     from 'shared/components/control-message/control-message.component';
 import {ValidationService}  from 'shared/services/validation.service';
@@ -17,9 +17,9 @@ import {AuthService}        from 'shared/services/auth.service';
 })
 
 export class EditProfileComponent implements OnInit{
-    form:any;
-    profileDetails:ProfileModel;
-    private _selectedImage = null;
+    form: any;
+    profileDetails: ProfileModel;
+    private _selectedImage: any = null;
     
     constructor(private _formBuilder: FormBuilder, private element: ElementRef, private _userService: UserService, private _auth: AuthService) { 
         this.profileDetails = new ProfileModel();
@@ -43,7 +43,7 @@ export class EditProfileComponent implements OnInit{
         });
     }
     
-    populateForm(profileDetails) {
+    populateForm(profileDetails: any) {
         this.profileDetails = profileDetails;
         this.form.controls['name'].updateValue(this.profileDetails.name);
         this.form.controls['email'].updateValue(this.profileDetails.email);
@@ -52,12 +52,12 @@ export class EditProfileComponent implements OnInit{
         this.form.controls['height'].updateValue(this.profileDetails.height);
     }
     
-    changeListener(event) {
-        var reader = new FileReader();
-        var image = this.element.nativeElement.querySelector('.image');
+    changeListener(event: any) {
+        let reader = new FileReader();
+        let image = this.element.nativeElement.querySelector('.image');
 
-        reader.onload = function(e) {
-            var src = e.target.result;
+        reader.onload = function(e: any) {
+            let src = e.target.result;
             this.form.controls['image'].updateValue(src);
             image.src = src;
         }.bind(this);
@@ -65,14 +65,14 @@ export class EditProfileComponent implements OnInit{
         reader.readAsDataURL(event.target.files[0]);
     }
     
-    onSubmit(values): void {
+    onSubmit(values: any): void {
         if(values.image === '') {
             values.image = undefined;
         }
         this._userService.updateProfile(values);
     }
     
-    routerOnActivate(next, prev) {
+    routerOnActivate(next: any, prev: any) {
         this._auth.doAuth(next);
     }
 }

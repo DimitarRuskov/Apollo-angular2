@@ -1,4 +1,4 @@
-import {Injectable} from 'angular2/core';
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 
 export class StorageService {
@@ -8,11 +8,11 @@ export class StorageService {
         
     }
     
-    public get(key) {
+    public get(key: any) {
         
     }
     
-    public remove(key) {
+    public remove(key: any) {
         
     }
 }

@@ -10,27 +10,27 @@ import {AuthService} from 'shared/services/auth.service';
 })
 
 export class AddCategoryComponent {
-    private _selectedImage = null;
+    private _selectedImage: any = null;
     constructor(private element: ElementRef, private _categoryService: CategoryService, private _auth: AuthService) { }
-     changeListner(event) {
-        var reader = new FileReader();
-        var image = this.element.nativeElement.querySelector('.image');
+     changeListner(event: any) {
+        let reader = new FileReader();
+        let image = this.element.nativeElement.querySelector('.image');
 
-        reader.onload = function(e) {
-            var src = e.target.result;
-            this._selectedImage = src
+        reader.onload = function(e: any) {
+            let src = e.target.result;
+            this._selectedImage = src;
             image.src = src;
         }.bind(this);
 
         reader.readAsDataURL(event.target.files[0]);
     }
     
-    onSubmit(values): void {
+    onSubmit(values: any): void {
         values.image = this._selectedImage;
         this._categoryService.addCategory(values);
     }
     
-    routerOnActivate(next, prev) {
+    routerOnActivate(next: any, prev: any) {
         this._auth.doAuth(next);
     }
 }

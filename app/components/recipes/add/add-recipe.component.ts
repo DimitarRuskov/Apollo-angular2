@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input} from '@angular/core';
 import {RecipeModel} from './../recipe.model';
 
 @Component({
@@ -7,30 +7,30 @@ import {RecipeModel} from './../recipe.model';
 })
 
 export class AddRecipeComponent {
-    newIngredient:string;
-    newPrepStep:string;
-    private _ingredients:string[];
+    newIngredient: string;
+    newPrepStep: string;
+    private _ingredients: string[];
     private _prepSteps: string[];
     constructor() {
         this._ingredients = [];
         this._prepSteps = [];
      }
      
-     addIngredient(newIngredient) {
+     addIngredient(newIngredient: any) {
          this._ingredients.push(newIngredient);
          this.newIngredient = '';
      }
      
-     deleteIngredient(index) {
+     deleteIngredient(index: any) {
          this._ingredients.splice(index, 1);
      }
      
-     addPrepStep(newPrepStep) {
+     addPrepStep(newPrepStep: any) {
          this._prepSteps.push(newPrepStep);
          this.newPrepStep = '';
      }
      
-     deletePrepStep(index) {
+     deletePrepStep(index: any) {
          this._prepSteps.splice(index, 1);
      }
 }

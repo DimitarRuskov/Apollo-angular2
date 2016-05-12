@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Router, RouteParams} from 'angular2/router';
+import {Router, RouteParams} from '@angular/router-deprecated';
 
 import {CategoryComponent} from './../category.component';
 import {CategoryModel} from '..//category.model';
@@ -15,7 +15,7 @@ import {UserService} from 'shared/services/user.service';
 
 export class ListCategoriesComponent {
     public categories:Array<CategoryModel> = [];
-    constructor(private _categoryService: CategoryService, private _router:Router, private _routeParams:RouteParams, private user:UserService) {
+    constructor(private _categoryService: CategoryService, private _router: Router, private _routeParams: RouteParams, private user: UserService) {
         this._categoryService.listCategories({})
         .subscribe(
             data => this.categories = data.categories,

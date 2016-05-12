@@ -1,5 +1,5 @@
-import {Http, Response, Headers, URLSearchParams} from 'angular2/http';
-import {Injectable} from 'angular2/core';
+import {Http, Response, Headers, URLSearchParams} from '@angular/http';
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -14,14 +14,14 @@ export class HttpService {
         bodyMethods: 'withQuery'
     };
     
-    constructor(private _http:Http) {
+    constructor(private _http: Http) {
         this.defaultHeaders = new Headers();
         this.defaultHeaders.append('Content-Type', 'application/json');
     }
     
-    public request(method, url, body, options, auth) {
+    public request(method: any, url: any, body: any, options: any, auth: any) {
         if (this.supportedMethods.indexOf(method) < 0) {
-            throw "Unsupported method";
+            throw 'Unsupported method';
         }
         
         options = options || {};
@@ -29,11 +29,11 @@ export class HttpService {
         
         var defaultHeadersKeys = this.defaultHeaders.keys();
         
-        for (var i = 0; i < defaultHeadersKeys.length; i++) {
+        for (let i = 0; i < defaultHeadersKeys.length; i++) {
             if (!options.headers.has(defaultHeadersKeys[i])) {
                 options.headers.set(defaultHeadersKeys[i], this.defaultHeaders.get(defaultHeadersKeys[i]));
             }
-        }        
+        }
         
         if (options.search) {
             options.search = this.buildSearchObject(options.search);
@@ -43,10 +43,10 @@ export class HttpService {
             options.headers.set('Authorization', 'Bearer ' + auth);
         }
         
-        var funcToInvoke = undefined;
-        var invokedFunc = undefined;
+        let funcToInvoke: any = undefined;
+        let invokedFunc: any = undefined;
         
-        for (var prop in this.methodFuncMap) {
+        for (let prop in this.methodFuncMap) {
             if (this[prop] && Array.isArray(this[prop]) && this[prop].indexOf(method)) {
                 funcToInvoke = this.methodFuncMap[prop];
                 break;
@@ -54,38 +54,38 @@ export class HttpService {
         } 
         
         if (funcToInvoke === undefined) {
-            throw "Error";
+            throw 'Error';
         }
         
         if (funcToInvoke === 'withQuery') {
-            invokedFunc = this[funcToInvoke](method, url, options);    
+            invokedFunc = this[funcToInvoke](method, url, options);
         } else if (funcToInvoke === 'withBody') {
-            invokedFunc = this[funcToInvoke](method, url, body, options);    
+            invokedFunc = this[funcToInvoke](method, url, body, options);
         }
          
         if (invokedFunc === undefined) {
-            throw "Error";
+            throw 'Error';
         }
                       
         return invokedFunc
             .map((res: Response) => res.json());
     }
     
-    buildSearchObject(data) {
+    buildSearchObject(data: any) {
         var searchObj = new URLSearchParams();
         
-        for (var prop in data) {
+        for (let prop in data) {
             searchObj.set(prop, data[prop]);
         }
         
         return searchObj;
     }
     
-    withQuery(method, url, options) {
+    withQuery(method: any, url: any, options: any) {
         return this._http[method](url, options);
     }
     
-    withBody(method, url, body, options) {
+    withBody(method: any, url: any, body: any, options: any) {
         return this._http[method](url, body, options);
     }
 }

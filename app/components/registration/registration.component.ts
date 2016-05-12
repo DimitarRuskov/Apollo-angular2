@@ -1,5 +1,5 @@
-import {Component}          from 'angular2/core';
-import {FormBuilder, Validators, Control, ControlGroup}  from 'angular2/common';
+import {Component}          from '@angular/core';
+import {FormBuilder, Validators, Control, ControlGroup}  from '@angular/common';
 import {AuthService}        from 'shared/services/auth.service';
 import {ControlMessage}     from 'shared/components/control-message/control-message.component';
 import {ValidationService}  from 'shared/services/validation.service';
@@ -12,9 +12,9 @@ import {ValidationService}  from 'shared/services/validation.service';
 })
 
 export class RegistrationComponent {
-    form:any;
+    form: any;
     
-    constructor(private _formBuilder: FormBuilder, private _authService:AuthService) {
+    constructor(private _formBuilder: FormBuilder, private _authService: AuthService) {
 		
         this.form = this._formBuilder.group({
             'username':         ['', Validators.compose([Validators.required, Validators.minLength(6)])],
@@ -24,7 +24,7 @@ export class RegistrationComponent {
         });
     }
     
-    onSubmit(values) {
+    onSubmit(values: any) {
         this._authService.register(values);
     }
 }
