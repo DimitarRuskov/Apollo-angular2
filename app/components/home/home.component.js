@@ -1,4 +1,4 @@
-System.register(['@angular/core', 'shared/directives/sample.directive'], function(exports_1, context_1) {
+System.register(['@angular/core', 'shared/directives/sample.directive', 'angular2-materialize'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['@angular/core', 'shared/directives/sample.directive'], functio
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, sample_directive_1;
+    var core_1, sample_directive_1, angular2_materialize_1;
     var HomeComponent;
     return {
         setters:[
@@ -19,6 +19,9 @@ System.register(['@angular/core', 'shared/directives/sample.directive'], functio
             },
             function (sample_directive_1_1) {
                 sample_directive_1 = sample_directive_1_1;
+            },
+            function (angular2_materialize_1_1) {
+                angular2_materialize_1 = angular2_materialize_1_1;
             }],
         execute: function() {
             HomeComponent = (function () {
@@ -28,7 +31,7 @@ System.register(['@angular/core', 'shared/directives/sample.directive'], functio
                     core_1.Component({
                         templateUrl: 'app/components/home/home.component.html',
                         styleUrls: ['app/components/home/home.component.css'],
-                        directives: [sample_directive_1.SampleDirective]
+                        directives: [sample_directive_1.SampleDirective, angular2_materialize_1.MaterializeDirective]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HomeComponent);
