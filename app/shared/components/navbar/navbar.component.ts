@@ -1,5 +1,7 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit, ElementRef} from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+
+declare var jQuery: any;
 
 @Component({
     selector:           'apollo-navbar',
@@ -8,13 +10,17 @@ import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
     directives:         [ROUTER_DIRECTIVES]
 })
 
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
     @Input() routes:Object;
     @Input() isAuth:boolean;
     @Input() userDetails:Object;
     @Output() logout = new EventEmitter<boolean>(true);
     
-    constructor() { }
+    constructor(private el:ElementRef) { }
+    
+    ngOnInit() {
+        jQuery(this.el.nativeElement).find('.button-collapse').sideNav();
+    }
     
     onLogout() {
         this.logout.emit(true);

@@ -1,16 +1,7 @@
 .profile-image {
-    padding-top: 3px;
+    width: 55px;
+    height: 55px;
+    border: 1px solid black;
+    border-radius: 50%;
     vertical-align: middle;
-    width: 44px;
-    height: 47px;
-    border-radius: 100%;
-}
-
-a {
-    cursor: pointer;
-}
-
-
-.brand-logo {
-    position: relative;
 }

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col s12 m8 offset-m2 l4 offset-l4">
-        <form class="col s12" [ngFormModel]="form" (submit)="onSubmit(form.value)">
+        <form class="col s12" #form="ngForm" (submit)="onSubmit(form.value)">
             <fieldset>
                 <legend>Register</legend>
                 <div class="input-field col s12">
