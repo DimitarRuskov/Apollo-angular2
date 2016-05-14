@@ -2,48 +2,34 @@
     <div class="nav-wrapper">
         <a [routerLink]="[home]" class="brand-logo">Apollo</a>
         <a data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="left hide-on-med-and-down">
-            <li *ngFor="#route of routes.left"><a *ngIf="route.access === 'public' || (route.access === 'auth' && isAuth)" [routerLink]="[route.name]">{{route.name}}</a></li>
-        </ul>
         <ul class="right hide-on-med-and-down">
-            <li *ngFor="#route of routes.left"><a *ngIf="route.access === 'public' || (route.access === 'auth' && isAuth)" [routerLink]="[route.name]">{{route.name}}</a></li>
+            <li *ngFor="#route of routes.left"><a *ngIf="route.access === 'public' || (route.access === 'auth' && isAuth)" [routerLink]="[route.name]">{{route.name}}</a></li>  
             
             <li>
-              <a *ngIf="isAuth" class="waves-effect waves-light btn-large" [routerLink]="[routes.profile.name]">
-                <img src="http://localhost:8003{{userDetails.imageUrl || '/system/profile-icon.png'}}" class="profile-image">{{userDetails.username}}
-              </a>
+                <a class="dropdown-button" href="#!" data-activates="profile-dropdown" >
+                    <img *ngIf="isAuth" src="http://localhost:8003{{userDetails.imageUrl || '/system/profile-icon.png'}}" class="profile-image"> {{isAuth ? userDetails.username : ''}}
+                    <i *ngIf="isAuth" class="material-icons right">arrow_drop_down</i>
+                </a>
             </li>
-            
-            <li><a *ngIf="isAuth" (click)="onLogout()">Logout</a></li>
             <li *ngFor="#route of routes.right"><a *ngIf="route.access === 'noAuth' && !isAuth" [routerLink]="[route.name]">{{route.name}}</a></li>
-        </ul>
-        <ul class="side-nav" id="mobile-nav">
-            <li><a href="#">Sass</a></li>
-            <li><a href="#">Components</a></li>
-            <li><a href="#">Javascript</a></li>
-            <li><a href="#">Mobile</a></li>
         </ul>
     </div>
 </nav>
 
-<!--<div class="navbar-fixed">
-    <div class="nav-wrapper">
-      <a  class="brand-logo"> Logo </a>
-      <a  data-activates="mobile-nav" class="button-collapse"><i class="material-icons white-text">menu</i></a>
-      <ul class="public-routes hide-on-med-and-down">
-          <li *ngFor="#route of routes.left"><a *ngIf="route.access === 'public' || (route.access === 'auth' && isAuth)" [routerLink]="[route.name]">{{route.name}}</a></li>
-      </ul>
-      <ul class="right hide-on-med-and-down">
-            <li><img *ngIf="isAuth" src="http://localhost:8003{{userDetails.imageUrl || '/system/profile-icon.png'}}" class="profile-image"></li>
-            <li><a *ngIf="isAuth" [routerLink]="[routes.profile.name]">{{userDetails.username}}</a></li>
-            <li><a *ngIf="isAuth" (click)="onLogout()">Logout</a></li>
-            <li *ngFor="#route of routes.right"><a *ngIf="route.access === 'noAuth' && !isAuth" [routerLink]="[route.name]">{{route.name}}</a></li>
-        </ul>
-      <ul class="side-nav" id="mobile-nav">
-          <li><a href="#">Sass</a></li>
-          <li><a href="#">Components</a></li>
-          <li><a href="#">Javascript</a></li>
-          <li><a href="#">Mobile</a></li>
-      </ul>
-    </div>
-</div>-->
+
+
+
+
+<ul class="side-nav" id="mobile-nav"> <!--collapse sidebar content begin-->
+    <li><a href="#">Empty</a></li>
+</ul> <!--collapse sidebar content end-->
+
+<ul id="profile-dropdown" class="dropdown-content"> <!--dropdown content begin-->
+    <li>
+        <a [routerLink]="[routes.profile.name]" >
+            <img *ngIf="isAuth" src="http://localhost:8003{{userDetails.imageUrl || '/system/profile-icon.png'}}" class="profile-image"> {{userDetails.username}}
+        </a>
+    </li>
+    <li class="divider"></li>
+    <li><a *ngIf="isAuth" (click)="onLogout()">Logout</a></li>
+</ul> <!--dropdown content end-->

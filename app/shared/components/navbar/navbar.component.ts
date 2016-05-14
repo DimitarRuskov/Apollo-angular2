@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
     
     ngOnInit() {
         jQuery(this.el.nativeElement).find('.button-collapse').sideNav();
+        jQuery(this.el.nativeElement).find(".dropdown-button").dropdown();
     }
     
     onLogout() {
