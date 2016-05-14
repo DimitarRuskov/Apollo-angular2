@@ -1,46 +1,55 @@
-import {Router, Redirect, ComponentInstruction} from '@angular/router-deprecated';
+import {ComponentInstruction} from '@angular/router-deprecated';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
 
-import {UserService} from './user.service';
 import {HttpService} from './http.service';
-import {UtilsService} from './utils.service';
-
-import {NotificationsService} from 'angular2-notifications/components';
+import {StorageService} from './storage.service';
 
 @Injectable()
 export class AuthService {
-    constructor(private _http: HttpService, private _utils: UtilsService, private _user: UserService, private _router: Router) { }
+    public isAuthenticated: boolean;
+    
+    constructor(private _http: HttpService, private _storageService: StorageService) {
+        this.isAuthenticated = false;
+    }
     
     public register(params: any) {
         delete params.passwordConfirm;
         let prms: any = {
             params: params
         };
-        return this._http.request('post', 'http://localhost:8003/user/register', JSON.stringify(prms), null, null)
-        .subscribe(
-            data => this.onSuccess(data),
-            error => this._utils.defaultErrorHandler(error),
-            () => this._utils.success('Registered')
-        );
+        return this._http.request('post', 'http://localhost:8003/user/register', JSON.stringify(prms), null, null);
     }
     
     public login(params: any) {
-        return this._http.request('post', 'http://localhost:8003/user/login', JSON.stringify(params), null, null)
-        .subscribe(
-            data => this.onSuccess(data),
-            error => this._utils.defaultErrorHandler(error),
-            () => this._utils.success('Logged in')
-        );
+        return Observable.create((observer: any) => {
+            this._http.request('post', 'http://localhost:8003/user/login', JSON.stringify(params), null, null)
+            .subscribe(
+                (data: any) => {
+                    this.isAuthenticated = true;
+                    observer.next(data);
+                    observer.complete();
+                },
+                (error: any) => {
+                    observer.error(error);
+                }
+            );
+        });
     }
     
-    public doAuth(next: ComponentInstruction) {
-        if (!this._user.isAuth) {
-            this._router.navigate(['Home']);
+    public logout(params: any) {
+        this._storageService.remove('user', true);
+        this.isAuthenticated = false;
+    }
+    
+    public authenticated(next: ComponentInstruction) {
+        if (!this.isAuthenticated) {
+            return false;
         }
         
         if (next.routeData.data['roles']) {
-            let userRoles = this._user.getUserDetails().roles;
+            let userRoles = this._storageService.get('user').roles;
             let canAccess = false;
                     
             for (let i = 0; i < userRoles.length; i++) {
@@ -50,14 +59,9 @@ export class AuthService {
                 }
             }
             
-            if (!canAccess) {
-                this._router.navigate(['Home']);
-            }
+            return canAccess;
         }
-    }
-    
-    onSuccess(data: any) {
-        this._user.storeUserDetails(data);
-        this._router.navigate(['Home']);
+        
+        return true;
     }
 }

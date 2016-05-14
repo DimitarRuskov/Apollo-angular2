@@ -27,7 +27,7 @@ export class HttpService {
         options = options || {};
         options.headers = options.headers || new Headers();
         
-        var defaultHeadersKeys = this.defaultHeaders.keys();
+        let defaultHeadersKeys = this.defaultHeaders.keys();
         
         for (let i = 0; i < defaultHeadersKeys.length; i++) {
             if (!options.headers.has(defaultHeadersKeys[i])) {
@@ -51,7 +51,7 @@ export class HttpService {
                 funcToInvoke = this.methodFuncMap[prop];
                 break;
             }
-        } 
+        }
         
         if (funcToInvoke === undefined) {
             throw 'Error';
@@ -62,11 +62,11 @@ export class HttpService {
         } else if (funcToInvoke === 'withBody') {
             invokedFunc = this[funcToInvoke](method, url, body, options);
         }
-         
+        
         if (invokedFunc === undefined) {
             throw 'Error';
         }
-                      
+        
         return invokedFunc
             .map((res: Response) => res.json());
     }

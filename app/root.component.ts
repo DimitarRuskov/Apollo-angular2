@@ -17,13 +17,14 @@ import {StorageService}                 from './shared/services/storage.service'
 import {UserService}                    from './shared/services/user.service';
 import {HttpService}                    from './shared/services/http.service';
 import {UtilsService}                   from './shared/services/utils.service';
+import {AuthService}                    from './shared/services/auth.service';
 
 @Component({
     selector: 'apollo-root',
     templateUrl: 'app/root.component.html',
     styleUrls: ['app/root.component.css'],
     directives: [ROUTER_DIRECTIVES, SimpleNotificationsComponent, NavbarComponent],
-    providers: [HttpService, NotificationsService, UtilsService, UserService, StorageService]
+    providers: [HttpService, NotificationsService, UtilsService, UserService, StorageService, AuthService]
 })
 
 @RouteConfig([
@@ -39,7 +40,8 @@ import {UtilsService}                   from './shared/services/utils.service';
 ])
 
 export class RootComponent implements OnInit {
-    routes:Object;
+    routes: Object;
+    
     public options = { //   these are default options, not optimal; to be exported in config file
         timeOut: 5000,
         lastOnBottom: true,
@@ -52,7 +54,7 @@ export class RootComponent implements OnInit {
         preventLastDuplicates: 'visible'
     };
     
-    constructor(private _user: UserService, private _notification:NotificationsService, private _utils: UtilsService, private _router: Router) { }
+    constructor(private _router: Router, private _authService: AuthService) { }
     
     ngOnInit() {
         this.routes = {
@@ -67,22 +69,7 @@ export class RootComponent implements OnInit {
             profile: {
                 name: 'Profile'
             }
-        }
-    }
-    
-    public getUsername() {
-        let details = this._user.getUserDetails();
-        return details.username;
-    }
-    
-    public getImageUrl() {
-        return this._user.getUserDetails().imageUrl;
-    }
-    
-    logout(event: any) {
-        this._user.closeSession();
-        this._utils.success('Logged out')
-        this._router.navigate(['Home']);
+        };
     }
     
     onCreate(event: any) {
