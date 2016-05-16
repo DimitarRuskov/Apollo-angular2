@@ -4,6 +4,7 @@ import {ROUTER_PROVIDERS}   from '@angular/router-deprecated';
 import {HTTP_PROVIDERS}     from '@angular/http';
 
 import {RootComponent}      from './root.component';
-import {NotificationsService} from 'angular2-notifications/components';
+import {AuthService}        from './shared/services/auth.service';
+import {UserService}        from './shared/services/user.service';
 
-bootstrap(RootComponent, [HTTP_PROVIDERS, ROUTER_PROVIDERS, NotificationsService]);
+bootstrap(RootComponent, [HTTP_PROVIDERS, ROUTER_PROVIDERS, AuthService, UserService]);

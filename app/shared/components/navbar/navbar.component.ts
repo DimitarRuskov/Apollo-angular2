@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter, OnInit, ElementRef} from '@angul
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {AuthService} from 'shared/services/auth.service';
 import {UserService} from 'shared/services/user.service';
+import {Router} from '@angular/router-deprecated';
 
 declare var jQuery: any;
 
@@ -15,9 +16,22 @@ declare var jQuery: any;
 export class NavbarComponent implements OnInit {
     @Input() routes: Object;
     userDetails: Object;
+    isAuth: boolean;
     
-    constructor(private el: ElementRef, private _authService: AuthService, private _userService: UserService) {
-        this.userDetails = this._userService.getUserDetails();
+    constructor(private el: ElementRef, private _authService: AuthService, private _userService: UserService, private _router: Router) {
+        this.isAuth = false;
+        let __this = this;
+        this._authService.isAuthenticated$.subscribe(
+            (data: any) => {
+                __this.isAuth = data;
+            }
+        );
+        
+        this._userService.userDetails$.subscribe(
+            (data: any) => {
+                this.userDetails = data;
+            }
+        );
     }
     
     ngOnInit() {
@@ -26,6 +40,14 @@ export class NavbarComponent implements OnInit {
     }
     
     logout() {
-        AuthService.logout();
+        this._authService.logout()
+        .subscribe(
+            (data: any) => {
+                this._router.navigate(['Home']);
+            },
+            (error: any) => {
+                this._router.navigate(['Home']);
+            }
+        );
     }
 }

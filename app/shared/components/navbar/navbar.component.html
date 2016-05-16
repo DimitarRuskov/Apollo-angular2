@@ -3,15 +3,15 @@
         <a [routerLink]="[home]" class="brand-logo">Apollo</a>
         <a data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-            <li *ngFor="#route of routes.left"><a *ngIf="route.access === 'public' || (route.access === 'auth' && _authService.isAuthenticated)" [routerLink]="[route.name]">{{route.name}}</a></li>  
+            <li *ngFor="#route of routes.left"><a *ngIf="route.access === 'public' || (route.access === 'auth' && isAuth)" [routerLink]="[route.name]">{{route.name}}</a></li>  
             
             <li>
                 <a class="dropdown-button" href="#!" data-activates="profile-dropdown" >
-                    <img *ngIf="_authService.isAuthenticated" src="http://localhost:8003{{userDetails.imageUrl || '/system/profile-icon.png'}}" class="profile-image"> {{_authService.isAuthenticated ? userDetails.username : ''}}
-                    <i *ngIf="_authService.isAuthenticated" class="material-icons right">arrow_drop_down</i>
+                    <img *ngIf="isAuth" src="http://localhost:8003{{userDetails && userDetails.imageUrl ? userDetails.imageUrl : '/system/profile-icon.png'}}" class="profile-image"> {{isAuth ? userDetails.username : ''}}
+                    <i *ngIf="isAuth" class="material-icons right">arrow_drop_down</i>
                 </a>
             </li>
-            <li *ngFor="#route of routes.right"><a *ngIf="route.access === 'noAuth' && !_authService.isAuthenticated" [routerLink]="[route.name]">{{route.name}}</a></li>
+            <li *ngFor="#route of routes.right"><a *ngIf="route.access === 'noAuth' && !isAuth" [routerLink]="[route.name]">{{route.name}}</a></li>
         </ul>
     </div>
 </nav>
@@ -27,9 +27,9 @@
 <ul id="profile-dropdown" class="dropdown-content"> <!--dropdown content begin-->
     <li>
         <a [routerLink]="[routes.profile.name]" >
-            <img *ngIf="_authService.isAuthenticated" src="http://localhost:8003{{userDetails.imageUrl || '/system/profile-icon.png'}}" class="profile-image"> {{userDetails.username}}
+            <img *ngIf="isAuth" src="http://localhost:8003{{userDetails && userDetails.imageUrl ? userDetails.imageUrl : '/system/profile-icon.png'}}" class="profile-image"> {{isAuth ? userDetails.username : ''}}
         </a>
     </li>
     <li class="divider"></li>
-    <li><a *ngIf="_authService.isAuthenticated" (click)="logout()">Logout</a></li>
+    <li><a *ngIf="isAuth" (click)="logout()">Logout</a></li>
 </ul> <!--dropdown content end-->

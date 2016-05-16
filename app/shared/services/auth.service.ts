@@ -2,16 +2,24 @@ import {ComponentInstruction} from '@angular/router-deprecated';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 
 import {HttpService} from './http.service';
 import {StorageService} from './storage.service';
 
 @Injectable()
 export class AuthService {
-    public isAuthenticated: boolean;
+    private _isAuthenticatedObserver = new Subject<boolean>();
+    public _isAuthenticated: boolean;
+    public isAuthenticated$ = this._isAuthenticatedObserver.asObservable();
     
     constructor(private _http: HttpService, private _storageService: StorageService) {
-        this.isAuthenticated = false;
+        this._isAuthenticated = false;
+        this.isAuthenticated$.subscribe(
+            (data: any) => {
+                this._isAuthenticated = data;
+            }
+        );
     }
     
     public register(params: any) {
@@ -23,11 +31,12 @@ export class AuthService {
     }
     
     public login(params: any) {
+        let __this = this;
         return Observable.create((observer: any) => {
             this._http.request('post', 'http://localhost:8003/user/login', JSON.stringify(params), null, null)
             .subscribe(
                 (data: any) => {
-                    this.isAuthenticated = true;
+                    __this._isAuthenticatedObserver.next(true);
                     observer.next(data);
                     observer.complete();
                 },
@@ -39,12 +48,17 @@ export class AuthService {
     }
     
     public logout(params: any) {
-        this._storageService.remove('user', true);
-        this.isAuthenticated = false;
+        let __this = this;
+        return Observable.create((observer: any) => {
+            this._storageService.remove('user', true);
+            this._isAuthenticatedObserver.next(false);
+            observer.next(true);
+            observer.complete();
+        });
     }
     
     public authenticated(next: ComponentInstruction) {
-        if (!this.isAuthenticated) {
+        if (!this._isAuthenticated) {
             return false;
         }
         
