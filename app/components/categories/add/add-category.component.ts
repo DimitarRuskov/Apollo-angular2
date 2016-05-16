@@ -13,7 +13,6 @@ export class AddCategoryComponent {
     private _selectedImage: any = null;
     constructor(private element: ElementRef, private _categoryService: CategoryService, private _auth: AuthService) { }
      changeListner(event: any) {
-        debugger;
         let reader = new FileReader();
         let image = this.element.nativeElement.querySelector('.image');
 
