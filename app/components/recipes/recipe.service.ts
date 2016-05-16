@@ -5,7 +5,7 @@ import {HttpService} from 'shared/services/http.service';
 
 @Injectable()
 export class RecipeService {
-    constructor(private _http:HttpService) { }
+    constructor(private _http: HttpService) { }
     
     public fetchRecipes(params: any) {
         let options = {

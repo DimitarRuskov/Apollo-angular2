@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit}                  from '@angular/core';
-import {FormBuilder, Validators, Control, ControlGroup} from '@angular/common';
+import {FormBuilder, Validators} from '@angular/common';
 
 import {ControlMessage}     from 'shared/components/control-message/control-message.component';
 import {ValidationService}  from 'shared/services/validation.service';
@@ -12,7 +12,6 @@ import {AuthService}        from 'shared/services/auth.service';
 @Component({
     templateUrl:        'app/components/profile/edit-profile.component.html',
     styleUrls:          ['app/components/profile/edit-profile.component.css'],
-    providers:          [UserService, AuthService],
     directives:         [ControlMessage]
 })
 
@@ -21,15 +20,16 @@ export class EditProfileComponent implements OnInit{
     profileDetails: ProfileModel;
     private _selectedImage: any = null;
     
-    constructor(private _formBuilder: FormBuilder, private element: ElementRef, private _userService: UserService, private _auth: AuthService) { 
+    constructor(private _formBuilder: FormBuilder, private element: ElementRef,
+     private _userService: UserService, private _authService: AuthService) {
         this.profileDetails = new ProfileModel();
     }
     
     ngOnInit() {
         this._userService.getProfile(null)
         .subscribe(
-            data => this.populateForm(data.profileDetails),
-            err => console.log(err),
+            (data: any) => this.populateForm(data.profileDetails),
+            (err: any) => console.log(err),
             () => console.log('Successfully fetched data')
         );
         
@@ -66,13 +66,13 @@ export class EditProfileComponent implements OnInit{
     }
     
     onSubmit(values: any): void {
-        if(values.image === '') {
+        if (values.image === '') {
             values.image = undefined;
         }
         this._userService.updateProfile(values);
     }
     
-    routerOnActivate(next: any, prev: any) {
-        this._auth.doAuth(next);
+    canActivate(next: any, prev: any) {
+        return this._authService.authenticate(next);
     }
 }

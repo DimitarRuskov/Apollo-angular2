@@ -48,13 +48,16 @@ export class AuthService {
     }
     
     public logout(params: any) {
-        let __this = this;
         return Observable.create((observer: any) => {
             this._storageService.remove('user', true);
             this._isAuthenticatedObserver.next(false);
             observer.next(true);
             observer.complete();
         });
+    }
+    
+    public isAuthenticated() {
+        return this._isAuthenticated;
     }
     
     public authenticated(next: ComponentInstruction) {

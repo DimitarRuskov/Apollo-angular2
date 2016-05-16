@@ -21,8 +21,8 @@ export class RoutineService {
     public addRoutine(params: any) {
         return this._http.request('post', 'http://localhost:8003/routine/add', JSON.stringify(params), null, this._user.getSessionKey())
         .subscribe(
-            data => this.onSuccess(data),
-            err => this._utils.defaultErrorHandler(err),
+            (data: any) => this.onSuccess(data),
+            (err: any) => this._utils.defaultErrorHandler(err),
             () => window.alert('Successfully created Routine!')
         )
     }

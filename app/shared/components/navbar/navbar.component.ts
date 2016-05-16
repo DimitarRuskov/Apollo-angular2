@@ -1,8 +1,9 @@
-import {Component, Input, Output, EventEmitter, OnInit, ElementRef} from '@angular/core';
+import {Component, Input, OnInit, ElementRef} from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {Router} from '@angular/router-deprecated';
 import {AuthService} from 'shared/services/auth.service';
 import {UserService} from 'shared/services/user.service';
-import {Router} from '@angular/router-deprecated';
+import {UtilsService} from 'shared/services/utils.service';
 
 declare var jQuery: any;
 
@@ -18,7 +19,8 @@ export class NavbarComponent implements OnInit {
     userDetails: Object;
     isAuth: boolean;
     
-    constructor(private el: ElementRef, private _authService: AuthService, private _userService: UserService, private _router: Router) {
+    constructor(private el: ElementRef, private _authService: AuthService, private _userService: UserService,
+     private _router: Router, private _utilsService: UtilsService) {
         this.isAuth = false;
         let __this = this;
         this._authService.isAuthenticated$.subscribe(
@@ -44,9 +46,11 @@ export class NavbarComponent implements OnInit {
         .subscribe(
             (data: any) => {
                 this._router.navigate(['Home']);
+                this._utilsService.success('Logged out');
             },
             (error: any) => {
                 this._router.navigate(['Home']);
+                this._utilsService.error(error.message);
             }
         );
     }

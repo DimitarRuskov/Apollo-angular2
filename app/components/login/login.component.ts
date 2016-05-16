@@ -30,4 +30,8 @@ export class LoginComponent {
             }
         );
     }
+    
+    canActivate(next: any, prev: any) {
+        return !this._authService.authenticate(next);
+    }
 }

@@ -1,4 +1,4 @@
-import {Component, ElementRef} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 
 declare var jQuery: any;
 
@@ -15,8 +15,7 @@ export class SliderComponent implements OnInit {
     private slideWidth: any;
     private currentIndex: any;
     
-    constructor(private el: ElementRef) { 
-    }
+    constructor(private el: ElementRef) {}
     
     ngOnInit() {
         this.initializeSlide()
@@ -29,7 +28,7 @@ export class SliderComponent implements OnInit {
         this.currentIndex = 0;
         let context = this;
         
-        this.ul.find('li').each((index) => {
+        this.ul.find('li').each((index: any) => {
             let leftPercent = (context.slideWidth * index) + '%';
             jQuery(this).css('left', leftPercent);
             jQuery(this).css('width', (100 / context.slideCount) + '%');
@@ -42,13 +41,11 @@ export class SliderComponent implements OnInit {
         
         jQuery(this.el.nativeElement).find('.slider .next').click(() => {
             console.log('next button clicked');
-            context.slide(this.currentIndex + 1); 
+            context.slide(this.currentIndex + 1);
         });
     }
     
-    
-    
-    private slide(newIndex) {
+    private slide(newIndex: any) {
         if (newIndex < 0 || newIndex >= this.slideCount) {
             return;
         }
@@ -56,8 +53,7 @@ export class SliderComponent implements OnInit {
         let marginLeft = (newIndex * (-100)) + '%';
         this.ul.animate({'margin-left': marginLeft}, 400, () => {
             this.currentIndex = newIndex
-            console.log('current index', this.currentIndex;
+            console.log('current index', this.currentIndex);
         });
-       
     }
 }

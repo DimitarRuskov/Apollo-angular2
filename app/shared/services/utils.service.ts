@@ -30,6 +30,6 @@ export class UtilsService {
     }
     
     public defaultSuccessHandler(data: any) {
-        
+    
     }
 }

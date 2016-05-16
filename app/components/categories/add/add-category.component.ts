@@ -1,17 +1,16 @@
 import {Component, ElementRef} from '@angular/core';
-import {CategoryModel} from './../category.model';
 import {CategoryService} from './../category.service';
 import {AuthService} from 'shared/services/auth.service';
 
 @Component({
     templateUrl:        'app/components/categories/add/add-category.component.html',
     styleUrls:          ['app/components/categories/add/add-category.component.css'],
-    providers:          [CategoryService, AuthService]
+    providers:          [CategoryService]
 })
 
 export class AddCategoryComponent {
     private _selectedImage: any = null;
-    constructor(private element: ElementRef, private _categoryService: CategoryService, private _auth: AuthService) { }
+    constructor(private element: ElementRef, private _categoryService: CategoryService, private _authService: AuthService) { }
      changeListner(event: any) {
         let reader = new FileReader();
         let image = this.element.nativeElement.querySelector('.image');
@@ -30,7 +29,7 @@ export class AddCategoryComponent {
         this._categoryService.addCategory(values);
     }
     
-    routerOnActivate(next: any, prev: any) {
-        this._auth.doAuth(next);
+    canActivate(next: any, prev: any) {
+        return this._authService.authenticate(next);
     }
 }

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 
+@Injectable()
 export class StorageService {
     constructor() { }
     
@@ -23,7 +24,7 @@ export class StorageService {
     }
 
     public remove(key: string, local?: boolean) {
-        var value = this.get(key, local);
+        let value = this.get(key, local);
         
         if (!value) {
             return undefined;

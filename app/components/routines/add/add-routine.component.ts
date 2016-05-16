@@ -8,13 +8,14 @@ import {AuthService} from 'shared/services/auth.service';
 @Component({
     templateUrl:        'app/components/routines/add/add-routine.component.html',
     styleUrls:          ['app/components/routines/add/add-routine.component.css'],
-    providers:          [RoutineService, AuthService]
+    providers:          [RoutineService]
 })
 
 export class AddRoutineComponent implements OnInit {
     private _selectedImage: any = null;
     private _categoryId: String;
-    constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams: RouteParams, private _auth: AuthService) { }
+    
+    constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams: RouteParams, private _authService: AuthService) { }
      changeListner(event: any) {
         let reader = new FileReader();
         let image = this.element.nativeElement.querySelector('.image');
@@ -38,7 +39,7 @@ export class AddRoutineComponent implements OnInit {
         this._routineService.addRoutine(values);
     }
     
-    routerOnActivate(next: any, prev: any) {
-        this._auth.doAuth(next);
+    canActivate(next: any, prev: any) {
+        return this._authService.authenticate(next);
     }
 }

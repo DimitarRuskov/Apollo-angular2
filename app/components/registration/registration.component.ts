@@ -1,5 +1,5 @@
 import {Component}          from '@angular/core';
-import {FormBuilder, Validators, Control, ControlGroup}  from '@angular/common';
+import {FormBuilder, Validators}  from '@angular/common';
 import {AuthService}        from 'shared/services/auth.service';
 import {ControlMessage}     from 'shared/components/control-message/control-message.component';
 import {ValidationService}  from 'shared/services/validation.service';
@@ -7,7 +7,6 @@ import {ValidationService}  from 'shared/services/validation.service';
 @Component({
   templateUrl:                  'app/components/registration/registration.component.html',
   styleUrls:                    ['app/components/registration/registration.component.css'],
-  providers:                    [AuthService],
   directives:                   [ControlMessage]
 })
 
@@ -26,5 +25,9 @@ export class RegistrationComponent {
     
     onSubmit(values: any) {
         this._authService.register(values);
+    }
+    
+    canActivate(next: any, prev: any) {
+        return !this._authService.authenticate(next);
     }
 }

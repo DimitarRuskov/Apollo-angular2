@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {RecipeModel} from './../recipe.model';
+import {AuthService} from 'shared/services/auth.service';
 
 @Component({
     templateUrl:        'app/components/recipes/add/add-recipe.component.html',
@@ -11,7 +11,7 @@ export class AddRecipeComponent {
     newPrepStep: string;
     private _ingredients: string[];
     private _prepSteps: string[];
-    constructor() {
+    constructor(private _authService: AuthService) {
         this._ingredients = [];
         this._prepSteps = [];
      }
@@ -33,4 +33,8 @@ export class AddRecipeComponent {
      deletePrepStep(index: any) {
          this._prepSteps.splice(index, 1);
      }
+     
+    canActivate(next: any, prev: any) {
+        return this._authService.authenticate(next);
+    }
 }

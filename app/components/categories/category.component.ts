@@ -10,7 +10,7 @@ import {CategoryModel}     from './category.model';
 })
 
 export class CategoryComponent {
-    @Input () category :CategoryModel;
+    @Input() category: CategoryModel;
     
     constructor(private _router: Router) { }
     

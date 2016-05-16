@@ -13,7 +13,7 @@ export class UserService {
     public _userDetails: UserModel;
     public userDetails$ = this._userDetailsObserver.asObservable();
     
-    constructor(private _http: HttpService, private _authService: AuthService, private _storageService: StorageService) {       
+    constructor(private _http: HttpService, private _authService: AuthService, private _storageService: StorageService) {
         this.userDetails = new UserModel();
         this.userDetails$.subscribe(
             (data: any) => {
