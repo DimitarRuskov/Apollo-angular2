@@ -5,7 +5,7 @@ import {CategoryComponent} from './../category.component';
 import {CategoryModel} from '..//category.model';
 import {CategoryService} from '../category.service';
 import {UserService} from 'shared/services/user.service';
-import {AuthService} from 'shared/services/user.service';
+import {AuthService} from 'shared/services/auth.service';
 
 @Component({
     templateUrl:        'app/components/categories/list/list-categories.component.html',

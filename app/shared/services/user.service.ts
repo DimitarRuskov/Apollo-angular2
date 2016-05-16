@@ -31,11 +31,11 @@ export class UserService {
         this._userDetailsObserver.next(this._storageService.get('user', true));
     }
     
-    public getSessionKey() {
-        return this.userDetails.sessionKey;
+    public getAccessToken() {
+        return this._userDetails.token;
     }
     
     public getUserDetails() {
-        return this.userDetails;
+        return this._userDetails;
     }
 }

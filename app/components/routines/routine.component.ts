@@ -14,6 +14,6 @@ export class RoutineComponent {
     constructor(private _router: Router) { }
     
     listRoutines(routineId: any) {
-        this._router.navigate(['Exercises', {routineId: routineId}])
+        this._router.navigate(['Exercises', {routineId: routineId}]);
     }
 }

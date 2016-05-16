@@ -11,6 +11,7 @@ export class AddRecipeComponent {
     newPrepStep: string;
     private _ingredients: string[];
     private _prepSteps: string[];
+    
     constructor(private _authService: AuthService) {
         this._ingredients = [];
         this._prepSteps = [];

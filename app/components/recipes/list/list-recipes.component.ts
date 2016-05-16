@@ -10,6 +10,7 @@ import {RecipeModel} from './../recipe.model';
 
 export class ListRecipesComponent {
     public recipes: RecipeModel[] = [];
+    
     constructor() {
         let model1: RecipeModel = new RecipeModel();
         model1.id = 1;

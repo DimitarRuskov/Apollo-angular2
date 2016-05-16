@@ -22,6 +22,6 @@ export class CategoryService {
     }
     
     public addCategory(params: any) {
-        return this._http.request('post', 'http://localhost:8003/category/add', JSON.stringify(params), null, this._user.getSessionKey());
+        return this._http.request('post', 'http://localhost:8003/category/add', JSON.stringify(params), null, this._user.getAccessToken());
     }
 }

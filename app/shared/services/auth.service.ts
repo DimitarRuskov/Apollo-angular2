@@ -14,7 +14,7 @@ export class AuthService {
     public isAuthenticated$ = this._isAuthenticatedObserver.asObservable();
     
     constructor(private _http: HttpService, private _storageService: StorageService) {
-        this._isAuthenticated = false;
+        this._isAuthenticated = this._storageService.get('user', true) || false;
         this.isAuthenticated$.subscribe(
             (data: any) => {
                 this._isAuthenticated = data;

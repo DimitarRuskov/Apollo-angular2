@@ -1,7 +1,6 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
-import {Router, RouteParams} from '@angular/router-deprecated';
+import {RouteParams} from '@angular/router-deprecated';
 
-import {RoutineModel} from './../routine.model';
 import {RoutineService} from './../routine.service';
 import {AuthService} from 'shared/services/auth.service';
 
@@ -15,8 +14,10 @@ export class AddRoutineComponent implements OnInit {
     private _selectedImage: any = null;
     private _categoryId: String;
     
-    constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams: RouteParams, private _authService: AuthService) { }
-     changeListner(event: any) {
+    constructor(private element: ElementRef, private _routineService: RoutineService,
+     private _routeParams: RouteParams, private _authService: AuthService) { }
+     
+     changeListener(event: any) {
         let reader = new FileReader();
         let image = this.element.nativeElement.querySelector('.image');
 

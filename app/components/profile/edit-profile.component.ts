@@ -7,28 +7,32 @@ import {ValidationService}  from 'shared/services/validation.service';
 import {ProfileModel}       from './profile.model';
 import {UserService}        from 'shared/services/user.service';
 import {AuthService}        from 'shared/services/auth.service';
-
+import {ProfileService}       from './profile.service';
 
 @Component({
     templateUrl:        'app/components/profile/edit-profile.component.html',
     styleUrls:          ['app/components/profile/edit-profile.component.css'],
-    directives:         [ControlMessage]
+    directives:         [ControlMessage],
+    providers:          [ProfileService]
 })
 
-export class EditProfileComponent implements OnInit{
+export class EditProfileComponent implements OnInit {
     form: any;
     profileDetails: ProfileModel;
     private _selectedImage: any = null;
     
     constructor(private _formBuilder: FormBuilder, private element: ElementRef,
-     private _userService: UserService, private _authService: AuthService) {
+     private _userService: UserService, private _authService: AuthService, private _profileService: ProfileService) {
         this.profileDetails = new ProfileModel();
     }
     
     ngOnInit() {
-        this._userService.getProfile(null)
+        this._profileService.getProfile(this._userService.getUserDetails().username)
         .subscribe(
-            (data: any) => this.populateForm(data.profileDetails),
+            (data: any) => {
+                this.profileDetails = data.userDetails;
+                this.populateForm(data.userDetails);
+            },
             (err: any) => console.log(err),
             () => console.log('Successfully fetched data')
         );
@@ -69,7 +73,7 @@ export class EditProfileComponent implements OnInit{
         if (values.image === '') {
             values.image = undefined;
         }
-        this._userService.updateProfile(values);
+        this._profileService.editProfile(values);
     }
     
     canActivate(next: any, prev: any) {

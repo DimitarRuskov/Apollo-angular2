@@ -8,5 +8,5 @@
 })
 
 export class RecipeComponent {
-    @Input () recipe: RecipeModel;
+    @Input() recipe: RecipeModel;
 }

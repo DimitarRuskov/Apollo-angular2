@@ -8,7 +8,7 @@ import {UtilsService} from 'shared/services/utils.service';
 
 @Injectable()
 export class RoutineService {
-    public routines:Array<RoutineModel>;
+    public routines: Array<RoutineModel>;
     constructor(private _http: HttpService, private _utils: UtilsService, private _user: UserService, private _router: Router) { }
     
     public listRoutines(params: any) {
@@ -19,7 +19,7 @@ export class RoutineService {
     }
     
     public addRoutine(params: any) {
-        return this._http.request('post', 'http://localhost:8003/routine/add', JSON.stringify(params), null, this._user.getSessionKey())
+        return this._http.request('post', 'http://localhost:8003/routine/add', JSON.stringify(params), null, this._user.getAccessToken())
         .subscribe(
             (data: any) => this.onSuccess(data),
             (err: any) => this._utils.defaultErrorHandler(err),

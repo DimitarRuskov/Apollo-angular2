@@ -1,5 +1,5 @@
 export class UserModel {
-    sessionKey: string;
+    token: string;
     id: string;
     username: string;
     email: string;
