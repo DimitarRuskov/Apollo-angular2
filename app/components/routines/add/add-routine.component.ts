@@ -15,7 +15,7 @@ export class AddRoutineComponent implements OnInit {
     private _categoryId: String;
     
     constructor(private element: ElementRef, private _routineService: RoutineService,
-     private _routeParams: RouteParams, private _authService: AuthService) { }
+    private _routeParams: RouteParams, private _authService: AuthService) { }
      
      changeListener(event: any) {
         let reader = new FileReader();

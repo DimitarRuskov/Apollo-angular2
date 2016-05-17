@@ -11,7 +11,8 @@ import {AuthService} from 'shared/services/auth.service';
 export class AddCategoryComponent {
     private _selectedImage: any = null;
     constructor(private element: ElementRef, private _categoryService: CategoryService, private _authService: AuthService) { }
-     changeListner(event: any) {
+    
+    changeListner(event: any) {
         let reader = new FileReader();
         let image = this.element.nativeElement.querySelector('.image');
 

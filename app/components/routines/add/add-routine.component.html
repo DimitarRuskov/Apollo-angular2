@@ -1,39 +1,39 @@
-<div class="component-wrapper match-parent">
-    <div class="col-lg-offset-1 col-lg-10 well bs-component form-wrapper">
-        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+<div class="row">
+    <div class="col s12 m10 offset-m1 l10 offset-l1">
+        <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
             <fieldset>
-                <legend>New Routine...</legend>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-8 col-lg-8">
-                            <a class="thumbnail">
-                                <img alt="no image" class="image">
-                            </a>
+                <legend>New Routine</legend>
+                <div class="row">
+                    <div class="image-container l6">
+                        <img alt="no image" class="image">
+                    </div>
+                    <div class="file-field input-field l6">
+                        <div class="btn">
+                            <span>Image</span>
+                            <input type="file" (change)="changeListener($event)">
                         </div>
-                        <div class="col-sm-12 col-md-4 col-lg-4">
-                            <div class="file-input-wrapper">
-                                <label for="name">Image</label>
-                                <span class="btn btn-default btn-file">
-                                    Browse <input type="file" (change)="changeListener($event)">
-                                </span>
-                            </div>
-                        </div>
+                        <!--<div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>-->
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input class="form-control" ngControl="name" #name="ngForm" type="text" id="name" name="name" placeholder="Name...">
-                </div>
-                <div class="form-group">
-                    <label for="description">Desctiption</label>
-                    <textarea class="form-control" ngControl="description" #description="ngForm" name="description" placeholder="Description..." rows="5"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="difficulty">Difficulty</label>
-                    <input  class="form-control" type="number" ngControl="difficulty" #description="ngForm" name="difficulty">
-                </div>
                 
-                <button type="submit" class="btn btn-default" [disabled]="!form.form.valid">Save</button>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">perm_media</i>
+                    <input ngControl="name" #name="ngForm" type="text" id="name" name="name">
+                    <label for="name">Name</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">description</i>
+                    <textarea class="materialize-textarea" ngControl="description" #password="ngForm" type="text" id="description" name="description"></textarea>
+                    <label for="password">Desctiption</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">stars</i>
+                    <input ngControl="difficulty" #difficulty="ngForm" type="text" id="difficulty" name="difficulty">
+                    <label for="difficulty">Difficulty</label>
+                </div>
+                <button type="submit" class="btn waves-effect waves-light" [disabled]="!form.form.valid">Save</button>
             </fieldset>
         </form>
     </div>
