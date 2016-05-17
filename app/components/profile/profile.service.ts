@@ -7,10 +7,10 @@ export class ProfileService {
     constructor(private _http: HttpService, private _user: UserService) {}
     
     public getProfile(user: any) {
-        return this._http.request('get', 'http://localhost:8003/user/' + user, null, null, null);
+        return this._http.request('get', 'http://localhost:8003/user/profile/' + user, null, null, null);
     }
     
     public editProfile(data: any) {
-        return this._http.request('put', 'http://localhost:8003/profile/edit', JSON.stringify(data), null, this._user.getAccessToken());
+        return this._http.request('put', 'http://localhost:8003/user/profile/edit', JSON.stringify(data), null, this._user.getAccessToken());
     }
 }
