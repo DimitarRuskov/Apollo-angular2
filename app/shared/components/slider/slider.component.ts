@@ -27,15 +27,17 @@ export class SliderComponent implements OnInit {
         this.ul = jQuery(this.el.nativeElement).find('.slider ul');
         this.slideCount = this.ul.children().length;
         this.slideWidth = 100.0 / this.slideCount;
-        this.currentIndex = 0;
         let context = this;
         let index = 0;
         
+        this.renderer.setElementStyle(this.el.nativeElement.getElementsByTagName('ul')[0], 'width', (this.slideCount * 100) + '%');
         for (let el of this.el.nativeElement.getElementsByTagName('li')) {
             this.renderer.setElementStyle(el, 'left', (context.slideWidth * index) + '%');
             this.renderer.setElementStyle(el, 'width', (100 / context.slideCount) + '%');
             index++;
         }
+        
+        this.slide(0);
     }
     
     private slide(newIndex: any) {
@@ -44,9 +46,16 @@ export class SliderComponent implements OnInit {
         }
         
         let marginLeft = (newIndex * (-100)) + '%';
-        this.ul.animate({'margin-left': marginLeft}, 400, () => {
-            this.currentIndex = newIndex
-            console.log('current index', this.currentIndex);
-        });
+        let contentBox = jQuery(this.el.nativeElement.getElementsByTagName('li')[this.currentIndex || 0].getElementsByTagName('div'));
+        contentBox.slideUp("slow", () => {
+            this.ul.animate({'margin-left': marginLeft}, 400, () => {
+                this.currentIndex = newIndex;
+                contentBox = jQuery(this.el.nativeElement.getElementsByTagName('li')[this.currentIndex || 0].getElementsByTagName('div'));
+                contentBox.slideDown( "slow", () => {
+                });
+                console.log('current index', this.currentIndex);
+            });
+        })
+        
     }
 }
