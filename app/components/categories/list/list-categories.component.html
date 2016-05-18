@@ -1,12 +1,22 @@
-<div class="component-wrapper match-parent">
+<!--<div class="component-wrapper match-parent">
     <h2 class="component-header">Categories</h2>
     <div class="row">
         <button type="button" class="btn btn-primary pull-right" (click)="addCategory()" [disabled]="!_isAuth">New Category</button>
     </div>
     <hr>
-    <ul class="category-list">
-        <li class="category-item" *ngFor="#category of categories">
-            <apollo-category [category]="category"></apollo-category>
-        </li>
-    </ul>
+    <apollo-category [category]="category" *ngFor="#category of categories #i = index"></apollo-category>
+</div>-->
+
+
+<!--[ngClass]="i%2 === 0 ? 'left' : 'right'"-->
+
+
+<div class="row">
+    <h2>Categories</h2>
+    <div class="row">
+        <button type="button" class="btn waves-effect waves-light" (click)="addCategory()">New Category</button>
+    </div>
+    <hr>
+    <apollo-category [category]="category" *ngFor="#category of categories"></apollo-category>
+    <p *ngIf="!categories.length">No Categories</p>
 </div>

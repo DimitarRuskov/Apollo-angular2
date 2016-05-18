@@ -1,3 +1,11 @@
 ul {
     list-style-type: none;
 }
+
+li:odd {
+    float: left;
+}
+
+li:even {
+    float: right;
+}
