@@ -1,6 +1,7 @@
 import {Component, Host} from '@angular/core';
 import {NgFormModel} from '@angular/common';
 import {ValidationService} from 'shared/services/validation.service';
+
 @Component({
     selector: 'control-message',
     inputs: ['controlName: control'],
@@ -9,6 +10,7 @@ import {ValidationService} from 'shared/services/validation.service';
 
 export class ControlMessage {
     controlName: string;
+    
     constructor(@Host() private _formDir: NgFormModel) { }
     
     get errorMessage() {

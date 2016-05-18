@@ -47,15 +47,14 @@ export class SliderComponent implements OnInit {
         
         let marginLeft = (newIndex * (-100)) + '%';
         let contentBox = jQuery(this.el.nativeElement.getElementsByTagName('li')[this.currentIndex || 0].getElementsByTagName('div'));
-        contentBox.slideUp("slow", () => {
+        contentBox.slideUp('slow', () => {
             this.ul.animate({'margin-left': marginLeft}, 400, () => {
                 this.currentIndex = newIndex;
                 contentBox = jQuery(this.el.nativeElement.getElementsByTagName('li')[this.currentIndex || 0].getElementsByTagName('div'));
-                contentBox.slideDown( "slow", () => {
+                contentBox.slideDown( 'slow', () => {
                 });
                 console.log('current index', this.currentIndex);
             });
-        })
-        
+        });
     }
 }

@@ -11,7 +11,9 @@ import {UtilsService}           from 'shared/services/utils.service';
 
 export class AddCategoryComponent {
     private _selectedImage: any = null;
-    constructor(private element: ElementRef, private _categoryService: CategoryService, private _authService: AuthService, private _utilsService: UtilsService) { }
+    
+    constructor(private element: ElementRef, private _categoryService: CategoryService,
+    private _authService: AuthService, private _utilsService: UtilsService) { }
     
     changeListener(event: any) {
         let reader = new FileReader();
@@ -37,7 +39,7 @@ export class AddCategoryComponent {
                 
             },
             () => {
-                this._utilsService.success('Logged in');
+                this._utilsService.success('Successfully created category');
             }
         );
     }

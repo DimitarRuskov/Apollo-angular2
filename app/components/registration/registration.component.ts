@@ -14,7 +14,6 @@ export class RegistrationComponent {
     form: any;
     
     constructor(private _formBuilder: FormBuilder, private _authService: AuthService) {
-		
         this.form = this._formBuilder.group({
             'username':         ['', Validators.compose([Validators.required, Validators.minLength(6)])],
             'email':            ['', Validators.compose([Validators.required, ValidationService.emailValidator])],

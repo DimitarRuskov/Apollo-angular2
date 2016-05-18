@@ -18,7 +18,8 @@ export class ListRoutinesComponent implements OnInit {
     private _categoryId: String;
     private _isAuth: boolean;
     
-    constructor(private _routineService: RoutineService, private _router: Router, private _routeParams: RouteParams, private _authService: AuthService) {
+    constructor(private _routineService: RoutineService, private _router: Router,
+    private _routeParams: RouteParams, private _authService: AuthService) {
         this._isAuth = this._authService.isAuthenticated();
     }
     

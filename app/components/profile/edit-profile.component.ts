@@ -22,7 +22,7 @@ export class EditProfileComponent implements OnInit {
     private _selectedImage: any = null;
     
     constructor(private _formBuilder: FormBuilder, private element: ElementRef,
-     private _userService: UserService, private _authService: AuthService, private _profileService: ProfileService) {
+    private _userService: UserService, private _authService: AuthService, private _profileService: ProfileService) {
         this.profileDetails = new ProfileModel();
     }
     

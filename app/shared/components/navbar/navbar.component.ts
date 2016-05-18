@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
     isAuth: boolean;
     
     constructor(private el: ElementRef, private _authService: AuthService, private _userService: UserService,
-     private _router: Router, private _utilsService: UtilsService) {
+    private _router: Router, private _utilsService: UtilsService) {
         this.isAuth = false;
         let __this = this;
         this._authService.isAuthenticated$.subscribe(
@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
     
     ngOnInit() {
         jQuery(this.el.nativeElement).find('.button-collapse').sideNav();
-        jQuery(this.el.nativeElement).find(".dropdown-button").dropdown();
+        jQuery(this.el.nativeElement).find('.dropdown-button').dropdown();
     }
     
     logout() {

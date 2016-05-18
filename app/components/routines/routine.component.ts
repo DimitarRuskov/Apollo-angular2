@@ -9,7 +9,7 @@
 })
 
 export class RoutineComponent {
-    @Input () routine: RoutineModel;
+    @Input() routine: RoutineModel;
     
     constructor(private _router: Router) { }
     

@@ -7,6 +7,7 @@ import {HttpService} from 'shared/services/http.service';
 @Injectable()
 export class CategoryService {
     public categories: Array<CategoryModel>;
+    
     constructor(private _http: HttpService, private _user: UserService) {}
     
     public listCategories(params: any) {

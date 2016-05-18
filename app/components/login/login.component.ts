@@ -12,7 +12,7 @@ import {UserService}    from 'shared/services/user.service';
 })
 export class LoginComponent {
     constructor(private _authService: AuthService, private _utilsService: UtilsService,
-     private _storageService: StorageService, private _userService: UserService, private _router: Router) { }
+    private _storageService: StorageService, private _userService: UserService, private _router: Router) { }
     
     onSubmit(values: Object): void {
         this._authService.login(values)

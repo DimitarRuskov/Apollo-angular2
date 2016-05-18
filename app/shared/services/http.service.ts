@@ -72,7 +72,7 @@ export class HttpService {
     }
     
     buildSearchObject(data: any) {
-        var searchObj = new URLSearchParams();
+        let searchObj = new URLSearchParams();
         
         for (let prop in data) {
             searchObj.set(prop, data[prop]);
