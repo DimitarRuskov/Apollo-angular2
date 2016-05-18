@@ -1,4 +1,4 @@
-<div class="well">
+<!--<div class="well">
     <div class="media">
         <a class="media-photo thumbnail col-lg-4" (click)="listExercises(routine._id)">
             <img src="http://localhost:8003{{routine.imageUrl}}" alt="Image not found">
@@ -9,4 +9,22 @@
                 <p>{{routine.description}}</p>
             </div>
     </div>
+</div>
+-->
+
+
+<div class="container col s12 m6 l4">
+    <figure>
+      <img src="http://localhost:8003{{routine.imageUrl}}" alt="Image not found">
+      <figcaption>
+        <div>
+          <h4>{{routine.name}}</h4>
+        </div>
+        <div>
+          <h5>40+ comments</h5>
+          <div class="icons"><a>read more <i class="material-icons md-18">face</i></a></div>
+        </div>
+      </figcaption>
+      <a href="#"></a>
+    </figure>
 </div>

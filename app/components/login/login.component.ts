@@ -1,9 +1,9 @@
-import {Component}      from '@angular/core';
-import {Router} from '@angular/router-deprecated';
-import {AuthService}    from 'shared/services/auth.service';
-import {UtilsService}    from 'shared/services/utils.service';
-import {StorageService}    from 'shared/services/storage.service';
-import {UserService}    from 'shared/services/user.service';
+import {Component}          from '@angular/core';
+import {Router}             from '@angular/router-deprecated';
+import {AuthService}        from 'shared/services/auth.service';
+import {UtilsService}       from 'shared/services/utils.service';
+import {StorageService}     from 'shared/services/storage.service';
+import {UserService}        from 'shared/services/user.service';
 
 @Component({
     templateUrl:        'app/components/login/login.component.html',
@@ -23,7 +23,7 @@ export class LoginComponent {
                 this._router.navigate(['Home']);
             },
             (error: any) => {
-                this._utilsService.success(error);
+                this._utilsService.error(error);
             },
             () => {
                 this._utilsService.success('Logged in');

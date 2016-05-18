@@ -1,4 +1,5 @@
 import {Component, ElementRef}  from '@angular/core';
+import {Router}                 from '@angular/router-deprecated';
 import {CategoryService}        from './../category.service';
 import {AuthService}            from 'shared/services/auth.service';
 import {UtilsService}           from 'shared/services/utils.service';
@@ -13,7 +14,7 @@ export class AddCategoryComponent {
     private _selectedImage: any = null;
     
     constructor(private element: ElementRef, private _categoryService: CategoryService,
-    private _authService: AuthService, private _utilsService: UtilsService) { }
+    private _authService: AuthService, private _utilsService: UtilsService, private _router: Router) { }
     
     changeListener(event: any) {
         let reader = new FileReader();
@@ -33,10 +34,10 @@ export class AddCategoryComponent {
         this._categoryService.addCategory(values)
         .subscribe(
             (data: any) => {
-                
+                this._router.navigate(['Categories']);
             },
             (error: any) => {
-                
+                this._utilsService.error(error);
             },
             () => {
                 this._utilsService.success('Successfully created category');
