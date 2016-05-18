@@ -54,9 +54,17 @@ export class RootComponent implements OnInit {
         preventLastDuplicates: 'visible'
     };
     
-    constructor(private _router: Router, private _authService: AuthService) { }
+    constructor(private _router: Router, private _authService: AuthService,
+    private _userService: UserService, private _storageService: StorageService) { }
     
     ngOnInit() {
+        let user = this._storageService.get('user', true);
+        
+        if (user) {
+            this._authService.load();
+            this._userService.reloadUserDetails();
+        }
+        
         this.routes = {
             left: [
                 {name: 'Home', access: 'public'},

@@ -60,6 +60,15 @@ export class AuthService {
         return this._isAuthenticated;
     }
     
+    public load() {
+        let user = (this._storageService.get('user', true) ? true : false);
+        this._isAuthenticatedObserver.next(user);
+    }
+    
+    public setAuth(auth: boolean) {
+        this._isAuthenticated = auth;
+    }
+    
     public authenticated(next: ComponentInstruction) {
         if (!this._isAuthenticated) {
             return false;
@@ -68,7 +77,7 @@ export class AuthService {
         if (next.routeData.data['roles']) {
             let userRoles = this._storageService.get('user').roles;
             let canAccess = false;
-                    
+            
             for (let i = 0; i < userRoles.length; i++) {
                 if (next.routeData.data['roles'].indexOf(userRoles) >= 0) {
                     canAccess = true;
