@@ -1,30 +1,32 @@
-<!--<div class="well">
-    <div class="media">
-        <a class="media-photo thumbnail col-lg-4" (click)="listExercises(routine._id)">
-            <img src="http://localhost:8003{{routine.imageUrl}}" alt="Image not found">
-        </a>
-        <div class="col-lg-8">
-            <div class="media-body">
-                <h4 class="media-heading"><a (click)="listRoutines(routine._id)">{{routine.name}}</a></h4>
-                <p>{{routine.description}}</p>
-            </div>
+<div class="card-container">
+    <div class="card">
+    <div class="card-image">
+        <img src="http://localhost:8003{{routine.imageUrl}}" alt="Image not found">
+        <span class="card-title">
+            {{routine.name}} <br>
+            <small>by: Mitko</small>
+        </span>
     </div>
-</div>
--->
-
-
-<div class="container col s12 m6 l4">
-    <figure>
-      <img src="http://localhost:8003{{routine.imageUrl}}" alt="Image not found">
-      <figcaption>
-        <div>
-          <h4>{{routine.name}}</h4>
+    <div class="card-content">
+        <p>{{routine.description}}</p>
+    </div>
+    <div class="card-action">
+         <div class="chip">
+            Tag
         </div>
-        <div>
-          <h5>40+ comments</h5>
-          <div class="icons"><a>read more <i class="material-icons md-18">face</i></a></div>
+        <div class="chip">
+            Tag 2
         </div>
-      </figcaption>
-      <a href="#"></a>
-    </figure>
+        <div class="chip">
+            Tag 3
+        </div>
+    </div>
+    <div class="card-action">
+        <a class=" l4">Difficulty: ****</a>
+        <a class=" l2"><i class="action-icon material-icons">alarm</i> 1h</a>
+        <a class=" l2">4 <i class="action-icon material-icons">forum</i></a>
+        <a class=" l2">12 <i class="red-color action-icon material-icons">favorite</i></a>
+    </div>
+    
+    </div>
 </div>

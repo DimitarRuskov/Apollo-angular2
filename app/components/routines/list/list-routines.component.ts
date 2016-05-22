@@ -14,7 +14,8 @@ import {AuthService} from 'shared/services/auth.service';
 })
 
 export class ListRoutinesComponent implements OnInit {
-    public routines: Array<RoutineModel> = [];
+    public columns: number = 2;
+    public routines: any = [];
     private _categoryId: String;
     private _isAuth: boolean;
     
@@ -27,10 +28,24 @@ export class ListRoutinesComponent implements OnInit {
         this._categoryId = this._routeParams.get('categoryId');
         this._routineService.listRoutines({categoryId: this._categoryId})
         .subscribe(
-            (data: any) => this.routines = data.routines,
+            (data: any) => this.buildDataList(data),
             (err: any) => console.log(err),
             () => console.log(this.routines)
         );
+    }
+    
+    buildDataList(data: any) {
+        data = data.routines;
+        for (let i = 0; i < this.columns; i++) {
+            this.routines[i] = new Array<RoutineModel>();
+        }
+        for (let i = 0; i < data.length; i++) {
+            if ((i + 2) % 2 === 0) {
+                this.routines[0].push(data[i]);
+            } else {
+                this.routines[1].push(data[i]);
+            }
+        }
     }
     
     addRoutine() {

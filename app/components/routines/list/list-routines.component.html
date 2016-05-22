@@ -4,6 +4,13 @@
         <button type="button" class="btn waves-effect waves-light" (click)="addRoutine()">New Routine</button>
     </div>
     <hr>
-    <apollo-routine [routine]="routine" *ngFor="#routine of routines"></apollo-routine>
-    <p *ngIf="!routines.length">No Routines</p>
+    <div class="row">
+        <div *ngFor="#routineList of routines" class="col s12 l6">
+            <div *ngFor="#routine of routineList">
+                <apollo-routine [routine]="routine"></apollo-routine>
+            </div>
+        </div>
+    </div>
+    
+    <!--<p *ngIf="!routines.length">No Routines</p>-->
 </div>
