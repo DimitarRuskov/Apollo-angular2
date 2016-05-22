@@ -20,4 +20,12 @@ export class RoutineService {
     public addRoutine(params: any) {
         return this._http.request('post', 'http://localhost:8003/routine/add', JSON.stringify(params), null, this._user.getAccessToken());
     }
+    
+    public addComment(params: any) {
+        return this._http.request('post', 'http://localhost:8003/routine/comment', JSON.stringify(params), null, this._user.getAccessToken());
+    }
+    
+    public getDetails(routine: any) {
+        return this._http.request('get', 'http://localhost:8003/routine/details/' + routine, null, null, this._user.getAccessToken());
+    }
 }
