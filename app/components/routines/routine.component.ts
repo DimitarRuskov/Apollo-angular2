@@ -16,4 +16,8 @@ export class RoutineComponent {
     listRoutines(routineId: any) {
         this._router.navigate(['Exercises', {routineId: routineId}]);
     }
+    
+    viewDetails(routineId: any) {
+        this._router.navigate(['DetailsRoutine', {routineId: routineId}]);
+    }
 }

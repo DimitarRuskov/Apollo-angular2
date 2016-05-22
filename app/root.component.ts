@@ -9,6 +9,7 @@ import {ListCategoriesComponent}        from './components/categories/list/list-
 import {AddCategoryComponent}           from './components/categories//add/add-category.component';
 import {ListRoutinesComponent}          from './components/routines//list/list-routines.component';
 import {AddRoutineComponent}            from './components/routines/add/add-routine.component';
+import {DetailsRoutineComponent}        from './components/routines/details/details-routine.component';
 import {EditProfileComponent}           from './components/profile/edit-profile.component';
 import {RegistrationComponent}          from './components/registration/registration.component';
 import {LoginComponent}                 from './components/login/login.component';
@@ -33,6 +34,7 @@ import {AuthService}                    from './shared/services/auth.service';
     {path: '/categories/add',name: 'AddCategory',    component: AddCategoryComponent},
     {path: '/routines',      name: 'Routines',       component: ListRoutinesComponent},
     {path: '/routines/add',  name: 'AddRoutine',     component: AddRoutineComponent},
+    {path: '/routines/details',  name: 'DetailsRoutine',     component: DetailsRoutineComponent},
     {path: '/register',      name: 'Registration',   component: RegistrationComponent},
     {path: '/login',         name: 'Login',          component: LoginComponent},
     {path: '/profile',       name: 'Profile',        component: EditProfileComponent},
