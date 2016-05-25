@@ -15,13 +15,28 @@ declare var jQuery: any;
 })
 
 export class DetailsRoutineComponent implements OnInit {
-    constructor(private _routineService: RoutineService, private _utilsService: UtilsService) {
+    private _routineId: String;
+    private exercises: Array<any>;
+    private comments: Array<any>;
+    constructor(private _routineService: RoutineService, private _routeParams: RouteParams, private _utilsService: UtilsService) {
         
     }
     
     ngOnInit() {
         jQuery('ul.tabs').tabs();
         jQuery('.modal-trigger').leanModal();
+        this._routineId = this._routeParams.get('routineId');
+        this._routineService.getDetails({routineId: this._routineId})
+        .subscribe(
+            (data: any) => this.buildDataList(data),
+            (err: any) => console.log(err),
+            () => console.log('detailes fetched')
+        );
+    }
+    
+    buildDataList(data: any) {
+        this.exercises = data.exercises;
+        this.comments = data.comments;
     }
     
     addComment( ) {

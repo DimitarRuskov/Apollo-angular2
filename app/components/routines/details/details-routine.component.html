@@ -1,4 +1,4 @@
-<div class="row">
+<div class="details-container row">
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s3"><a class="active" href="#exercises">Exercises</a></li>
@@ -12,33 +12,16 @@
     </div>    <!--div EXERCISES END-->
     
     <div id="comments" class="col s12">    <!--div COMMENTS START-->
-      
-      <a class="waves-effect waves-light btn modal-trigger" data-target="addComment">New Comment</a>
+      <div class="btn-container row">
+            <a class="waves-effect waves-light btn modal-trigger" data-target="addComment">New Comment</a>
+      </div>
       
       <ul class="collection">
-        <li class="collection-item avatar">
-          <i class="material-icons circle">folder</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-            Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle green">insert_chart</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-            Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-        <li class="collection-item avatar">
-          <i class="material-icons circle red">play_arrow</i>
-          <span class="title">Title</span>
-          <p>First Line <br>
-            Second Line
-          </p>
-          <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        <li class="collection-item avatar" *ngFor="#comment of comments">
+           <img src="http://localhost:8003{{comment.createdBy.imageUrl}}" alt="Image not found" class="circle">
+          <span class="title">{{comment.createdBy.username}}</span>
+          <p>{{comment.content}}</p>
+          <a href="#!" class="secondary-content"><span class="timespan">{{comment.createdAt}}</span> <i class="material-icons">av_timer</i></a>
         </li>
       </ul>
       
