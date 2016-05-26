@@ -25,6 +25,13 @@ export class RoutineService {
         return this._http.request('post', 'http://localhost:8003/routine/comment', JSON.stringify(params), null, this._user.getAccessToken());
     }
     
+    public listComments(params: any) {
+        let options = {
+            search: {routineId: params.routineId}
+        };
+        return this._http.request('get', 'http://localhost:8003/routine/listComments', null, options, null);
+    }
+    
     public getDetails(params: any) {
         let options = {
             search: {routineId: params.routineId}
