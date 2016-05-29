@@ -24,7 +24,11 @@
           <a href="#!" class="secondary-content"><span class="timespan">{{comment.createdAt}}</span> <i class="material-icons">av_timer</i></a>
         </li>
       </ul>
-      
+      <ul class="pagination">
+          <li class="waves-effect" [class.disabled]="currentPage === 1" (click)="onPageClick(currentPage-1)"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+          <li class="waves-effect" *ngFor="#page of commentPages" [class.active]="page === currentPage" (click)="onPageClick(page)"><a href="#!">{{page}}</a></li>
+          <li class="waves-effect" [class.disabled]="currentPage === pageCount" (click)="onPageClick(currentPage+1)"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+      </ul>
     </div>    <!--div COMMENTS END-->
     
     <div id="blank" class="col s12"></div>

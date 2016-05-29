@@ -27,7 +27,10 @@ export class RoutineService {
     
     public listComments(params: any) {
         let options = {
-            search: {routineId: params.routineId}
+            search: {
+                routineId: params.routineId,
+                page: params.page
+            }
         };
         return this._http.request('get', 'http://localhost:8003/routine/listComments', null, options, null);
     }

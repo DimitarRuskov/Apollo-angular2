@@ -18,6 +18,9 @@ export class DetailsRoutineComponent implements OnInit {
     private _routineId: String;
     private exercises: Array<any>;
     private comments: Array<any>;
+    private commentPages: Array<any>;
+    private currentPage: number = 1;
+    private pageCount: number;
     constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams: RouteParams, private _utilsService: UtilsService) {
         
     }
@@ -37,6 +40,8 @@ export class DetailsRoutineComponent implements OnInit {
     buildDataList(data: any) {
         this.exercises = data.exercises;
         this.comments = data.comments;
+        this.pageCount = Math.ceil(data.commentsCount / 10);
+        this.commentPages = Array.apply(null, {length: this.pageCount}).map((x: number, i: number) => i + 1);
     }
     
     addComment() {
@@ -57,12 +62,28 @@ export class DetailsRoutineComponent implements OnInit {
         );
     }
     
-    reloadComments(data: any) {
-        this.element.nativeElement.querySelector('#content').value = '';
-        this._routineService.listComments({routineId: this._routineId})
+    onPageClick(page: number) {
+        if (page !== this.currentPage && page >= 1 && page <= this.pageCount) {
+            this.currentPage = page;
+            this.fetchComments();
+        }
+    }
+    
+    fetchComments() {
+        let options = {
+            routineId: this._routineId,
+            page: this.currentPage
+        }
+        this._routineService.listComments(options)
         .subscribe(
             (data: any) => this.comments = data.comments,
             (err: any) => this._utilsService.defaultErrorHandler(err)
         );
+    }
+    
+    reloadComments(data: any) {
+        this.element.nativeElement.querySelector('#content').value = '';
+        this.currentPage = 1;
+        this.fetchComments();
     }
 }
