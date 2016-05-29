@@ -1,0 +1,5 @@
+<ul class="pagination">
+    <li class="waves-effect" [class.disabled]="currentPage === 1" (click)="onPageClick(currentPage - 1)"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="waves-effect" *ngFor="#page of pages" [class.active]="page === currentPage" (click)="onPageClick(page)"><a href="#!">{{page}}</a></li>
+    <li class="waves-effect" [class.disabled]="currentPage === pageCount" (click)="onPageClick(currentPage + 1)"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+</ul>

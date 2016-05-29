@@ -1,6 +1,8 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
 import {Router, RouteParams} from '@angular/router-deprecated';
 
+import {PaginationComponent}    from 'shared/components/pagination/pagination.component';
+
 import {RoutineModel} from './../routine.model';
 import {RoutineService} from './../routine.service';
 
@@ -11,6 +13,7 @@ declare var jQuery: any;
 @Component({
     templateUrl:        'app/components/routines/details/details-routine.component.html',
     styleUrls:          ['app/components/routines/details/details-routine.component.css'],
+    directives:         [PaginationComponent],
     providers:          [RoutineService, UtilsService]
 })
 
@@ -18,9 +21,8 @@ export class DetailsRoutineComponent implements OnInit {
     private _routineId: String;
     private exercises: Array<any>;
     private comments: Array<any>;
-    private commentPages: Array<any>;
-    private currentPage: number = 1;
-    private pageCount: number;
+    private commentCount: number;
+    private page: number;
     constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams: RouteParams, private _utilsService: UtilsService) {
         
     }
@@ -40,8 +42,7 @@ export class DetailsRoutineComponent implements OnInit {
     buildDataList(data: any) {
         this.exercises = data.exercises;
         this.comments = data.comments;
-        this.pageCount = Math.ceil(data.commentsCount / 10);
-        this.commentPages = Array.apply(null, {length: this.pageCount}).map((x: number, i: number) => i + 1);
+        this.commentCount = data.commentCount;
     }
     
     addComment() {
@@ -62,17 +63,10 @@ export class DetailsRoutineComponent implements OnInit {
         );
     }
     
-    onPageClick(page: number) {
-        if (page !== this.currentPage && page >= 1 && page <= this.pageCount) {
-            this.currentPage = page;
-            this.fetchComments();
-        }
-    }
-    
     fetchComments() {
         let options = {
             routineId: this._routineId,
-            page: this.currentPage
+            page: this.page
         }
         this._routineService.listComments(options)
         .subscribe(
@@ -83,7 +77,11 @@ export class DetailsRoutineComponent implements OnInit {
     
     reloadComments(data: any) {
         this.element.nativeElement.querySelector('#content').value = '';
-        this.currentPage = 1;
+        this.fetchComments();
+    }
+    
+     onPageChanged(event: any) {
+        this.page = event.page;
         this.fetchComments();
     }
 }
