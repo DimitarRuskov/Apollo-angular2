@@ -1,7 +1,14 @@
 <div class="row">
     <h2>Routines</h2>
     <div class="row">
-        <button type="button" class="btn waves-effect waves-light" (click)="addRoutine()">New Routine</button>
+        <div class="col s12 l6">
+            <button type="add-button button" class="btn waves-effect waves-light" (click)="addRoutine()">New Routine</button>
+        </div>
+        <div class="search-wrapper input-field col s12 l6">
+            <i class="material-icons prefix">search</i>
+            <input id="search" type="text" (keyup)="keyUpListener($event)">
+            <label for="search">Search</label>
+        </div>
     </div>
     <hr>
     <div class="row">

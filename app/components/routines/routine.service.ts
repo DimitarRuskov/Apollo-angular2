@@ -9,10 +9,13 @@ export class RoutineService {
     public routines: Array<RoutineModel>;
     
     constructor(private _http: HttpService, private _user: UserService) { }
-    
+     
     public listRoutines(params: any) {
         let options = {
-            search: {categoryId: params.categoryId}
+            search: {
+                categoryId: params.categoryId,
+                name: params.name
+            }
         };
         return this._http.request('get', 'http://localhost:8003/routine/list', null, options, null);
     }

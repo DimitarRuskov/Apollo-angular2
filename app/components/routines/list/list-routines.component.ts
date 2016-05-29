@@ -18,6 +18,8 @@ export class ListRoutinesComponent implements OnInit {
     public routines: any = [];
     private _categoryId: String;
     private _isAuth: boolean;
+    private searchTimeout: any;
+    private searchKey: any = '';
     
     constructor(private _routineService: RoutineService, private _router: Router,
     private _routeParams: RouteParams, private _authService: AuthService) {
@@ -26,7 +28,15 @@ export class ListRoutinesComponent implements OnInit {
     
     ngOnInit() {
         this._categoryId = this._routeParams.get('categoryId');
-        this._routineService.listRoutines({categoryId: this._categoryId})
+        this.fetchRoutines();
+    }
+    
+    fetchRoutines() {
+        let options = {
+            categoryId: this._categoryId,
+            name: this.searchKey
+        }
+        this._routineService.listRoutines(options)
         .subscribe(
             (data: any) => this.buildDataList(data),
             (err: any) => console.log(err),
@@ -50,5 +60,13 @@ export class ListRoutinesComponent implements OnInit {
     
     addRoutine() {
         this._router.navigate(['AddRoutine', {categoryId: this._categoryId}]);
+    }
+    
+    keyUpListener(event: any) {
+        this.searchKey = event.target.value;
+        clearTimeout(this.searchTimeout);
+        this.searchTimeout = setTimeout(() => {
+            this.fetchRoutines();
+        }, 1000);
     }
 }
