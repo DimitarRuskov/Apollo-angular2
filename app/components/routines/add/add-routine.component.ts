@@ -5,6 +5,8 @@ import {RoutineService} from './../routine.service';
 import {AuthService} from 'shared/services/auth.service';
 import {UtilsService} from 'shared/services/utils.service';
 
+declare var jQuery: any;
+
 @Component({
     templateUrl:        'app/components/routines/add/add-routine.component.html',
     styleUrls:          ['app/components/routines/add/add-routine.component.css'],
@@ -32,21 +34,23 @@ export class AddRoutineComponent implements OnInit {
     }
     
     ngOnInit() {
+        jQuery('ul.tabs').tabs();
         this._categoryId = this._routeParams.get('categoryId');
     }
     
     onSubmit(values: any): void {
-        values.categoryId = this._categoryId;
-        values.image = this._selectedImage;
+        jQuery('ul.tabs').tabs('select_tab', 'exercises');
+        // values.categoryId = this._categoryId;
+        // values.image = this._selectedImage;
         
-        this._routineService.addRoutine(values)
-        .subscribe(
-            (data: any) => {
-                this._router.navigate(['Categories']);
-            },
-            (err: any) => this._utilsService.defaultErrorHandler(err),
-            () => this._utilsService.success('Successfully created Routine!')
-        );
+        // this._routineService.addRoutine(values)
+        // .subscribe(
+        //     (data: any) => {
+        //         this._router.navigate(['Categories']);
+        //     },
+        //     (err: any) => this._utilsService.defaultErrorHandler(err),
+        //     () => this._utilsService.success('Successfully created Routine!')
+        // );
     }
     
     canActivate(next: any, prev: any) {
