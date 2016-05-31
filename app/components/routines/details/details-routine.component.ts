@@ -1,5 +1,5 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
-import {Router, RouteParams} from '@angular/router-deprecated';
+import {RouteParams} from '@angular/router-deprecated';
 
 import {PaginationComponent}    from 'shared/components/pagination/pagination.component';
 
@@ -23,9 +23,8 @@ export class DetailsRoutineComponent implements OnInit {
     private comments: Array<any>;
     private commentCount: number;
     private page: number;
-    constructor(private element: ElementRef, private _routineService: RoutineService, private _routeParams: RouteParams, private _utilsService: UtilsService) {
-        
-    }
+    constructor(private element: ElementRef, private _routineService: RoutineService,
+    private _routeParams: RouteParams, private _utilsService: UtilsService) { }
     
     ngOnInit() {
         jQuery('ul.tabs').tabs();
@@ -47,14 +46,17 @@ export class DetailsRoutineComponent implements OnInit {
     
     addComment() {
         let inputElement = this.element.nativeElement.querySelector('#content');
+        
         if (!inputElement.value.length) {
             this._utilsService.alert('Please, do not comment without content!')
             return;
         }
+        
         let values = {
             routineId: this._routineId,
             content: this.element.nativeElement.querySelector('#content').value
         }
+        
         this._routineService.addComment(values)
         .subscribe(
             (data: any) => this.reloadComments(data),
@@ -68,6 +70,7 @@ export class DetailsRoutineComponent implements OnInit {
             routineId: this._routineId,
             page: this.page
         }
+        
         this._routineService.listComments(options)
         .subscribe(
             (data: any) => this.comments = data.comments,

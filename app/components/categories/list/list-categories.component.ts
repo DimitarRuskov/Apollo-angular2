@@ -31,15 +31,15 @@ export class ListCategoriesComponent implements OnInit {
         );
     }
     
-    ngOnInit() {
-        
-    }
+    ngOnInit() { }
     
     buildDataList(data: any) {
         data = data.categories;
+        
         for (let i = 0; i < this.columns; i++) {
             this.categories[i] = new Array<CategoryModel>();
         }
+        
         for (let i = 0; i < data.length; i++) {
             if ((i + 2) % 2 === 0) {
                 this.categories[0].push(data[i]);
