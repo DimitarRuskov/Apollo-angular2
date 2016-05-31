@@ -36,6 +36,7 @@ export class ListRoutinesComponent implements OnInit {
             categoryId: this._categoryId,
             name: this.searchKey
         }
+        
         this._routineService.listRoutines(options)
         .subscribe(
             (data: any) => this.buildDataList(data),
@@ -46,9 +47,11 @@ export class ListRoutinesComponent implements OnInit {
     
     buildDataList(data: any) {
         data = data.routines;
+        
         for (let i = 0; i < this.columns; i++) {
             this.routines[i] = new Array<RoutineModel>();
         }
+        
         for (let i = 0; i < data.length; i++) {
             if ((i + 2) % 2 === 0) {
                 this.routines[0].push(data[i]);

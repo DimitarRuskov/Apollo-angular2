@@ -1,6 +1,7 @@
 import {Http, Response, Headers, URLSearchParams} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
+import {StorageService} from './storage.service';
 
 @Injectable()
 export class HttpService {
@@ -8,6 +9,7 @@ export class HttpService {
     private queryMethods = ['get', 'head', 'delete'];
     private bodyMethods = ['post', 'put', 'patch'];
     private supportedMethods = this.bodyMethods.concat(this.queryMethods);
+    private _storageService = new StorageService();
     
     private methodFuncMap = {
         queryMethods: 'withBody',
@@ -19,7 +21,7 @@ export class HttpService {
         this.defaultHeaders.append('Content-Type', 'application/json');
     }
     
-    public request(method: any, url: any, body: any, options: any, auth: any) {
+    public request(method: any, url: any, body: any, options: any) {
         if (this.supportedMethods.indexOf(method) < 0) {
             throw 'Unsupported method';
         }
@@ -27,20 +29,10 @@ export class HttpService {
         options = options || {};
         options.headers = options.headers || new Headers();
         
-        let defaultHeadersKeys = this.defaultHeaders.keys();
-        
-        for (let i = 0; i < defaultHeadersKeys.length; i++) {
-            if (!options.headers.has(defaultHeadersKeys[i])) {
-                options.headers.set(defaultHeadersKeys[i], this.defaultHeaders.get(defaultHeadersKeys[i]));
-            }
-        }
+        options.headers = this.buildHeaders(options.headers);
         
         if (options.search) {
             options.search = this.buildSearchObject(options.search);
-        }
-
-        if (auth) {
-            options.headers.set('Authorization', 'Bearer ' + auth);
         }
         
         let funcToInvoke: any = undefined;
@@ -79,6 +71,24 @@ export class HttpService {
         }
         
         return searchObj;
+    }
+    
+    buildHeaders(headers: Headers) {
+        let defaultHeadersKeys = this.defaultHeaders.keys();
+        let result = headers;
+        let user = this._storageService.get('user', true);
+        
+        for (let i = 0; i < defaultHeadersKeys.length; i++) {
+            if (!result.has(defaultHeadersKeys[i])) {
+                result.set(defaultHeadersKeys[i], this.defaultHeaders.get(defaultHeadersKeys[i]));
+            }
+        }
+        
+        if (user) {
+            result.set('Authorization', 'Bearer ' + user.token);
+        }
+        
+        return result;
     }
     
     withQuery(method: any, url: any, options: any) {

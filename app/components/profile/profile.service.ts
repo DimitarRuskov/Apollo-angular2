@@ -11,6 +11,7 @@ export class ProfileService {
     }
     
     public editProfile(data: any) {
-        return this._http.request('put', 'http://localhost:8003/user/profile/edit', JSON.stringify(data), null, this._user.getAccessToken());
+        return this._http.request('put', 'http://localhost:8003/user/profile/edit',
+        JSON.stringify(data), null, this._user.getAccessToken());
     }
 }
