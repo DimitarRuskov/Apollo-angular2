@@ -10,6 +10,7 @@ export class HttpService {
     private bodyMethods = ['post', 'put', 'patch'];
     private supportedMethods = this.bodyMethods.concat(this.queryMethods);
     private _storageService = new StorageService();
+    private baseServiceUrl: String = 'http://localhost:8003/';
     
     private methodFuncMap = {
         queryMethods: 'withBody',
@@ -21,9 +22,15 @@ export class HttpService {
         this.defaultHeaders.append('Content-Type', 'application/json');
     }
     
-    public request(method: any, url: any, body: any, options: any) {
+    public request(method: any, url: any, body: any, options: any, customUrl: any) {
         if (this.supportedMethods.indexOf(method) < 0) {
             throw 'Unsupported method';
+        }
+        
+        if (customUrl) {
+            url = customUrl;
+        } else {
+            url = this.baseServiceUrl + url;
         }
         
         options = options || {};

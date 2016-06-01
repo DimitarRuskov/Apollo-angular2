@@ -7,22 +7,22 @@ import {HttpService} from 'shared/services/http.service';
 @Injectable()
 export class RoutineService {
     public routines: Array<RoutineModel>;
+    private serviceUrl: String = 'categories/';
     
     constructor(private _http: HttpService, private _user: UserService) { }
      
     public listRoutines(params: any) {
         let options = {
             search: {
-                categoryId: params.categoryId,
-                name: params.name
+                page: params.page
             }
         };
         
-        return this._http.request('get', 'http://localhost:8003/routine/list', null, options, null);
+        return this._http.request('get', this.serviceUrl + params.category + '/routines', null, options);
     }
     
     public addRoutine(params: any) {
-        return this._http.request('post', 'http://localhost:8003/routine/add', JSON.stringify(params), null, this._user.getAccessToken());
+        return this._http.request('post', this.serviceUrl + params.category + '/routines', JSON.stringify(params), null);
     }
     
     public addComment(params: any) {
@@ -30,8 +30,8 @@ export class RoutineService {
             content: params.content
         };
         
-        return this._http.request('post', 'http://localhost:8003/routine/' + params.routineId + '/comments',
-        JSON.stringify(data), null, this._user.getAccessToken());
+        return this._http.request('post', this.serviceUrl + params.category + '/routines/' + params.routine + '/comments',
+        JSON.stringify(data), null);
     }
     
     public listComments(params: any) {
@@ -41,14 +41,10 @@ export class RoutineService {
             }
         };
         
-        return this._http.request('get', 'http://localhost:8003/routine/' + params.routineId + '/comments', null, options, null);
+        return this._http.request('get', this.serviceUrl + params.category + '/routines/' + params.routine + '/comments', null, options);
     }
     
     public getDetails(params: any) {
-        let options = {
-            search: {routineId: params.routineId}
-        };
-        
-        return this._http.request('get', 'http://localhost:8003/routine/details', null, options, null);
+        return this._http.request('get', this.serviceUrl + params.category + '/routines/' + params.routine, null, null);
     }
 }

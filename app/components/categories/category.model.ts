@@ -1,5 +1,5 @@
 export class CategoryModel {
-    id: number;
+    id: string;
     name: string;
     description: string;
 }

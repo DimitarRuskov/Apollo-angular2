@@ -19,10 +19,10 @@ export class CategoryService {
             }
         };
         
-        return this._http.request('get', 'http://localhost:8003/category/list', null, options, null);
+        return this._http.request('get', 'categories', null, options);
     }
     
     public addCategory(params: any) {
-        return this._http.request('post', 'http://localhost:8003/category/add', JSON.stringify(params), null, this._user.getAccessToken());
+        return this._http.request('post', 'categories', JSON.stringify(params), null);
     }
 }

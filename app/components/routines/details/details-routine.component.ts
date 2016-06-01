@@ -3,7 +3,6 @@ import {RouteParams} from '@angular/router-deprecated';
 
 import {PaginationComponent}    from 'shared/components/pagination/pagination.component';
 
-import {RoutineModel} from './../routine.model';
 import {RoutineService} from './../routine.service';
 
 import {UtilsService} from 'shared/services/utils.service';
@@ -19,22 +18,28 @@ declare var jQuery: any;
 
 export class DetailsRoutineComponent implements OnInit {
     private _routineId: String;
+    private _categoryId: String;
     private exercises: Array<any>;
     private comments: Array<any>;
     private commentCount: number;
     private page: number;
+    
     constructor(private element: ElementRef, private _routineService: RoutineService,
     private _routeParams: RouteParams, private _utilsService: UtilsService) { }
     
     ngOnInit() {
         jQuery('ul.tabs').tabs();
         jQuery('.modal-trigger').leanModal();
-        this._routineId = this._routeParams.get('routineId');
-        this._routineService.getDetails({routineId: this._routineId})
+        this._routineId = this._routeParams.get('routine');
+        this._categoryId = this._routeParams.get('category');
+        this._routineService.getDetails({
+            category: this._categoryId,
+            routine: this._routineId
+        })
         .subscribe(
             (data: any) => this.buildDataList(data),
             (err: any) => console.log(err),
-            () => console.log('detailes fetched')
+            () => console.log('details fetched')
         );
     }
     
@@ -53,7 +58,8 @@ export class DetailsRoutineComponent implements OnInit {
         }
         
         let values = {
-            routineId: this._routineId,
+            category: this._categoryId,
+            routine: this._routineId,
             content: this.element.nativeElement.querySelector('#content').value
         }
         
@@ -67,9 +73,10 @@ export class DetailsRoutineComponent implements OnInit {
     
     fetchComments() {
         let options = {
-            routineId: this._routineId,
+            category: this._categoryId,
+            routine: this._routineId,
             page: this.page
-        }
+        };
         
         this._routineService.listComments(options)
         .subscribe(

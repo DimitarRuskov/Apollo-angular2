@@ -12,6 +12,6 @@ export class RecipeService {
             search: params
         };
         
-        return this._http.request('get', 'http://localhost:8003/recipes', null, options, null);
+        return this._http.request('get', 'recipes', null, options);
     }
 }

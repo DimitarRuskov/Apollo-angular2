@@ -27,13 +27,13 @@ export class AuthService {
         let prms: any = {
             params: params
         };
-        return this._http.request('post', 'http://localhost:8003/user/register', JSON.stringify(prms), null, null);
+        return this._http.request('post', 'auth/register', JSON.stringify(prms), null, null);
     }
     
     public login(params: any) {
         let __this = this;
         return Observable.create((observer: any) => {
-            this._http.request('post', 'http://localhost:8003/user/login', JSON.stringify(params), null, null)
+            this._http.request('post', 'auth/login', JSON.stringify(params), null, null)
             .subscribe(
                 (data: any) => {
                     __this._isAuthenticatedObserver.next(true);

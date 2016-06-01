@@ -27,15 +27,15 @@ export class ListRoutinesComponent implements OnInit {
     }
     
     ngOnInit() {
-        this._categoryId = this._routeParams.get('categoryId');
+        this._categoryId = this._routeParams.get('category');
         this.fetchRoutines();
     }
     
     fetchRoutines() {
         let options = {
-            categoryId: this._categoryId,
+            category: this._categoryId,
             name: this.searchKey
-        }
+        };
         
         this._routineService.listRoutines(options)
         .subscribe(
@@ -62,7 +62,7 @@ export class ListRoutinesComponent implements OnInit {
     }
     
     addRoutine() {
-        this._router.navigate(['AddRoutine', {categoryId: this._categoryId}]);
+        this._router.navigate(['AddRoutine', {category: this._categoryId}]);
     }
     
     keyUpListener(event: any) {

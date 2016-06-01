@@ -13,11 +13,17 @@ export class RoutineComponent {
     
     constructor(private _router: Router) { }
     
-    listRoutines(routineId: any) {
-        this._router.navigate(['Exercises', {routineId: routineId}]);
+    listExercises() {
+        this._router.navigate(['Exercises', {
+            category: this.routine.categoryId,
+            routine: this.routine._id
+        }]);
     }
     
-    viewDetails(routineId: any) {
-        this._router.navigate(['DetailsRoutine', {routineId: routineId}]);
+    viewDetails() {
+        this._router.navigate(['DetailsRoutine', {
+            category: this.routine.categoryId,
+            routine: this.routine._id
+        }]);
     }
 }

@@ -35,7 +35,7 @@ export class AddRoutineComponent implements OnInit {
     
     ngOnInit() {
         jQuery('ul.tabs').tabs();
-        this._categoryId = this._routeParams.get('categoryId');
+        this._categoryId = this._routeParams.get('category');
     }
     
     onSubmit(values: any): void {

@@ -14,7 +14,7 @@ export class CategoryComponent {
     
     constructor(private _router: Router) { }
     
-    listRoutines(categoryId: any) {
-        this._router.navigate(['Routines', {categoryId: categoryId}]);
+    listRoutines() {
+        this._router.navigate(['Routines', {category: this.category._id}]);
     }
 }
