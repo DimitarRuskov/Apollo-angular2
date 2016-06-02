@@ -22,7 +22,7 @@ export class HttpService {
         this.defaultHeaders.append('Content-Type', 'application/json');
     }
     
-    public request(method: any, url: any, body: any, options: any, customUrl: any) {
+    public request(method: any, url: any, body: any, options: any, customUrl?: any) {
         if (this.supportedMethods.indexOf(method) < 0) {
             throw 'Unsupported method';
         }

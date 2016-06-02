@@ -60,9 +60,21 @@ export class AuthService {
         return this._isAuthenticated;
     }
     
+    private validateToken() {
+        return this._http.request('post', 'token/validate', null, null);
+    }
+    
     public load() {
-        let user = (this._storageService.get('user', true) ? true : false);
-        this._isAuthenticatedObserver.next(user);
+        this.validateToken()
+        .subscribe((data: any) => {
+            this._isAuthenticatedObserver.next(data.valid);
+            if (!data.valid) {
+                this._storageService.remove('user', true);
+            }
+        }, (error: any) => {
+            this._isAuthenticatedObserver.next(false);
+            this._storageService.remove('user', true);
+        });
     }
     
     public setAuth(auth: boolean) {
