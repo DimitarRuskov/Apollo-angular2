@@ -14,7 +14,8 @@ export class RoutineService {
     public listRoutines(params: any) {
         let options = {
             search: {
-                page: params.page
+                page: params.page,
+                name: params.name
             }
         };
         
