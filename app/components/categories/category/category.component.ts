@@ -1,19 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouteParams} from '@angular/router-deprecated';
 
-import {RoutineComponent} from './../routine.component';
-import {RoutineModel} from './../routine.model';
-import {RoutineService} from './../routine.service';
+import {CategoryService} from './category.service';
 import {AuthService} from 'shared/services/auth.service';
 
 @Component({
-    templateUrl:        'app/components/routines/list/list-routines.component.html',
-    styleUrls:          ['app/components/routines/list/list-routines.component.css'],
-    directives: [RoutineComponent],
-    providers: [RoutineService]
+    moduleId: module.id,
+    templateUrl: 'category.component.html',
+    styleUrls: ['category.component.css'],
+    providers: [CategoryService]
 })
 
-export class ListRoutinesComponent implements OnInit {
+export class CategoryComponent implements OnInit {
     public columns: number = 2;
     public routines: any = [];
     private _categoryId: String;
@@ -21,7 +19,7 @@ export class ListRoutinesComponent implements OnInit {
     private searchTimeout: any;
     private searchKey: any = '';
     
-    constructor(private _routineService: RoutineService, private _router: Router,
+    constructor(private _categoryService: CategoryService, private _router: Router,
     private _routeParams: RouteParams, private _authService: AuthService) {
         this._isAuth = this._authService.isAuthenticated();
     }
@@ -37,7 +35,7 @@ export class ListRoutinesComponent implements OnInit {
             name: this.searchKey
         };
         
-        this._routineService.listRoutines(options)
+        this._categoryService.listRoutines(options)
         .subscribe(
             (data: any) => this.buildDataList(data),
             (err: any) => console.log(err),
@@ -49,7 +47,7 @@ export class ListRoutinesComponent implements OnInit {
         data = data.routines;
         
         for (let i = 0; i < this.columns; i++) {
-            this.routines[i] = new Array<RoutineModel>();
+            this.routines[i] = new Array<Object>();
         }
         
         for (let i = 0; i < data.length; i++) {
@@ -63,6 +61,13 @@ export class ListRoutinesComponent implements OnInit {
     
     addRoutine() {
         this._router.navigate(['AddRoutine', {category: this._categoryId}]);
+    }
+    
+    viewRoutine(routine: any) {
+        this._router.navigate(['Routine', {
+            category: routine.categoryId,
+            routine: routine._id
+        }]);
     }
     
     keyUpListener(event: any) {

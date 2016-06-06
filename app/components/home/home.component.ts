@@ -1,9 +1,10 @@
-import {Component}        from '@angular/core';
-import {SliderComponent}  from 'shared/components/slider/slider.component';
+import {Component} from '@angular/core';
+import {SliderComponent} from 'shared/components/slider/slider.component';
 
 @Component({
-  templateUrl:  'app/components/home/home.component.html',
-  styleUrls:    ['app/components/home/home.component.css'],
-  directives:   [SliderComponent]
+  moduleId: module.id,
+  templateUrl: 'home.component.html',
+  styleUrls: ['home.component.css'],
+  directives: [SliderComponent]
 })
 export class HomeComponent { }

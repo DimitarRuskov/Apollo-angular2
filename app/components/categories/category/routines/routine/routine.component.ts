@@ -1,22 +1,23 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
 import {RouteParams} from '@angular/router-deprecated';
 
-import {PaginationComponent}    from 'shared/components/pagination/pagination.component';
-
-import {RoutineService} from './../routine.service';
+import {PaginationComponent} from 'shared/components/pagination/pagination.component';
 
 import {UtilsService} from 'shared/services/utils.service';
+
+import {RoutineService} from './routine.service';
 
 declare var jQuery: any;
 
 @Component({
-    templateUrl:        'app/components/routines/details/details-routine.component.html',
-    styleUrls:          ['app/components/routines/details/details-routine.component.css'],
-    directives:         [PaginationComponent],
-    providers:          [RoutineService, UtilsService]
+    moduleId: module.id,
+    templateUrl: 'routine.component.html',
+    styleUrls: ['routine.component.css'],
+    directives: [PaginationComponent],
+    providers: [RoutineService, UtilsService]
 })
 
-export class DetailsRoutineComponent implements OnInit {
+export class RoutineComponent implements OnInit {
     private _routineId: String;
     private _categoryId: String;
     private exercises: Array<any>;

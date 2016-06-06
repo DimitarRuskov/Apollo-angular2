@@ -1,3 +1,19 @@
+a {
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.search-wrapper {
+    margin-top: 0px;
+}
+
+.add-button {
+    margin-bottom: 15px;
+}
+
 .card-image span small {
     display: none;
 }

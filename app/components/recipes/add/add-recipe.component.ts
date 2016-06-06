@@ -2,8 +2,9 @@ import {Component} from '@angular/core';
 import {AuthService} from 'shared/services/auth.service';
 
 @Component({
-    templateUrl:        'app/components/recipes/add/add-recipe.component.html',
-    styleUrls:          ['app/components/recipes/add/add-recipe.component.css']
+    moduleId: module.id,
+    templateUrl: 'add-recipe.component.html',
+    styleUrls: ['add-recipe.component.css']
 })
 
 export class AddRecipeComponent {

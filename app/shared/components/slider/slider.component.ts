@@ -3,10 +3,10 @@ import {Component, ElementRef, OnInit, Renderer} from '@angular/core';
 declare var jQuery: any;
 
 @Component({
-    selector:           'apollo-slider',
-    templateUrl:        'app/shared/components/slider/slider.component.html',
-    styleUrls:          ['app/shared/components/slider/slider.component.css'],
-    directives:         []
+    moduleId: module.id,
+    selector: 'apollo-slider',
+    templateUrl: 'slider.component.html',
+    styleUrls: ['slider.component.css']
 })
 
 export class SliderComponent implements OnInit {

@@ -1,23 +1,24 @@
 import {Component, OnInit, ElementRef} from '@angular/core';
 import {Router, RouteParams} from '@angular/router-deprecated';
 
-import {RoutineService} from './../routine.service';
+import {AddRoutineService} from './add-routine.service';
 import {AuthService} from 'shared/services/auth.service';
 import {UtilsService} from 'shared/services/utils.service';
 
 declare var jQuery: any;
 
 @Component({
-    templateUrl:        'app/components/routines/add/add-routine.component.html',
-    styleUrls:          ['app/components/routines/add/add-routine.component.css'],
-    providers:          [RoutineService, UtilsService]
+    moduleId: module.id,
+    templateUrl: 'add-routine.component.html',
+    styleUrls: ['add-routine.component.css'],
+    providers: [AddRoutineService, UtilsService]
 })
 
 export class AddRoutineComponent implements OnInit {
     private _selectedImage: any = null;
     private _categoryId: String;
     
-    constructor(private element: ElementRef, private _routineService: RoutineService, private _router: Router,
+    constructor(private element: ElementRef, private _addRoutineService: AddRoutineService, private _router: Router,
     private _routeParams: RouteParams, private _authService: AuthService, private _utilsService: UtilsService) { }
      
      changeListener(event: any) {

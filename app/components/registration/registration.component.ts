@@ -1,18 +1,19 @@
-import {Component}          from '@angular/core';
-import {Router}          from '@angular/router-deprecated';
-import {FormBuilder, Validators}  from '@angular/common';
-import {AuthService}        from 'shared/services/auth.service';
-import {ControlMessage}     from 'shared/components/control-message/control-message.component';
-import {ValidationService}  from 'shared/services/validation.service';
-import {UtilsService}       from 'shared/services/utils.service';
-import {UserService}       from 'shared/services/user.service';
-import {StorageService}       from 'shared/services/storage.service';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router-deprecated';
+import {FormBuilder, Validators} from '@angular/common';
+import {AuthService} from 'shared/services/auth.service';
+import {ControlMessage} from 'shared/components/control-message/control-message.component';
+import {ValidationService} from 'shared/services/validation.service';
+import {UtilsService} from 'shared/services/utils.service';
+import {UserService} from 'shared/services/user.service';
+import {StorageService} from 'shared/services/storage.service';
 
 @Component({
-  templateUrl:                  'app/components/registration/registration.component.html',
-  styleUrls:                    ['app/components/registration/registration.component.css'],
-  directives:                   [ControlMessage],
-  providers:                    [UtilsService, StorageService]
+  moduleId: module.id,
+  templateUrl: 'registration.component.html',
+  styleUrls: ['registration.component.css'],
+  directives: [ControlMessage],
+  providers: [UtilsService, StorageService]
 })
 
 export class RegistrationComponent {

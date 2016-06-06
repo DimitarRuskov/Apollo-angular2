@@ -1,8 +1,9 @@
 import {Component, Output} from '@angular/core';
 
 @Component({
-    templateUrl:        'app/components/routines/add/add-exercises/add-exercises.component.html',
-    styleUrls:          ['app/components/routines/add/add-exercises/add-exercises.component.css'],
+    moduleId: module.id,
+    templateUrl:        'add-exercises.component.html',
+    styleUrls:          ['add-exercises.component.css'],
     providers:          []
 })
 

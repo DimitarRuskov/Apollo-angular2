@@ -1,10 +1,11 @@
-import {Component, Input}  from '@angular/core';
-import {RecipeModel}       from './recipe.model';
+import {Component, Input} from '@angular/core';
+import {RecipeModel} from './recipe.model';
 
 @Component({
-    selector:           'apollo-recipe',
-    templateUrl:        'app/components/recipes/recipe.component.html',
-    styleUrls:          ['app/components/recipes/recipe.component.css']
+    moduleId: module.id,
+    selector: 'apollo-recipe',
+    templateUrl: 'recipe.component.html',
+    styleUrls: ['recipe.component.css']
 })
 
 export class RecipeComponent {

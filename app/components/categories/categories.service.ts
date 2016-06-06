@@ -1,14 +1,13 @@
 import {Injectable} from '@angular/core';
 
-import {CategoryModel} from './category.model';
-import {UserService} from 'shared/services/user.service';
+import {CategoryModel} from './category/category.model';
 import {HttpService} from 'shared/services/http.service';
 
 @Injectable()
-export class CategoryService {
+export class CategoriesService {
     public categories: Array<CategoryModel>;
     
-    constructor(private _http: HttpService, private _user: UserService) {}
+    constructor(private _http: HttpService) {}
     
     public listCategories(params: any) {
         let options: any = {
@@ -20,9 +19,5 @@ export class CategoryService {
         };
         
         return this._http.request('get', 'categories', null, options);
-    }
-    
-    public addCategory(params: any) {
-        return this._http.request('post', 'categories', JSON.stringify(params), null);
     }
 }

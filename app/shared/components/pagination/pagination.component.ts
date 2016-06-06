@@ -1,9 +1,10 @@
 import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 
 @Component({
-    selector:           'apollo-pagination',
-    templateUrl:        'app/shared/components/pagination/pagination.component.html',
-    styleUrls:          ['app/shared/components/pagination/pagination.component.css']
+    moduleId: module.id,
+    selector: 'apollo-pagination',
+    templateUrl: 'pagination.component.html',
+    styleUrls: ['pagination.component.css']
 })
 
 export class PaginationComponent implements OnInit {

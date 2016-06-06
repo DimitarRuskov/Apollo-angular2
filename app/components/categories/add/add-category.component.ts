@@ -1,19 +1,20 @@
-import {Component, ElementRef}  from '@angular/core';
-import {Router}                 from '@angular/router-deprecated';
-import {CategoryService}        from './../category.service';
-import {AuthService}            from 'shared/services/auth.service';
-import {UtilsService}           from 'shared/services/utils.service';
+import {Component, ElementRef} from '@angular/core';
+import {Router} from '@angular/router-deprecated';
+import {AddCategoryService} from './add-category.service';
+import {AuthService} from 'shared/services/auth.service';
+import {UtilsService} from 'shared/services/utils.service';
 
 @Component({
-    templateUrl:        'app/components/categories/add/add-category.component.html',
-    styleUrls:          ['app/components/categories/add/add-category.component.css'],
-    providers:          [CategoryService, UtilsService]
+    moduleId: module.id,
+    templateUrl: 'add-category.component.html',
+    styleUrls: ['add-category.component.css'],
+    providers: [AddCategoryService, UtilsService]
 })
 
 export class AddCategoryComponent {
     private _selectedImage: any = null;
     
-    constructor(private element: ElementRef, private _categoryService: CategoryService,
+    constructor(private element: ElementRef, private _addCategoryService: AddCategoryService,
     private _authService: AuthService, private _utilsService: UtilsService, private _router: Router) { }
     
     changeListener(event: any) {
@@ -31,7 +32,7 @@ export class AddCategoryComponent {
     
     onSubmit(values: any): void {
         values.image = this._selectedImage;
-        this._categoryService.addCategory(values)
+        this._addCategoryService.addCategory(values)
         .subscribe(
             (data: any) => {
                 this._router.navigate(['Categories']);

@@ -1,14 +1,15 @@
-import {Component}          from '@angular/core';
-import {Router}             from '@angular/router-deprecated';
-import {AuthService}        from 'shared/services/auth.service';
-import {UtilsService}       from 'shared/services/utils.service';
-import {StorageService}     from 'shared/services/storage.service';
-import {UserService}        from 'shared/services/user.service';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router-deprecated';
+import {AuthService} from 'shared/services/auth.service';
+import {UtilsService} from 'shared/services/utils.service';
+import {StorageService} from 'shared/services/storage.service';
+import {UserService} from 'shared/services/user.service';
 
 @Component({
-    templateUrl:        'app/components/login/login.component.html',
-    styleUrls:          ['app/components/login/login.component.css'],
-    providers:          [StorageService, UtilsService]
+    moduleId: module.id,
+    templateUrl: 'login.component.html',
+    styleUrls: ['login.component.css'],
+    providers: [StorageService, UtilsService]
 })
 export class LoginComponent {
     constructor(private _authService: AuthService, private _utilsService: UtilsService,

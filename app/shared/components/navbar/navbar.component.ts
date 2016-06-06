@@ -8,10 +8,11 @@ import {UtilsService} from 'shared/services/utils.service';
 declare var jQuery: any;
 
 @Component({
-    selector:           'apollo-navbar',
-    templateUrl:        'app/shared/components/navbar/navbar.component.html',
-    styleUrls:          ['app/shared/components/navbar/navbar.component.css'],
-    directives:         [ROUTER_DIRECTIVES]
+    moduleId: module.id,
+    selector: 'apollo-navbar',
+    templateUrl: 'navbar.component.html',
+    styleUrls: ['navbar.component.css'],
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class NavbarComponent implements OnInit {

@@ -1,19 +1,20 @@
-import {Component, ElementRef, OnInit}                  from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/common';
 
-import {ControlMessage}     from 'shared/components/control-message/control-message.component';
-import {ValidationService}  from 'shared/services/validation.service';
+import {ControlMessage} from 'shared/components/control-message/control-message.component';
+import {ValidationService} from 'shared/services/validation.service';
 
-import {ProfileModel}       from './profile.model';
-import {UserService}        from 'shared/services/user.service';
-import {AuthService}        from 'shared/services/auth.service';
-import {ProfileService}       from './profile.service';
+import {ProfileModel} from './profile.model';
+import {UserService} from 'shared/services/user.service';
+import {AuthService} from 'shared/services/auth.service';
+import {ProfileService} from './profile.service';
 
 @Component({
-    templateUrl:        'app/components/profile/edit-profile.component.html',
-    styleUrls:          ['app/components/profile/edit-profile.component.css'],
-    directives:         [ControlMessage],
-    providers:          [ProfileService]
+    moduleId: module.id,
+    templateUrl: 'edit-profile.component.html',
+    styleUrls: ['edit-profile.component.css'],
+    directives: [ControlMessage],
+    providers: [ProfileService]
 })
 
 export class EditProfileComponent implements OnInit {

@@ -1,0 +1,47 @@
+<div class="row">
+    <h2>Routines</h2>
+    <div class="row">
+        <div class="col s12 l6">
+            <button type="add-button button" class="btn waves-effect waves-light" (click)="addRoutine()">New Routine</button>
+        </div>
+        <div class="search-wrapper input-field col s12 l6">
+            <i class="material-icons prefix">search</i>
+            <input id="search" type="text" (keyup)="keyUpListener($event)">
+            <label for="search">Search</label>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div *ngFor="#routineList of routines" class="col s12 l6">
+            <div *ngFor="#routine of routineList">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-image" (click)="viewRoutine(routine)">
+                            <img src="http://localhost:8003{{routine.imageUrl}}" alt="Image not found">
+                            <span class="card-title">
+                                {{routine.name}} <br>
+                                <small>by: {{routine.createdBy.username}}</small>
+                            </span>
+                        </div>
+                        <div class="card-content">
+                            <p>{{routine.description}}</p>
+                        </div>
+                        <div class="card-action">
+                            <div class="chip" *ngFor="#tag of routine.tags">
+                                {{tag}}
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <a class=" l4">Difficulty: ****</a>
+                            <a class=" l2"><i class="action-icon material-icons">alarm</i> 1h</a>
+                            <a class=" l2">4 <i class="action-icon material-icons">forum</i></a>
+                            <a class=" l2">12 <i class="red-color action-icon material-icons">favorite</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<p *ngIf="!routines.length">No Routines</p>-->
+</div>
