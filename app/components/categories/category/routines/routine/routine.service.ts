@@ -10,21 +10,6 @@ export class RoutineService {
     private serviceUrl: String = 'categories/';
     
     constructor(private _http: HttpService, private _user: UserService) { }
-     
-    public listRoutines(params: any) {
-        let options = {
-            search: {
-                page: params.page,
-                name: params.name
-            }
-        };
-        
-        return this._http.request('get', this.serviceUrl + params.category + '/routines', null, options);
-    }
-    
-    public addRoutine(params: any) {
-        return this._http.request('post', this.serviceUrl + params.category + '/routines', JSON.stringify(params), null);
-    }
     
     public addComment(params: any) {
         let data = {
