@@ -3,8 +3,8 @@
         <fieldset>
             <legend>New Routine</legend>
             
-            <button type="submit" class="btn waves-effect waves-light left"><i class="material-icons left">play_arrow</i>Back to Details</button>
-            <button type="submit" class="btn waves-effect waves-light right" [disabled]="!form.form.valid"><i class="material-icons right">play_arrow</i>Save Routine</button>
+            <button type="button" class="btn waves-effect waves-light left" (click)="onClickBack($event)"><i class="material-icons left">backspace</i>Back to Details</button>
+            <button type="submit" class="btn waves-effect waves-light right" [disabled]="!form.form.valid"><i class="material-icons right">done_all</i>Save Routine</button>
         </fieldset>
     </form>
 </div>

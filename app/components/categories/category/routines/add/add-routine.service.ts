@@ -9,6 +9,6 @@ export class AddRoutineService {
     constructor(private _http: HttpService) { }
     
     public addRoutine(params: any) {
-        return this._http.request('post', this.serviceUrl + params.category + '/routines', JSON.stringify(params), null);
+        return this._http.request('post', this.serviceUrl + params.details.categoryId + '/routines', JSON.stringify(params), null);
     }
 }

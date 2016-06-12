@@ -22,6 +22,8 @@ declare var jQuery: any;
 export class AddRoutineComponent implements OnInit {
     private _selectedImage: any = null;
     private _categoryId: String;
+    private details: any;
+    private exercises: Array<any>;
     
     constructor(private element: ElementRef, private _addRoutineService: AddRoutineService, private _router: Router,
     private _routeParams: RouteParams, private _authService: AuthService, private _utilsService: UtilsService) { }
@@ -45,25 +47,36 @@ export class AddRoutineComponent implements OnInit {
     }
     
     onSubmit(values: any): void {
-        jQuery('ul.tabs').tabs('select_tab', 'exercises');
-        // values.categoryId = this._categoryId;
-        // values.image = this._selectedImage;
-        
-        // this._routineService.addRoutine(values)
-        // .subscribe(
-        //     (data: any) => {
-        //         this._router.navigate(['Categories']);
-        //     },
-        //     (err: any) => this._utilsService.defaultErrorHandler(err),
-        //     () => this._utilsService.success('Successfully created Routine!')
-        // );
+        values.details.categoryId = this._categoryId;
+        this._addRoutineService.addRoutine(values)
+        .subscribe(
+            (data: any) => {
+                this._router.navigate(['Categories']);
+            },
+            (err: any) => this._utilsService.defaultErrorHandler(err),
+            () => this._utilsService.success('Successfully created Routine!')
+        );
     }
 
-    onDetailsSubmit(details: any): void {
+    onDetailsSubmit(event: any): void {
+        this.details = event.details;
         jQuery('#exercises-tab-button').removeClass('disabled');
         jQuery('ul.tabs').tabs('select_tab', 'exercises');
         jQuery('#details-tab-button').addClass('disabled');
+    }
 
+    onExercisesSubmit(event: any): void {
+        this.exercises = event.exercises;
+        this.onSubmit({
+            details: this.details,
+            exercises: this.exercises
+        });
+    }
+
+    onBackRedirect(details: any): void {
+        jQuery('#details-tab-button').removeClass('disabled');
+        jQuery('ul.tabs').tabs('select_tab', 'details');
+        jQuery('#exercises-tab-button').addClass('disabled');
     }
     
     canActivate(next: any, prev: any) {

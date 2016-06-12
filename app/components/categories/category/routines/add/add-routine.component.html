@@ -12,7 +12,7 @@
     </div>    <!--div EXERCISES END-->
     
     <div id="exercises" class="col s12">    <!--div EXERCISES START-->
-        <apollo-add-exercises></apollo-add-exercises>
+        <apollo-add-exercises (exercisesSubmit)="onExercisesSubmit($event)" (backRedirect)="onBackRedirect($event)"></apollo-add-exercises>
     </div>    <!--div EXERCISES END-->
     
     <div id="blank" class="col s12">

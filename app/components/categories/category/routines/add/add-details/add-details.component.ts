@@ -33,6 +33,9 @@ export class AddDetailsComponent {
     }
     
     onSubmit(values: any): void {
+        if (this._selectedImage) {
+            values.image = this._selectedImage;
+        }
         this.detailsSubmit.emit({
             details: values
         });
