@@ -47,41 +47,7 @@
     </div>
     
     <div id="details" class="col s12">    <!--div DETAILS START--> 
-        <div class="col s12 m10 offset-m1 l10 offset-l1">
-            <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
-                <fieldset>
-                    <legend>New Routine</legend>
-                    <div class="row">
-                        <div class="image-container l6">
-                            <img alt="no image" class="image">
-                        </div>
-                        <div class="file-field input-field l6">
-                            <div class="btn">
-                                <span>Image</span>
-                                <input type="file" (change)="changeListener($event)">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">perm_media</i>
-                        <input ngControl="name" #name="ngForm" type="text" id="name" name="name">
-                        <label for="name">Name</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">description</i>
-                        <textarea class="materialize-textarea" ngControl="description" #password="ngForm" type="text" id="description" name="description"></textarea>
-                        <label for="password">Desctiption</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">stars</i>
-                        <input ngControl="difficulty" #difficulty="ngForm" type="text" id="difficulty" name="difficulty">
-                        <label for="difficulty">Difficulty</label>
-                    </div>
-                    <button type="submit" class="btn waves-effect waves-light right" [disabled]="!form.form.valid"><i class="material-icons right">play_arrow</i>Proceed to Exercises</button>
-                </fieldset>
-            </form>
-        </div>
+        
     </div>    <!--div EXERCISES END-->
     
     <div id="exercises" class="col s12">    <!--div EXERCISES START-->

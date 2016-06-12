@@ -1,0 +1,7 @@
+.card-title:hover, h2 {
+    cursor: default;
+}
+
+a:hover {
+    cursor: pointer;
+}

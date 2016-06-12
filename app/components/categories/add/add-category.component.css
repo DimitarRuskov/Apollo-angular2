@@ -10,9 +10,20 @@ legend {
 }
 
 .image-container {
-    overflow: visible;
+    border: 1px solid #26A69A;
+    border-radius: 5px;
+    padding: 5px;
 }
 
-image {
-    height: 200px;
+.image {
+    width: 100%;
+    height: auto;
+}
+
+.image:hover {
+    cursor: pointer;
+}
+
+.image-picker-container {
+    display: none;
 }
