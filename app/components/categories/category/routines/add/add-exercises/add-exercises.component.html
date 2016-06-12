@@ -1,7 +1,7 @@
-<div class="col s12 m10 offset-m1 l10 offset-l1">
+<div class="form-container col s12 m10 offset-m1 l10 offset-l1">
     <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
         <fieldset>
-            <legend>New Routine</legend>
+            <legend>Add Exercises</legend>
             
             <button type="button" class="btn waves-effect waves-light left" (click)="onClickBack($event)"><i class="material-icons left">backspace</i>Back to Details</button>
             <button type="submit" class="btn waves-effect waves-light right" [disabled]="!form.form.valid"><i class="material-icons right">done_all</i>Save Routine</button>

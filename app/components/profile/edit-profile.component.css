@@ -1,0 +1,33 @@
+.form-container { 
+    margin-top: 105px;
+}
+
+fieldset {
+    border-radius: 5px;
+    padding: 15 10 15 10px;
+}
+
+legend {
+    color: #26A69A;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.image-container {
+    border: 1px solid #26A69A;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+}
+
+.image:hover {
+    cursor: pointer;
+}
+
+.image-picker-container {
+    display: none;
+}

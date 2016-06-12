@@ -1,39 +1,35 @@
-<form [ngFormModel]="form" (submit)="onSubmit(form.value)">
-    <fieldset>
-        <legend>Manage Profile...</legend>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-sm-12 col-md-8 col-lg-8">
-                    <a class="thumbnail">
-                        <img alt="no image" class="image">
-                    </a>
-                </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <div class="file-input-wrapper">
-                        <label for="name">Image</label>
-                        <span class="btn btn-default btn-file">
-                            Browse <input type="file" (change)="changeListener($event)">
-                        </span>
+<div class="row">
+    <div class="form-container col s12 m10 offset-m1 l10 offset-l1">
+        <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+            <fieldset>
+                <legend>Update Profile</legend>
+                <div class="row">
+                    <div class="image-container col l6 m12">
+                        <img src="http://localhost:8003/system/default-image.jpg" class="image" (click)="onImageClick($event)">
+
+                        <div class="image-picker-container">
+                            <span>Image</span>
+                            <input class="image-picker" type="file" (change)="changeListener($event)">
+                        </div>
+
+                    </div>
+                    <div class="file-field input-field col l6 m12">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">perm_media</i>
+                            <input ngControl="name" #name="ngForm" type="text" id="name" name="name">
+                            <label for="name">Name</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <h2>{{profileDetails.username}}</h2>
-        <hr>
-        
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input class="form-control" ngControl="name" #name="ngForm" type="text" id="name" name="name" placeholder="Name...">
-        </div>
-        <control-message control="name"></control-message>
-        
-        <div class="form-group">
-            <label for="email">E-mail</label>
-            <input class="form-control" ngControl="email" #email="ngForm" type="text" id="email" name="email" placeholder="E-mail...">
-        </div>
-        <control-message control="email"></control-message>
-        
-        <button type="submit" class="btn btn-default" [disabled]="!form.valid">Save</button>
-        
-    </fieldset>
-</form>
+
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">perm_media</i>
+                    <input ngControl="email" #email="ngForm" type="text" id="email" name="email">
+                    <label for="email">E-mail</label>
+                </div>
+
+                <button type="submit" class="btn waves-effect waves-light" [disabled]="!form.form.valid">Save</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
