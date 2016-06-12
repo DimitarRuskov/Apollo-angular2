@@ -2,9 +2,40 @@
     <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
         <fieldset>
             <legend>Add Exercises</legend>
+            <div class="btn-container row">
+                <a class="waves-effect waves-light btn modal-trigger right" data-target="addExercise"><i class="material-icons">playlist_add</i></a>
+            </div>
             
+            <ul class="collection" [dragula]='"bag"' [dragulaModel]='exercises'>
+                <li class="collection-item avatar z-depth-2" *ngFor="let exercise of exercises">
+                    {{exercise.name}}
+                    <i class="material-icons circle">folder</i>
+                    <span class="title">{{exercise.name}}</span>
+                    <p>First Line <br>
+                        Second Line
+                    </p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+            </ul>
+            
+
             <button type="button" class="btn waves-effect waves-light left" (click)="onClickBack($event)"><i class="material-icons left">backspace</i>Back to Details</button>
             <button type="submit" class="btn waves-effect waves-light right" [disabled]="!form.form.valid"><i class="material-icons right">done_all</i>Save Routine</button>
         </fieldset>
     </form>
+</div>
+
+
+<div id="addExercise" class="modal">
+    <div class="modal-content">
+        <h4>New Exercise</h4>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">vpn_key</i>
+            <input type="text" id="name" name="name">
+            <label for="name">Name</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a (click)="addExercise($event)" disabled='true' class=" modal-action modal-close waves-effect waves-green btn-flat">Add</a>
+    </div>
 </div>

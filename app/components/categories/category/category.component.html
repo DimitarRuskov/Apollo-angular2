@@ -12,8 +12,8 @@
     </div>
     <hr>
     <div class="row">
-        <div *ngFor="#routineList of routines" class="col s12 l6">
-            <div *ngFor="#routine of routineList">
+        <div *ngFor="let routineList of routines" class="col s12 l6">
+            <div *ngFor="let routine of routineList">
                 <div class="card-container">
                     <div class="card">
                         <div class="card-image" (click)="viewRoutine(routine)">
@@ -27,7 +27,7 @@
                             <p>{{routine.description}}</p>
                         </div>
                         <div class="card-action">
-                            <div class="chip" *ngFor="#tag of routine.tags">
+                            <div class="chip" *ngFor="let tag of routine.tags">
                                 {{tag}}
                             </div>
                         </div>

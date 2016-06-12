@@ -18,7 +18,9 @@
         'app/components': 'app/components',
         'materialize-css': 'node-modules/materialize-css',
         'materialize': 'node_modules/angular2-materialize',
-        'angular2-materialize': 'node_modules/angular2-materialize'
+        'angular2-materialize': 'node_modules/angular2-materialize',
+        'dragula':'node_modules/dragula/dist/dragula.min.js',
+        'ng2-dragula': 'node_modules/ng2-dragula'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
@@ -32,7 +34,8 @@
         'materialize': {
             'main': 'dist/materialize-directive',
             'defaultExtension': 'js'
-        }
+        },
+        'ng2-dragula': { main: 'ng2-dragula.js', defaultExtension: 'js' }
     };
 
     var packageNames = [

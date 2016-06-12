@@ -61,7 +61,7 @@ export class RoutineComponent implements OnInit {
         let values = {
             category: this._categoryId,
             routine: this._routineId,
-            content: this.element.nativeElement.querySelector('#content').value
+            content: inputElement.value
         }
         
         this._routineService.addComment(values)
