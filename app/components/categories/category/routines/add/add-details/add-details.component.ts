@@ -1,20 +1,18 @@
-import {Component, Output, ElementRef} from '@angular/core';
+import {Component, Output, ElementRef, EventEmitter} from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    templateUrl:        'add-details.component.html',
-    styleUrls:          ['add-details.component.css'],
-    providers:          []
+    selector: 'apollo-add-details',
+    templateUrl: 'add-details.component.html',
+    styleUrls: ['add-details.component.css']
 })
 
 export class AddDetailsComponent {
+    @Output() detailsSubmit = new EventEmitter();
+
     private _selectedImage: any = null;
     
     constructor(private element: ElementRef) { }
-    
-    ngOnInit() {
-        
-    }
 
     onImageClick(event: any) {
         let imagePicker = this.element.nativeElement.querySelector('.image-picker');
@@ -35,6 +33,8 @@ export class AddDetailsComponent {
     }
     
     onSubmit(values: any): void {
-        debugger;
+        this.detailsSubmit.emit({
+            details: values
+        });
     }
 }

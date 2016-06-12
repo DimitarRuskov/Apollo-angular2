@@ -1,57 +1,18 @@
-<!--<div class="row">
-    <div class="col s12 m10 offset-m1 l10 offset-l1">
-        <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
-            <fieldset>
-                <legend>New Routine</legend>
-                <div class="row">
-                    <div class="image-container l6">
-                        <img alt="no image" class="image">
-                    </div>
-                    <div class="file-field input-field l6">
-                        <div class="btn">
-                            <span>Image</span>
-                            <input type="file" (change)="changeListener($event)">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">perm_media</i>
-                    <input ngControl="name" #name="ngForm" type="text" id="name" name="name">
-                    <label for="name">Name</label>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">description</i>
-                    <textarea class="materialize-textarea" ngControl="description" #password="ngForm" type="text" id="description" name="description"></textarea>
-                    <label for="password">Desctiption</label>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">stars</i>
-                    <input ngControl="difficulty" #difficulty="ngForm" type="text" id="difficulty" name="difficulty">
-                    <label for="difficulty">Difficulty</label>
-                </div>
-                <button type="submit" class="btn waves-effect waves-light" [disabled]="!form.form.valid">Save</button>
-            </fieldset>
-        </form>
-    </div>
-</div>-->
-
-
 <div class="component-container row">
     <div class="col s12">
       <ul class="tabs">
-        <li class="tab col s3"><a class="active" href="#details">Details</a></li>
-        <li class="tab col s3"><a href="#exercises">Exercises</a></li>
+        <li id="details-tab-button" class="tab col s3"><a class="active" href="#details">Details</a></li>
+        <li id="exercises-tab-button" class="tab col s3 disabled"><a href="#exercises">Exercises</a></li>
         <li class="tab col s3 disabled"><a href="#blank">:)</a></li>
       </ul>
     </div>
     
     <div id="details" class="col s12">    <!--div DETAILS START--> 
-        
+        <apollo-add-details (detailsSubmit)="onDetailsSubmit($event)"></apollo-add-details>
     </div>    <!--div EXERCISES END-->
     
     <div id="exercises" class="col s12">    <!--div EXERCISES START-->
-        <p>Exercises OMG!</p>
+        <apollo-add-exercises></apollo-add-exercises>
     </div>    <!--div EXERCISES END-->
     
     <div id="blank" class="col s12">

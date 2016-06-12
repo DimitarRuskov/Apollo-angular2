@@ -5,12 +5,17 @@ import {AddRoutineService} from './add-routine.service';
 import {AuthService} from 'shared/services/auth.service';
 import {UtilsService} from 'shared/services/utils.service';
 
+
+import {AddDetailsComponent} from './add-details/add-details.component';
+import {AddExercisesComponent} from './add-exercises/add-exercises.component';
+
 declare var jQuery: any;
 
 @Component({
     moduleId: module.id,
     templateUrl: 'add-routine.component.html',
     styleUrls: ['add-routine.component.css'],
+    directives: [AddDetailsComponent, AddExercisesComponent],
     providers: [AddRoutineService, UtilsService]
 })
 
@@ -52,6 +57,13 @@ export class AddRoutineComponent implements OnInit {
         //     (err: any) => this._utilsService.defaultErrorHandler(err),
         //     () => this._utilsService.success('Successfully created Routine!')
         // );
+    }
+
+    onDetailsSubmit(details: any): void {
+        jQuery('#exercises-tab-button').removeClass('disabled');
+        jQuery('ul.tabs').tabs('select_tab', 'exercises');
+        jQuery('#details-tab-button').addClass('disabled');
+
     }
     
     canActivate(next: any, prev: any) {
