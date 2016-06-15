@@ -21,3 +21,16 @@ legend {
 .gu-mirror {
     display: none;
 }
+
+.margin-right-5 {
+    margin-right: 5px;
+}
+
+.no-items {
+    text-align: center;
+    color: #26A69A;
+}
+
+.range-field {
+    width: 90%;
+}

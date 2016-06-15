@@ -3,7 +3,7 @@
         <a [routerLink]="[home]" class="brand-logo">Apollo</a>
         <a data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-            <li *ngFor="#route of routes.left"><a *ngIf="route.access === 'public' || (route.access === 'auth' && isAuth)" [routerLink]="[route.name]">{{route.name}}</a></li>  
+            <li *ngFor="let route of routes.left"><a *ngIf="route.access === 'public' || (route.access === 'auth' && isAuth)" [routerLink]="[route.name]">{{route.name}}</a></li>  
             
             <li>
                 <a class="dropdown-button" href="#!" data-activates="profile-dropdown" >
@@ -11,7 +11,7 @@
                     <i *ngIf="isAuth" class="material-icons right">arrow_drop_down</i>
                 </a>
             </li>
-            <li *ngFor="#route of routes.right"><a *ngIf="route.access === 'noAuth' && !isAuth" [routerLink]="[route.name]">{{route.name}}</a></li>
+            <li *ngFor="let route of routes.right"><a *ngIf="route.access === 'noAuth' && !isAuth" [routerLink]="[route.name]">{{route.name}}</a></li>
         </ul>
     </div>
 </nav>

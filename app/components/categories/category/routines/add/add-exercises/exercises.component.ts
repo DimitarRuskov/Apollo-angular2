@@ -1,14 +1,15 @@
 import {Component, Output, EventEmitter, ElementRef} from '@angular/core';
 import {Dragula, DragulaService} from 'ng2-dragula';
+import {AddExerciseComponent} from './add-exercise.component'
 
 declare var jQuery: any;
 
 @Component({
     moduleId: module.id,
     selector: 'apollo-add-exercises',
-    templateUrl: 'add-exercises.component.html',
-    styleUrls: ['add-exercises.component.css'],
-    directives: [Dragula],
+    templateUrl: 'exercises.component.html',
+    styleUrls: ['exercises.component.css'],
+    directives: [AddExerciseComponent, Dragula],
     providers: [DragulaService]
 })
 
@@ -36,10 +37,17 @@ export class AddExercisesComponent {
         this.backRedirect.emit({});
     }
 
-    addExercise(event: any) {
-        let inputElement = this.element.nativeElement.querySelector('#name');
-        this.exercises.push({name: inputElement.value});
-        inputElement.value = '';
+    onAddExercise(event: any) {
+        this.exercises.push(event.exercise);
+    }
+
+    onAddBreak(event: any) {
+        let inputElement = this.element.nativeElement.querySelector('#time');
+        this.exercises.push({type: 'break', time: inputElement});
+    }
+
+    onDeleteExercise(index: any) {
+        this.exercises.splice(index, 1);
     }
 
     onSubmit(values: any): void {

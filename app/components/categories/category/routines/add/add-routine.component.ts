@@ -7,7 +7,7 @@ import {UtilsService} from 'shared/services/utils.service';
 
 
 import {AddDetailsComponent} from './add-details/add-details.component';
-import {AddExercisesComponent} from './add-exercises/add-exercises.component';
+import {AddExercisesComponent} from './add-exercises/exercises.component';
 
 declare var jQuery: any;
 
