@@ -3,8 +3,7 @@
         <fieldset>
             <legend>Add Exercises</legend>
             <div class="btn-container row">
-                <a class="waves-effect waves-light btn modal-trigger right" data-target="addBreak">Break</a>
-                <a class="waves-effect waves-light btn modal-trigger right margin-right-5" data-target="addExercise">Exercise</a>
+                <a class="dropdown-button btn right em2" href="#!" data-activates="addDropdown">+</a>
             </div>
             <h5 *ngIf="!exercises.length" class="no-items">No exercises yet...</h5>
             <ul class="collection" [dragula]='"bag"' [dragulaModel]='exercises'>
@@ -19,7 +18,8 @@
                         </template>
                         <template [ngIf]="exercise.type === 'break'">
                             Break
-                            <p class="range-field disabled">
+
+                            <p class="range-field">
                                 <input disabled type="range" min="0" max="360" />
                             </p>
                         </template>
@@ -42,12 +42,29 @@
 <div id="addBreak" class="modal">
     <div class="modal-content">
     <h4>New Break</h4>
-    <div class="input-field col s12">
-        <p class="range-field disabled">
-            <input type="range" min="0" max="360" />
+    <div class="input-field col s12 text-center">
+        <div class="row inline-block">
+            <div class="clock table-cell">
+                <span class="em4">{{minutes}}</span>
+                <br>
+                <span class="em4">{{seconds}}</span>
+            </div>
+        </div>
+        <p class="range-field inline-block">
+            <input [(ngModel)]="time" (ngModelChange)="onChange($event)" type="range" min="0" max="360" />
         </p>
     </div>
 </div>
 <div class="modal-footer">
     <a (click)="onAddBreak($event)" disabled='true' class=" modal-action modal-close waves-effect waves-green btn-flat">Add</a>
 </div>
+
+<ul id="addDropdown" class="dropdown-content"> <!--dropdown content begin-->
+    <li>
+        <a class="modal-trigger" data-target="addBreak">Break</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a class="modal-trigger" data-target="addExercise">Exercise</a>
+    </li>
+</ul>

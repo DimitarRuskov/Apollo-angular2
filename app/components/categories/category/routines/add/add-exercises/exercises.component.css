@@ -34,3 +34,34 @@ legend {
 .range-field {
     width: 90%;
 }
+
+.clock {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #26A69A;
+    border-radius: 100%;
+    color: #26A69A;
+    line-height: 0.9;
+}
+
+.em4 {
+    font-size: 4em;
+}
+
+.em2 {
+    font-size: 2em;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.table-cell {
+    display: table-cell;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
