@@ -57,6 +57,11 @@ export class EditProfileComponent implements OnInit {
         this.form.controls['height'].updateValue(this.profileDetails.height);
     }
     
+    onImageClick(event: any) {
+        let imagePicker = this.element.nativeElement.querySelector('.image-picker');
+        imagePicker.click();
+    }
+
     changeListener(event: any) {
         let reader = new FileReader();
         let image = this.element.nativeElement.querySelector('.image');
