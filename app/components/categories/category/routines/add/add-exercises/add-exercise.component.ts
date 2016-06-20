@@ -18,7 +18,7 @@ export class AddExerciseComponent {
 
         this.addExercise.emit({
             exercise: {
-                type: 'exercise'
+                type: 'exercise',
                 name: inputElement.value
             }
         });
