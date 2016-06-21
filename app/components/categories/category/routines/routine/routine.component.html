@@ -22,7 +22,7 @@
           <a href="#!" class="secondary-content"><span class="timespan">{{comment.createdAt}}</span> <i class="material-icons">av_timer</i></a>
         </li>
       </ul>
-      <apollo-pagination *ngIf="commentCount" [itemCount]="commentCount" (pageChange)="onPageChanged($event)"></apollo-pagination>
+      <apollo-pagination *ngIf="commentsCount" [itemCount]="commentsCount" (pageChange)="onPageChanged($event)"></apollo-pagination>
     </div>    <!--div COMMENTS END-->
     
     <div id="blank" class="col s12">
