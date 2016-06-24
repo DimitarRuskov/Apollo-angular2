@@ -61,6 +61,7 @@ export class AddExercisesComponent {
 
     onChange(event: any) {
         let val = parseInt(event);
+        this.time = val;
         this.minutes = (Math.floor(val / 60) < 10) ? '0' + Math.floor(val / 60) : '' + Math.floor(val / 60);
         this.seconds = (Math.floor(val % 60) < 10) ? '0' + Math.floor(val % 60) : '' + Math.floor(val % 60);
     }

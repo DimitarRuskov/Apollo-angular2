@@ -26,14 +26,36 @@
                     </div>
                     <div class="input-field col s12">
                         <p>
-                            <input name="group" type="radio" id="repetitions" (click)="showRepetitionsInput()"/>
+                            <input name="group" type="radio" id="repetitions" (click)="showRepetitionsInput()" [checked]="showRepetitions" />
                             <label for="repetitions">Repetitions</label>
-                        </p>
-                        <p>
-                            <input name="group" type="radio" id="duration" (click)="showDurationInput()"/>
+
+                            <input name="group" type="radio" id="duration" (click)="showDurationInput()" [checked]="showDuration" />
                             <label for="duration">Duration</label>
                         </p>
                     </div>
+                    <div *ngIf="showDuration" class="input-field col s12 text-center"> <!-- Clock BEGIN-->
+                        <div class="margin-top-20 row inline-block">
+                            <div class="clock table-cell">
+                                <span class="em2-5">{{minutes}}</span>
+                                <br>
+                                <span class="em2">{{seconds}}</span>
+                            </div>
+                        </div>
+                        <p class="range-field inline-block">
+                            <input id="time" [(ngModel)]="duration" (ngModelChange)="onDurationChange($event)" type="range" min="0" max="360" />
+                        </p>
+                    </div> <!-- Clock END-->
+
+                    <div *ngIf="showRepetitions" class="input-field col s12 text-center"> <!-- Repetitions BEGIN-->
+                        <div class="margin-top-20 row inline-block">
+                            <div class="reps table-cell">
+                                {{repetitions}} Reps
+                            </div>
+                        </div>
+                        <p class="range-field inline-block">
+                            <input id="time" [(ngModel)]="repetitions" (ngModelChange)="onRepetitionsChange($event)" type="range" min="0" max="50" />
+                        </p>
+                    </div> <!-- Repetitions END-->
                 </div>
             </div>
             <div class="input-field col s12">
