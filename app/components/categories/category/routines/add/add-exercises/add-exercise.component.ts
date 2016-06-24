@@ -70,15 +70,21 @@ export class AddExerciseComponent {
     }
 
     onAddExercise(event: any) {
-        let inputElement = this.element.nativeElement.querySelector('#name');
+        let name = this.element.nativeElement.querySelector('#name');
+        let description = this.element.nativeElement.querySelector('#description');
+        let exercise = {
+            name: name,
+            description: description,
+            sets: this.sets
+        }
+        if (this.showDuration) {
+            exercise['duration'] = this.duration;
+        } else {
+            exercise['repetitions'] = this.repetitions;
+        }
 
         this.addExercise.emit({
-            exercise: {
-                type: 'exercise',
-                name: inputElement.value
-            }
+            exercise: exercise
         });
-
-        inputElement.value = '';
     }
 }
