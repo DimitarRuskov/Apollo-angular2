@@ -22,9 +22,10 @@ export class RoutineComponent implements OnInit {
     private _categoryId: String;
     private exercises: Array<any>;
     private comments: Array<any>;
-    private commentCount: number;
+    private commentsCount: number;
     private page: number;
-    
+    private exercisesCount: number;
+
     constructor(private element: ElementRef, private _routineService: RoutineService,
     private _routeParams: RouteParams, private _utilsService: UtilsService) { }
     
@@ -45,9 +46,10 @@ export class RoutineComponent implements OnInit {
     }
     
     buildDataList(data: any) {
-        this.exercises = data.exercises;
-        this.comments = data.comments;
-        this.commentCount = data.commentCount;
+        this.exercises = data.routine.exercises;
+        this.comments = data.routine.comments;
+        this.commentsCount = data.routine.commentsCount;
+        this.exercisesCount = data.routine.exercisesCount;
     }
     
     addComment() {
@@ -76,7 +78,7 @@ export class RoutineComponent implements OnInit {
         let options = {
             category: this._categoryId,
             routine: this._routineId,
-            page: this.page
+            page: this.page - 1
         };
         
         this._routineService.listComments(options)
