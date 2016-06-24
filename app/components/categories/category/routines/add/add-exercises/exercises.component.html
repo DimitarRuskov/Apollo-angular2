@@ -18,7 +18,9 @@
                         </template>
                         <template [ngIf]="exercise.type === 'break'">
                             Break
-
+                            <i class="material-icons circle">query_builder</i>
+                            <br>
+                            <span class="title">{{exercise.time | timeFormat}}</span>
                             <p class="range-field">
                                 <input disabled type="range" min="0" max="360" />
                             </p>
@@ -51,7 +53,7 @@
             </div>
         </div>
         <p class="range-field inline-block">
-            <input [(ngModel)]="time" (ngModelChange)="onChange($event)" type="range" min="0" max="360" />
+            <input id="time" [(ngModel)]="time" (ngModelChange)="onChange($event)" type="range" min="0" max="360" />
         </p>
     </div>
 </div>

@@ -1,6 +1,8 @@
 <nav>
     <div class="nav-wrapper">
-        <a [routerLink]="[home]" class="brand-logo">Apollo</a>
+        <a [routerLink]="[home]" class="brand-logo">
+            <img *ngIf="isAuth" src="http://localhost:8003/system/logo.png">
+        </a>
         <a data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li *ngFor="let route of routes.left"><a *ngIf="route.access === 'public' || (route.access === 'auth' && isAuth)" [routerLink]="[route.name]">{{route.name}}</a></li>  

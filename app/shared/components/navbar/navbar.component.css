@@ -9,3 +9,7 @@ nav {
     border-radius: 50%;
     vertical-align: middle;
 }
+
+.brand-logo img {
+    height: 64px;
+}

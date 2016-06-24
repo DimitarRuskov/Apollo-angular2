@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TimeFormatPipe implements PipeTransform {
 
   transform(value: any): string {
-
     let val = parseInt(value);
     let minutes = (Math.floor(val / 60) < 10) ? '0' + Math.floor(val / 60) : Math.floor(val / 60)
     let seconds = (Math.floor(val % 60) < 10) ? '0' + Math.floor(val % 60) : Math.floor(val % 60)

@@ -1,6 +1,7 @@
 import {Component, Output, EventEmitter, ElementRef} from '@angular/core';
 import {Dragula, DragulaService} from 'ng2-dragula';
 import {AddExerciseComponent} from './add-exercise.component';
+import {TimeFormatPipe} from 'shared/pipes/time-format.pipe'
 
 declare var jQuery: any;
 
@@ -10,7 +11,8 @@ declare var jQuery: any;
     templateUrl: 'exercises.component.html',
     styleUrls: ['exercises.component.css'],
     directives: [AddExerciseComponent, Dragula],
-    providers: [DragulaService]
+    providers: [DragulaService],
+    pipes: [TimeFormatPipe]
 })
 
 export class AddExercisesComponent {
@@ -50,7 +52,7 @@ export class AddExercisesComponent {
 
     onAddBreak(event: any) {
         let inputElement = this.element.nativeElement.querySelector('#time');
-        this.exercises.push({type: 'break', time: inputElement});
+        this.exercises.push({type: 'break', time: inputElement.value});
     }
 
     onDeleteExercise(index: any) {
