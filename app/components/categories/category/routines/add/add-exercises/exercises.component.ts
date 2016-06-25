@@ -1,6 +1,7 @@
 import {Component, Output, EventEmitter, ElementRef} from '@angular/core';
 import {Dragula, DragulaService} from 'ng2-dragula';
 import {AddExerciseComponent} from './add-exercise.component';
+import {ExerciseComponent} from './../../routine/exercise/exercise.component';
 import {TimeFormatPipe} from 'shared/pipes/time-format.pipe'
 
 declare var jQuery: any;
@@ -10,7 +11,7 @@ declare var jQuery: any;
     selector: 'apollo-add-exercises',
     templateUrl: 'exercises.component.html',
     styleUrls: ['exercises.component.css'],
-    directives: [AddExerciseComponent, Dragula],
+    directives: [Dragula, ExerciseComponent, AddExerciseComponent],
     providers: [DragulaService],
     pipes: [TimeFormatPipe]
 })
@@ -24,6 +25,7 @@ export class AddExercisesComponent {
     private minutes: string;
     private seconds: string = '00';
     private defaultTime: number = 60;
+    private viewExerciseIndex: number;
     
     constructor(private element: ElementRef, private dragulaService: DragulaService) { }
     
@@ -46,7 +48,18 @@ export class AddExercisesComponent {
         this.backRedirect.emit({});
     }
 
+    onClickExerciseDetails(event: any) {
+        this.viewExerciseIndex = event;
+        jQuery('#viewDetailsExercise').openModal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            in_duration: 300, // Transition in duration
+            out_duration: 200, // Transition out duration
+        });
+    }
+
     onAddExercise(event: any) {
+        event.exercise.type = 'exercise';
         this.exercises.push(event.exercise);
     }
 

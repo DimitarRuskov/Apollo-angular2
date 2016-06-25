@@ -1,0 +1,57 @@
+<div class="modal-content">
+    <h2>{{exercise.name}}</h2>
+</div>
+
+
+<div class="modal-content">
+    <div class="row">
+        <div class="image-container col l6 m12">
+            <img src="{{exercise.image}}" class="image">
+        </div>
+        <div class="file-field input-field col l6 m12">
+            <div class="input-field col s12">
+                <p>{{exercise.name}}</p>
+            </div>
+            <div class="input-field col s12">
+                {{exercise.sets}} sets
+            </div>
+            <div class="input-field col s12">
+                <p>
+                    <input name="group" type="radio" id="repetitions" (click)="showRepetitionsInput()" [checked]="showRepetitions" />
+                    <label for="repetitions">Repetitions</label>
+
+                    <input name="group" type="radio" id="duration" (click)="showDurationInput()" [checked]="showDuration" />
+                    <label for="duration">Duration</label>
+                </p>
+            </div>
+            <div *ngIf="showDuration" class="input-field col s12 text-center"> <!-- Clock BEGIN-->
+                <div class="margin-top-20 row inline-block">
+                    <div class="clock table-cell">
+                        <span class="em2-5">{{minutes}}</span>
+                        <br>
+                        <span class="em2">{{seconds}}</span>
+                    </div>
+                </div>
+                <p class="range-field inline-block">
+                    <input id="time" [(ngModel)]="duration" (ngModelChange)="onDurationChange($event)" type="range" min="0" max="360" />
+                </p>
+            </div> <!-- Clock END-->
+
+            <div *ngIf="showRepetitions" class="input-field col s12 text-center"> <!-- Repetitions BEGIN-->
+                <div class="margin-top-20 row inline-block">
+                    <div class="reps table-cell">
+                        <span class="em2-5">{{repetitions}}</span> <span class="em1-5">Reps</span>
+                    </div>
+                </div>
+                <p class="range-field inline-block">
+                    <input id="time" [(ngModel)]="repetitions" (ngModelChange)="onRepetitionsChange($event)" type="range" min="0" max="50" />
+                </p>
+            </div> <!-- Repetitions END-->
+        </div>
+    </div>
+    <div class="input-field col s12">
+        <i class="material-icons prefix">description</i>
+        <textarea class="materialize-textarea" type="text" id="description" name="description"></textarea>
+        <label for="password">Desctiption</label>
+    </div>
+</div>

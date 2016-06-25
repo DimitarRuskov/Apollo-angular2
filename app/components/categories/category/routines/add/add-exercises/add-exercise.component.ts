@@ -17,6 +17,7 @@ export class AddExerciseComponent {
     private seconds: string = '00';
     private showDuration: boolean = true;
     private showRepetitions: boolean = false;
+    private _selectedImage: any = null;
 
     constructor(private element: ElementRef) { }
 
@@ -70,12 +71,13 @@ export class AddExerciseComponent {
     }
 
     onAddExercise(event: any) {
-        let name = this.element.nativeElement.querySelector('#name');
-        let description = this.element.nativeElement.querySelector('#description');
+        let name = this.element.nativeElement.querySelector('#name').value;
+        let description = this.element.nativeElement.querySelector('#description').value;
         let exercise = {
             name: name,
             description: description,
-            sets: this.sets
+            sets: this.sets,
+            image: this._selectedImage
         }
         if (this.showDuration) {
             exercise['duration'] = this.duration;

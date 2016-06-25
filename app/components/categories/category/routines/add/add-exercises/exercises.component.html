@@ -9,11 +9,11 @@
             <ul class="collection" [dragula]='"bag"' [dragulaModel]='exercises'>
                     <li class="collection-item avatar z-depth-2" *ngFor="let exercise of exercises;  let i = index">
                         <template [ngIf]="exercise.type === 'exercise'">
-                            {{exercise.name}}
-                            <i class="material-icons circle">folder</i>
-                            <span class="title">{{exercise.name}}</span>
-                            <p>First Line <br>
-                                Second Line
+                            <img src="{{exercise.image}}" alt="Image not found" class="circle">
+                            <span class="title">{{exercise.name}} | <a (click)="onClickExerciseDetails(i)">Details...</a></span>
+                            <p><span *ngIf="exercise.duration">Duration: {{exercise.duration}}</span>
+                               <span *ngIf="exercise.duration">Repetitions: {{exercise.repetitions}}</span>  <br>
+                               Description: {{exercise.description}}
                             </p>
                         </template>
                         <template [ngIf]="exercise.type === 'break'">
@@ -36,6 +36,10 @@
     </form>
 </div>
 
+
+<div id="viewDetailsExercise" class="modal">
+    <apollo-exercise *ngIf="exercises[viewExerciseIndex]" [exercise]="exercises[viewExerciseIndex]"></apollo-exercise>
+</div>
 
 <div id="addExercise" class="modal">
     <apollo-add-exercise (addExercise)="onAddExercise($event)"></apollo-add-exercise>
