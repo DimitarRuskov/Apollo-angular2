@@ -80,7 +80,6 @@ export class AddExercisesComponent {
     }
 
     onSubmit(values: any): void {
-        debugger;
         this.exercisesSubmit.emit({
             exercises: this.exercises
         });
