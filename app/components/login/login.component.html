@@ -1,19 +1,25 @@
 <div class="row">
-    <div class="form-container col s12 m10 offset-m1 l6 offset-l3">
-        <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+    <div [hidden]="submitted" class="form-container col s12 m10 offset-m1 l6 offset-l3">
+        <form class="col s12" *ngIf="active" (ngSubmit)="onSubmit()" #loginForm="ngForm">
             <fieldset>
                 <legend>Login</legend>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">account_circle</i>
-                    <input ngControl="username" #username="ngForm" type="text" id="username" name="username">
+                    <input  type="text" required
+                            [(ngModel)]="model.username"
+                            name="username"  #username="ngModel">
                     <label for="username">Username</label>
+                    <validation-message [hidden]="isValid(username)" [message]="'username is required'"></validation-message>
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix">vpn_key</i>
-                    <input ngControl="password" #password="ngForm" type="password" id="password" name="password">
+                    <input  type="password" required
+                            [(ngModel)]="model.password"
+                            name="password"  #password="ngModel">
                     <label for="password">Password</label>
+                    <validation-message [hidden]="isValid(password)" [message]="'password is required'"></validation-message>
                 </div>
-                <button type="submit" class="btn waves-effect waves-light" [disabled]="!form.form.valid">Login</button>
+                <button type="submit" class="btn waves-effect waves-light right" [disabled]="!loginForm.form.valid">Login</button>
             </fieldset>
         </form>
     </div>

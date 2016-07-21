@@ -12,3 +12,7 @@ legend {
     font-size: 1.5em;
     font-weight: bold;
 }
+
+button:disabled {
+    opacity: 0.5;
+}

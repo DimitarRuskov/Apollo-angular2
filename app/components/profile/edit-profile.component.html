@@ -1,12 +1,11 @@
 <div class="row">
-    <div class="form-container col s12 m10 offset-m1 l10 offset-l1">
-        <form class="col s12" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+    <div [hidden]="submitted" class="form-container col s12 m10 offset-m1 l6 offset-l3">
+        <form class="col s12" *ngIf="active" (ngSubmit)="onSubmit()" #loginForm="ngForm">
             <fieldset>
                 <legend>Update Profile</legend>
                 <div class="row">
                     <div class="image-container col l6 m12">
                         <img src="http://localhost:8003/system/default-image.jpg" class="image" (click)="onImageClick($event)">
-
                         <div class="image-picker-container">
                             <span>Image</span>
                             <input class="image-picker" type="file" (change)="changeListener($event)">

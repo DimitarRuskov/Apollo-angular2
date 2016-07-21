@@ -1,7 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/common';
 
-import {ControlMessage} from 'shared/components/control-message/control-message.component';
 import {ValidationService} from 'shared/services/validation.service';
 
 import {ProfileModel} from './profile.model';
@@ -13,7 +12,6 @@ import {ProfileService} from './profile.service';
     moduleId: module.id,
     templateUrl: 'edit-profile.component.html',
     styleUrls: ['edit-profile.component.css'],
-    directives: [ControlMessage],
     providers: [ProfileService]
 })
 

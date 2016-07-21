@@ -6,6 +6,4 @@ export class ProfileModel {
     dateOfBirth: Date;
     weight: number;
     height: number;
-    oldPassword: string;
-    newPassword: string;
 }
